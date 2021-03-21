@@ -2,8 +2,11 @@ package com.iteso.game;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.Serial;
 
 public class Game extends Canvas implements Runnable {
+
+    @Serial
     private static final long serialVersionUID = -2784846355173580244L;
     
     public static final int WIDTH = 1080;
@@ -15,19 +18,27 @@ public class Game extends Canvas implements Runnable {
 
     private final Handler handler;
 
+    /**
+     *
+     */
     public Game() {
-        new Window(WIDTH, HEIGHT, TITLE, this);
         handler = new Handler();
-
+        new Window(WIDTH, HEIGHT, TITLE, this);
         handler.addObject(new Player(100, 100, ID.Player));
     }
 
+    /**
+     *
+     */
     public synchronized void start() {
         thread = new Thread(this);
         thread.start();
         isRunning = true;
     }
 
+    /**
+     *
+     */
     public synchronized void stop() {
         try{
             thread.join();
@@ -37,6 +48,9 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     *
+     */
     public void run() {
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
@@ -65,10 +79,16 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    /**
+     *
+     */
     private void tick() {
         handler.tick();
     }
 
+    /**
+     *
+     */
     private void render() {
         BufferStrategy bufferStrategy = this.getBufferStrategy();
         if(bufferStrategy == null) {
