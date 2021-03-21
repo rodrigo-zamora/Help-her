@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class Game extends Canvas implements Runnable
 {
+    private static final long serialVersionUID = -2784846355173580244L;
+    
     public static final int WIDTH = 640;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final String TITLE = "Game";
