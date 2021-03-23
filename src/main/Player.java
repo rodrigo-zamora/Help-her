@@ -7,6 +7,9 @@ import java.awt.*;
  */
 public class Player extends GameObject{
 
+    Image rightPlayerImage = Toolkit.getDefaultToolkit().getImage("res/player/rightPlayerImage.png");
+    Image leftPlayerImage = Toolkit.getDefaultToolkit().getImage("res/player/leftPlayerImage.png");
+
     /**
      *
      * @param x
@@ -32,11 +35,10 @@ public class Player extends GameObject{
      */
     @Override
     public void render(Graphics graphics) {
-        if(id == ID.Player) {
-            graphics.setColor(Color.MAGENTA);
-            graphics.fillRect(x, y, 32, 32);
-        } else if(id == ID.Enemy) {
-            // ENEMY
+        if(speedX >= 0){
+            graphics.drawImage(rightPlayerImage, getX(), getY(), null);
+        } else {
+            graphics.drawImage(leftPlayerImage, getX(), getY(), null);
         }
     }
 }

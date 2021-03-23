@@ -18,6 +18,8 @@ public class Game extends Canvas implements Runnable {
 
     private final Handler handler;
 
+    int FPS = 60;
+
     /**
      *
      */
@@ -73,7 +75,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                System.out.println("FPS: " + frames);
+                FPS = frames;
                 frames = 0;
             }
         }
@@ -99,8 +101,12 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
-        graphics.setColor(Color.black);
+        graphics.setColor(Color.CYAN);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
+
+        graphics.setColor(Color.BLACK);
+        graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        graphics.drawString("FPS: " + FPS, 15, 20);
 
         handler.render(graphics);
 
