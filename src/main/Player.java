@@ -7,8 +7,10 @@ import java.awt.*;
  */
 public class Player extends GameObject{
 
-    Image rightPlayerImage = Toolkit.getDefaultToolkit().getImage("res/player/rightPlayerImage.png");
-    Image leftPlayerImage = Toolkit.getDefaultToolkit().getImage("res/player/leftPlayerImage.png");
+    Image rightPlayerImage = Toolkit.getDefaultToolkit().getImage("res/player/rightPlayerImage.gif");
+    Image leftPlayerImage = Toolkit.getDefaultToolkit().getImage("res/player/leftPlayerImage.gif");
+
+    private int health;
 
     /**
      *
