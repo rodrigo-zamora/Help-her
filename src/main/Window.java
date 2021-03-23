@@ -1,4 +1,4 @@
-package com.iteso.game;
+package main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class Window extends Canvas {
      *
      */
     @Serial
-    private static final long serialVersionUID = -4320014522320533686L;
+    private static final long serialVersionUID = -6357664197674207224L;
 
     /**
      *

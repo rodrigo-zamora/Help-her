@@ -1,4 +1,4 @@
-package com.iteso.game;
+package main;
 
 public enum ID {
     Player(),

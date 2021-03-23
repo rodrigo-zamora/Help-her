@@ -1,4 +1,4 @@
-package com.iteso.game;
+package main;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -7,11 +7,11 @@ import java.io.Serial;
 public class Game extends Canvas implements Runnable {
 
     @Serial
-    private static final long serialVersionUID = -2784846355173580244L;
+    private static final long serialVersionUID = 2717367914577165013L;
     
     public static final int WIDTH = 1080;
     public static final int HEIGHT = 640;
-    public static final String TITLE = "Game";
+    public static final String TITLE = "El escape de Juanito";
 
     private Thread thread;
     private boolean isRunning = false;
