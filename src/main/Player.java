@@ -22,7 +22,8 @@ public class Player extends GameObject{
      */
     @Override
     public void tick() {
-
+        x += speedX;
+        y += speedY;
     }
 
     /**
@@ -31,7 +32,11 @@ public class Player extends GameObject{
      */
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(Color.MAGENTA);
-        graphics.fillRect(x, y, 32, 32);
+        if(id == ID.Player) {
+            graphics.setColor(Color.MAGENTA);
+            graphics.fillRect(x, y, 32, 32);
+        } else if(id == ID.Enemy) {
+            // ENEMY
+        }
     }
 }
