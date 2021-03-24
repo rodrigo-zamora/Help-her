@@ -28,6 +28,10 @@ public class Player extends GameObject{
     @Override
     public void tick() {
         x += speedX;
+        if(getY() <= 280)
+            y = getY() + 5;
+        else if(getY() >= 450)
+            y = getY() - 5;
         y += speedY;
     }
 
@@ -38,9 +42,9 @@ public class Player extends GameObject{
     @Override
     public void render(Graphics graphics) {
         if(speedX >= 0){
-            graphics.drawImage(rightPlayerImage, 75, 450, null);
+            graphics.drawImage(rightPlayerImage, 75, getY(), null);
         } else {
-            graphics.drawImage(leftPlayerImage, 75, 450, null);
+            graphics.drawImage(leftPlayerImage, 75, getY(), null);
         }
     }
 }

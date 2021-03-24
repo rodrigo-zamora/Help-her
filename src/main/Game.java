@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable {
 
     Player player;
 
-    Image backgroundImage = Toolkit.getDefaultToolkit().getImage("res/map/Test.png");
+    Image backgroundImage = Toolkit.getDefaultToolkit().getImage("res/map/Test2.png");
 
     /**
      *
@@ -81,6 +81,7 @@ public class Game extends Canvas implements Runnable {
                 render();
             }
             frames++;
+            //System.out.println("X: " + player.getX() + " Y: " + player.getY());
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 FPS = frames;
@@ -116,7 +117,7 @@ public class Game extends Canvas implements Runnable {
         graphics.drawImage(
                 backgroundImage,
                 -player.getX(),
-                -player.getY(),
+                -200,
                 null
         );
 
