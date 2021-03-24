@@ -1,5 +1,7 @@
 package main;
 
+import TileMap.TileMap;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.Serial;
@@ -18,7 +20,11 @@ public class Game extends Canvas implements Runnable {
 
     private final Handler handler;
 
-    int FPS = 60;
+    private int FPS = 60;
+
+    Player player;
+
+    Image backgroundImage = Toolkit.getDefaultToolkit().getImage("res/map/Test.png");
 
     /**
      *
@@ -27,7 +33,9 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         this.addKeyListener(new KeyboardInput(handler));
         new Window(WIDTH, HEIGHT, TITLE, this);
-        handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player));
+        player = new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player);
+        handler.addObject(player);
+
     }
 
     /**
@@ -101,8 +109,16 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
-        graphics.setColor(Color.CYAN);
+        // Clear screen
+        graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
+
+        graphics.drawImage(
+                backgroundImage,
+                -player.getX(),
+                -player.getY(),
+                null
+        );
 
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));

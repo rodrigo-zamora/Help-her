@@ -38,9 +38,9 @@ public class Player extends GameObject{
     @Override
     public void render(Graphics graphics) {
         if(speedX >= 0){
-            graphics.drawImage(rightPlayerImage, getX(), getY(), null);
+            graphics.drawImage(rightPlayerImage, 75, 450, null);
         } else {
-            graphics.drawImage(leftPlayerImage, getX(), getY(), null);
+            graphics.drawImage(leftPlayerImage, 75, 450, null);
         }
     }
 }
