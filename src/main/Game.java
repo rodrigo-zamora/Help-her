@@ -1,7 +1,5 @@
 package main;
 
-import TileMap.TileMap;
-
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.Serial;
@@ -114,6 +112,7 @@ public class Game extends Canvas implements Runnable {
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
+        // Background image
         graphics.drawImage(
                 backgroundImage,
                 -player.getX(),
@@ -121,10 +120,12 @@ public class Game extends Canvas implements Runnable {
                 null
         );
 
+        // FPS
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         graphics.drawString("FPS: " + FPS, 15, 20);
 
+        // Render all game objects
         handler.render(graphics);
 
         graphics.dispose();
