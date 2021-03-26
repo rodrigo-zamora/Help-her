@@ -1,5 +1,7 @@
 package main;
 
+import map.*;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.Serial;
@@ -22,7 +24,7 @@ public class Game extends Canvas implements Runnable {
 
     Player player;
 
-    Image backgroundImage = Toolkit.getDefaultToolkit().getImage("res/map/Test2.png");
+    Map map = new Map();
 
     /**
      *
@@ -112,11 +114,30 @@ public class Game extends Canvas implements Runnable {
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
-        // Background image
+        // Calculate current chunk
+        map.calculateChunk(player.getX(), player);
+
+        // Render previous chunk
         graphics.drawImage(
-                backgroundImage,
-                -player.getX(),
-                -200,
+                map.previousChunk(map.currentChunk),
+                map.getX()-946,
+                -50,
+                null
+        );
+
+        // Render current chunk
+        graphics.drawImage(
+                map.getChunk(map.currentChunk),
+                map.getX(),
+                -50,
+                null
+        );
+
+        // Render next chunk
+        graphics.drawImage(
+                map.nextChunk(map.currentChunk),
+                map.getX()+946,
+                -50,
                 null
         );
 
