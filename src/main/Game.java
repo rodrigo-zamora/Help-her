@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable {
 
     Player player;
 
-    Map map = new Map();
+    Chunk chunk = new Chunk();
 
     /**
      *
@@ -115,28 +115,28 @@ public class Game extends Canvas implements Runnable {
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
         // Calculate current chunk
-        map.calculateChunk(player.getX(), player);
+        chunk.calculateChunk(player.getX(), player);
 
         // Render previous chunk
         graphics.drawImage(
-                map.previousChunk(map.currentChunk),
-                map.getX()-946,
+                chunk.previousChunk(chunk.currentChunk),
+                chunk.getX()-1032,
                 -50,
                 null
         );
 
         // Render current chunk
         graphics.drawImage(
-                map.getChunk(map.currentChunk),
-                map.getX(),
+                chunk.getChunk(chunk.currentChunk),
+                chunk.getX(),
                 -50,
                 null
         );
 
         // Render next chunk
         graphics.drawImage(
-                map.nextChunk(map.currentChunk),
-                map.getX()+946,
+                chunk.nextChunk(chunk.currentChunk),
+                chunk.getX()+1032,
                 -50,
                 null
         );
