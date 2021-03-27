@@ -1,5 +1,7 @@
 package main;
 
+import map.*;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.Serial;
@@ -18,7 +20,11 @@ public class Game extends Canvas implements Runnable {
 
     private final Handler handler;
 
-    int FPS = 60;
+    private int FPS = 60;
+
+    Player player;
+
+    Chunk chunk = new Chunk();
 
     /**
      *
@@ -27,7 +33,9 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         this.addKeyListener(new KeyboardInput(handler));
         new Window(WIDTH, HEIGHT, TITLE, this);
-        handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player));
+        player = new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player);
+        handler.addObject(player);
+
     }
 
     /**
@@ -73,6 +81,7 @@ public class Game extends Canvas implements Runnable {
                 render();
             }
             frames++;
+            //System.out.println("X: " + player.getX() + " Y: " + player.getY());
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 FPS = frames;
@@ -101,13 +110,43 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
-        graphics.setColor(Color.CYAN);
+        // Clear screen
+        graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
+        // Calculate current chunk
+        chunk.calculateChunk(player.getX(), player);
+
+        // Render previous chunk
+        graphics.drawImage(
+                chunk.previousChunk(chunk.currentChunk),
+                chunk.getX()-1118,
+                -50,
+                null
+        );
+
+        // Render current chunk
+        graphics.drawImage(
+                chunk.getChunk(chunk.currentChunk),
+                chunk.getX(),
+                -50,
+                null
+        );
+
+        // Render next chunk
+        graphics.drawImage(
+                chunk.nextChunk(chunk.currentChunk),
+                chunk.getX()+1118,
+                -50,
+                null
+        );
+
+        // FPS
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         graphics.drawString("FPS: " + FPS, 15, 20);
 
+        // Render all game objects
         handler.render(graphics);
 
         graphics.dispose();
