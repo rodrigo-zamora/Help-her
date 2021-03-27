@@ -28,9 +28,9 @@ public class Player extends GameObject{
     @Override
     public void tick() {
         x += speedX;
-        if(getY() <= 280)
+        if(getY() <= 260)
             y = getY() + 5;
-        else if(getY() >= 450)
+        else if(getY() >= 430)
             y = getY() - 5;
         y += speedY;
     }

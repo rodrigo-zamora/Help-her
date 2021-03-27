@@ -120,7 +120,7 @@ public class Game extends Canvas implements Runnable {
         // Render previous chunk
         graphics.drawImage(
                 chunk.previousChunk(chunk.currentChunk),
-                chunk.getX()-1032,
+                chunk.getX()-1118,
                 -50,
                 null
         );
@@ -136,7 +136,7 @@ public class Game extends Canvas implements Runnable {
         // Render next chunk
         graphics.drawImage(
                 chunk.nextChunk(chunk.currentChunk),
-                chunk.getX()+1032,
+                chunk.getX()+1118,
                 -50,
                 null
         );

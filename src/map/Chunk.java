@@ -35,7 +35,7 @@ public class Chunk {
     /**
      *  This method returns the Image to be displayed at the next chunk
      * @param currentChunk  receives an integer with the current chunk
-     * @return              returns an Image with the next chunk
+     * @return              an Image of the next chunk
      */
     public Image nextChunk(int currentChunk) {
         return switch (currentChunk) {
@@ -54,7 +54,7 @@ public class Chunk {
     /**
      *  This method returns the Image to be displayed at the previous chunk
      * @param currentChunk  receives an integer with the current chunk
-     * @return              returns an Image with the previous chunk
+     * @return              an Image of the previous chunk
      */
     public Image previousChunk(int currentChunk) {
         return switch (currentChunk) {
@@ -73,7 +73,7 @@ public class Chunk {
     /**
      *  This method returns the Image to be displayed at the current chunk
      * @param currentChunk  receives an integer with the current chunk
-     * @return              returns an Image with the current chunk
+     * @return              an Image of the current chunk
      */
     public Image getChunk(int currentChunk) {
         return switch (currentChunk) {
@@ -133,11 +133,11 @@ public class Chunk {
      * @param player    receives the player object
      */
     public void calculateChunk(int playerX, Player player) {
-        x = -playerX + 508;
-        if (x <= -1032) {
+        setX(-playerX + 508);
+        if (x <= -1118) {
             addChunk();
             player.setX(508);
-        } else if (x >= 1032) {
+        } else if (x >= 1118) {
             addChunkNegative();
             player.setX(508);
         }
