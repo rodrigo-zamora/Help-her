@@ -3,6 +3,8 @@ package main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import map.*;
+
 public class KeyboardInput extends KeyAdapter {
 
     private final Handler handler;
@@ -16,13 +18,13 @@ public class KeyboardInput extends KeyAdapter {
         for(int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ID.Player){
-                if(key == 38){ // 38 = flecha arriba
+                if(key == 38 || key == 87){ // Up
                     tempObject.setSpeedY(-tempObject.SPEED);
-                } else if(key == 40){ // 40 = flecha abajo
+                } else if(key == 40 || key == 83){ // Down
                     tempObject.setSpeedY(tempObject.SPEED);
-                } else if(key == 39){ // 39 = flecha derecha
+                } else if(key == 39 || key == 68){ // Right
                     tempObject.setSpeedX(tempObject.SPEED);
-                } else if(key == 37) { // 37 = flecha izquierda
+                } else if(key == 37 || key == 65) { // Left
                     tempObject.setSpeedX(-tempObject.SPEED);
                 }
             }
@@ -34,13 +36,13 @@ public class KeyboardInput extends KeyAdapter {
         for(int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ID.Player){
-                if(key == 38){ // 38 = flecha arriba
+                if(key == 38 || key == 87){ // Up
                     tempObject.setSpeedY(0);
-                } if(key == 40){ // 40 = flecha abajo
+                } else if(key == 40 || key == 83){ // Down
                     tempObject.setSpeedY(0);
-                } if(key == 39){ // 39 = flecha derecha
+                } else if(key == 39 || key == 68){ // Right
                     tempObject.setSpeedX(0);
-                } if(key == 37) { // 37 = flecha izquierda
+                } else if(key == 37 || key == 65) { // Left
                     tempObject.setSpeedX(0);
                 }
             }
