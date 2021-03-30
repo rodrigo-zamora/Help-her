@@ -4,21 +4,23 @@ import java.awt.*;
 
 public class HealthBar {
 
+    private int health;
+
     Image heart = Toolkit.getDefaultToolkit().getImage("res/player/heart.png");
 
-    private void drawHealth(Graphics graphics, int x, int y, int health){
-        graphics.drawImage(
-                heart,
-                x,
-                y,
-                null
-        );
+    public void tick(int health){
+        this.health = health;
     }
 
-    public void draw(Graphics graphics, int x, int y, int health) {
+    public void render(Graphics graphics, int x, int y) {
         int xOffset = 0;
         for(int i = 1; i <= health; i++) {
-            drawHealth(graphics, x + xOffset, y, i % 2);
+            graphics.drawImage(
+                    heart,
+                    x + xOffset,
+                    y,
+                    null
+            );
             xOffset += 68;
         }
     }

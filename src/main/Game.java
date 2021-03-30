@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable {
 
     private final Handler handler;
 
-    private int FPS = 60;
+    public int FPS, UPS;
 
     Player player;
 
@@ -45,52 +45,55 @@ public class Game extends Canvas implements Runnable {
     /**
      *
      */
-    public synchronized void start() {
-        thread = new Thread(this);
-        thread.start();
+    public synchronized void start(){
+        if(isRunning) return;
         isRunning = true;
+        thread = new Thread(this, "Thread");
+        thread.start();
     }
 
-    /**
-     *
-     */
-    public synchronized void stop() {
-        try{
+    public synchronized void stop(){
+        if(!isRunning) return;
+        isRunning = false;
+        try {
+            System.exit(1);
             thread.join();
-            isRunning = false;
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
     /**
      *
      */
-    public void run() {
+    public void run(){
         long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        final double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
-        long timer = System.currentTimeMillis();
+        int updates = 0;
         int frames = 0;
-        while(isRunning) {
+        long timer = System.currentTimeMillis();
+
+        while(isRunning){
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            while(delta >= 1) {
+            if(delta >= 1){
                 tick();
+                updates++;
                 delta--;
             }
-            if(isRunning) {
-                render();
-            }
+            render();
             frames++;
-            //System.out.println("X: " + player.getX() + " Y: " + player.getY());
-            if(System.currentTimeMillis() - timer > 1000) {
+
+            if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
                 FPS = frames;
+                updates = 0;
                 frames = 0;
             }
+
         }
         stop();
     }
@@ -100,6 +103,8 @@ public class Game extends Canvas implements Runnable {
      */
     private void tick() {
         handler.tick();
+        healthBar.tick(player.getHealth());
+        chunk.tick(player.getX(), player);
     }
 
     /**
@@ -113,13 +118,6 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
-
-        // Clear screen
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, WIDTH, HEIGHT);
-
-        // Calculate current chunk
-        chunk.calculateChunk(player.getX(), player);
 
         // Render previous chunk
         graphics.drawImage(
@@ -155,7 +153,7 @@ public class Game extends Canvas implements Runnable {
         );
 
         // Health
-        healthBar.draw(graphics, 650, 5, player.getHealth());
+        healthBar.render(graphics, 650, 5);
 
         // Render all game objects
         handler.render(graphics);
@@ -165,6 +163,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
+        System.setProperty("sun.java2d.opengl", "true");
         new Game();
     }
 }

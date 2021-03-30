@@ -148,7 +148,7 @@ public class Chunk {
      * @param playerX   receives the current position in X of the player
      * @param player    receives the player object
      */
-    public void calculateChunk(int playerX, Player player) {
+    public void tick(int playerX, Player player) {
         this.setX(-playerX + 508);
         if (x <= -1118) {
             addChunk();
