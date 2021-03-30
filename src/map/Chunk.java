@@ -9,8 +9,8 @@ public class Chunk {
     /**
      *  Variables for our Chunk class
      */
-    public int currentChunk;
-    public int x;
+    private int currentChunk;
+    private int x;
 
     /**
      *  Images with our map chunks
@@ -85,13 +85,13 @@ public class Chunk {
             case 6 -> chunk6;
             case 7 -> chunk7;
             case 8 -> chunk8;
-            default -> throw new IllegalStateException("Unexpected value at currentChunk: " + currentChunk);
+            default -> throw new IllegalStateException("Unexpected value at getChunk: " + currentChunk);
         };
     }
 
     /**
      *  Getter for x
-     * @return  returns an integer
+     * @return  an integer
      */
     public int getX() {
         return x;
@@ -103,6 +103,22 @@ public class Chunk {
      */
     public void setX(int x) {
         this.x = x;
+    }
+
+    /**
+     * Setter for currentChunk
+     * @param currentChunk receives an integer
+     */
+    public void setCurrentChunk(int currentChunk){
+        this.currentChunk = currentChunk;
+    }
+
+    /**
+     * Getter for currentChunk
+     * @return an integer
+     */
+    public int getCurrentChunk(){
+        return currentChunk;
     }
 
     /**
@@ -133,7 +149,7 @@ public class Chunk {
      * @param player    receives the player object
      */
     public void calculateChunk(int playerX, Player player) {
-        setX(-playerX + 508);
+        this.setX(-playerX + 508);
         if (x <= -1118) {
             addChunk();
             player.setX(508);

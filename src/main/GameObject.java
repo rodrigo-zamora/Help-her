@@ -39,7 +39,7 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public ID getId() {
+    public ID getID() {
         return id;
     }
 

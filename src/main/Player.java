@@ -22,6 +22,14 @@ public class Player extends GameObject{
         super(x, y, id);
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     /**
      *
      */

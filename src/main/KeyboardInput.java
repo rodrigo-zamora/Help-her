@@ -3,8 +3,6 @@ package main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import map.*;
-
 public class KeyboardInput extends KeyAdapter {
 
     private final Handler handler;
@@ -17,7 +15,7 @@ public class KeyboardInput extends KeyAdapter {
         int key = event.getKeyCode();
         for(int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
-            if(tempObject.getId() == ID.Player){
+            if(tempObject.getID() == ID.Player){
                 if(key == 38 || key == 87){ // Up
                     tempObject.setSpeedY(-tempObject.SPEED);
                 } else if(key == 40 || key == 83){ // Down
@@ -35,7 +33,7 @@ public class KeyboardInput extends KeyAdapter {
         int key = event.getKeyCode();
         for(int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
-            if(tempObject.getId() == ID.Player){
+            if(tempObject.getID() == ID.Player){
                 if(key == 38 || key == 87){ // Up
                     tempObject.setSpeedY(0);
                 } else if(key == 40 || key == 83){ // Down

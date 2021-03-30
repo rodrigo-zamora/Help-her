@@ -1,6 +1,7 @@
 package main;
 
 import map.*;
+import player.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -26,6 +27,8 @@ public class Game extends Canvas implements Runnable {
 
     Chunk chunk = new Chunk();
 
+    HealthBar healthBar = new HealthBar();
+
     /**
      *
      */
@@ -34,6 +37,7 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new KeyboardInput(handler));
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player);
+        player.setHealth(6);
         handler.addObject(player);
 
     }
@@ -119,7 +123,7 @@ public class Game extends Canvas implements Runnable {
 
         // Render previous chunk
         graphics.drawImage(
-                chunk.previousChunk(chunk.currentChunk),
+                chunk.previousChunk(chunk.getCurrentChunk()),
                 chunk.getX()-1118,
                 -50,
                 null
@@ -127,7 +131,7 @@ public class Game extends Canvas implements Runnable {
 
         // Render current chunk
         graphics.drawImage(
-                chunk.getChunk(chunk.currentChunk),
+                chunk.getChunk(chunk.getCurrentChunk()),
                 chunk.getX(),
                 -50,
                 null
@@ -135,7 +139,7 @@ public class Game extends Canvas implements Runnable {
 
         // Render next chunk
         graphics.drawImage(
-                chunk.nextChunk(chunk.currentChunk),
+                chunk.nextChunk(chunk.getCurrentChunk()),
                 chunk.getX()+1118,
                 -50,
                 null
@@ -144,7 +148,14 @@ public class Game extends Canvas implements Runnable {
         // FPS
         graphics.setColor(Color.BLACK);
         graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        graphics.drawString("FPS: " + FPS, 15, 20);
+        graphics.drawString(
+                "FPS: " + FPS,
+                15,
+                20
+        );
+
+        // Health
+        healthBar.draw(graphics, 650, 5, player.getHealth());
 
         // Render all game objects
         handler.render(graphics);
