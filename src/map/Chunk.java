@@ -7,13 +7,7 @@ import java.awt.*;
 public class Chunk {
 
     /**
-     *  Variables for our Chunk class
-     */
-    private int currentChunk;
-    private int x;
-
-    /**
-     *  Images with our map chunks
+     * Images with our map chunks
      */
     Image chunk1 = Toolkit.getDefaultToolkit().getImage("res/map/1.png");
     Image chunk2 = Toolkit.getDefaultToolkit().getImage("res/map/2.png");
@@ -23,9 +17,14 @@ public class Chunk {
     Image chunk6 = Toolkit.getDefaultToolkit().getImage("res/map/6.png");
     Image chunk7 = Toolkit.getDefaultToolkit().getImage("res/map/7.png");
     Image chunk8 = Toolkit.getDefaultToolkit().getImage("res/map/8.png");
+    /**
+     * Variables for our Chunk class
+     */
+    private int currentChunk;
+    private int x;
 
     /**
-     *  Constructor for our Chunk class
+     * Constructor for our Chunk class
      */
     public Chunk() {
         currentChunk = 1;
@@ -33,11 +32,11 @@ public class Chunk {
     }
 
     /**
-     *  This method returns the Image to be displayed at the next chunk
-     * @param currentChunk  receives an integer with the current chunk
-     * @return              an Image of the next chunk
+     * This method returns the Image to be displayed at the next chunk
+     *
+     * @return an Image of the next chunk
      */
-    public Image nextChunk(int currentChunk) {
+    public Image nextChunk() {
         return switch (currentChunk) {
             case 1 -> chunk2;
             case 2 -> chunk3;
@@ -52,11 +51,11 @@ public class Chunk {
     }
 
     /**
-     *  This method returns the Image to be displayed at the previous chunk
-     * @param currentChunk  receives an integer with the current chunk
-     * @return              an Image of the previous chunk
+     * This method returns the Image to be displayed at the previous chunk
+     *
+     * @return an Image of the previous chunk
      */
-    public Image previousChunk(int currentChunk) {
+    public Image previousChunk() {
         return switch (currentChunk) {
             case 1 -> chunk8;
             case 2 -> chunk1;
@@ -71,11 +70,11 @@ public class Chunk {
     }
 
     /**
-     *  This method returns the Image to be displayed at the current chunk
-     * @param currentChunk  receives an integer with the current chunk
-     * @return              an Image of the current chunk
+     * This method returns the Image to be displayed at the current chunk
+     *
+     * @return an Image of the current chunk
      */
-    public Image getChunk(int currentChunk) {
+    public Image getChunk() {
         return switch (currentChunk) {
             case 1 -> chunk1;
             case 2 -> chunk2;
@@ -90,15 +89,17 @@ public class Chunk {
     }
 
     /**
-     *  Getter for x
-     * @return  an integer
+     * Getter for x
+     *
+     * @return an integer
      */
     public int getX() {
         return x;
     }
 
     /**
-     *  Setter for X
+     * Setter for X
+     *
      * @param x receives an integer
      */
     public void setX(int x) {
@@ -106,23 +107,25 @@ public class Chunk {
     }
 
     /**
-     * Setter for currentChunk
-     * @param currentChunk receives an integer
-     */
-    public void setCurrentChunk(int currentChunk){
-        this.currentChunk = currentChunk;
-    }
-
-    /**
      * Getter for currentChunk
+     *
      * @return an integer
      */
-    public int getCurrentChunk(){
+    public int getCurrentChunk() {
         return currentChunk;
     }
 
     /**
-     *  This method adds the next chunk
+     * Setter for currentChunk
+     *
+     * @param currentChunk receives an integer
+     */
+    public void setCurrentChunk(int currentChunk) {
+        this.currentChunk = currentChunk;
+    }
+
+    /**
+     * This method adds the next chunk
      */
     private void addChunk() {
         if (currentChunk == 8) {
@@ -145,15 +148,16 @@ public class Chunk {
 
     /**
      * This method calculates which chunk should be displayed and where
-     * @param playerX   receives the current position in X of the player
-     * @param player    receives the player object
+     *
+     * @param playerX receives the current position in X of the player
+     * @param player  receives the player object
      */
     public void tick(int playerX, Player player) {
         this.setX(-playerX + 508);
-        if (x <= -1118) {
+        if (x < -1118) {
             addChunk();
             player.setX(508);
-        } else if (x >= 1118) {
+        } else if (x > 1118) {
             addChunkNegative();
             player.setX(508);
         }

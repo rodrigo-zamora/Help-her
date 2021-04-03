@@ -3,10 +3,10 @@ package main;
 import java.awt.*;
 
 public abstract class GameObject {
+    protected final int SPEED = 5;
     protected int x, y;
     protected ID id;
     protected int speedX, speedY;
-    protected final int SPEED = 5;
 
     public GameObject(int x, int y, ID id) {
         this.x = x;
@@ -15,47 +15,48 @@ public abstract class GameObject {
     }
 
     public abstract void tick();
+
     public abstract void render(Graphics graphics);
 
     // Setters and getters
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public int getX() {
         return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
     }
 
     public int getY() {
         return y;
     }
 
-    public void setID(ID id) {
-        this.id = id;
+    public void setY(int y) {
+        this.y = y;
     }
 
     public ID getID() {
         return id;
     }
 
-    public void setSpeedX(int speedX) {
-        this.speedX = speedX;
-    }
-
-    public void setSpeedY(int speedY) {
-        this.speedY = speedY;
+    public void setID(ID id) {
+        this.id = id;
     }
 
     public int getSpeedX() {
         return speedX;
     }
 
+    public void setSpeedX(int speedX) {
+        this.speedX = speedX;
+    }
+
     public int getSpeedY() {
         return speedY;
+    }
+
+    public void setSpeedY(int speedY) {
+        this.speedY = speedY;
     }
 }

@@ -2,7 +2,7 @@ package main;
 
 import java.awt.*;
 
-public class Enemy extends GameObject{
+public class Enemy extends GameObject {
 
     Image aaravImage = Toolkit.getDefaultToolkit().getImage("res/enemies/Aarav.gif");
     Image deidamiaLeftImage = Toolkit.getDefaultToolkit().getImage("res/enemies/DeidamiaL.gif");
@@ -20,20 +20,20 @@ public class Enemy extends GameObject{
 
     @Override
     public void tick() {
-
+        x += speedX;
     }
 
     @Override
     public void render(Graphics graphics) {
-        if(getID() == ID.Aarav){
+        if (getID() == ID.Aarav) {
             graphics.drawImage(aaravImage, getX(), getY(), null);
-        } else if(getID() == ID.Deidamia){
+        } else if (getID() == ID.Deidamia) {
             graphics.drawImage(deidamiaLeftImage, getX(), getY(), null);
-        } else if(getID() == ID.Gereon){
+        } else if (getID() == ID.Gereon) {
             graphics.drawImage(gereonLeftImage, getX(), getY(), null);
-        } else if(getID() == ID.Nasra){
+        } else if (getID() == ID.Nasra) {
             graphics.drawImage(nasraLeftImage, getX(), getY(), null);
-        } else if(getID() == ID.Sephtis){
+        } else if (getID() == ID.Sephtis) {
             graphics.drawImage(sephtisLeftImage, getX(), getY(), null);
         } else throw new IllegalStateException("Unexpected value at enemy.render(): " + getID());
     }
