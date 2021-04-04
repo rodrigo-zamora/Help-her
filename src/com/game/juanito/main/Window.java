@@ -1,4 +1,4 @@
-package main;
+package com.game.juanito.main;
 
 import javax.swing.*;
 import java.awt.*;

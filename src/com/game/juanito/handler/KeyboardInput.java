@@ -1,4 +1,7 @@
-package main;
+package com.game.juanito.handler;
+
+import com.game.juanito.main.GameObject;
+import com.game.juanito.main.ID;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -17,13 +20,13 @@ public class KeyboardInput extends KeyAdapter {
             GameObject tempObject = handler.object.get(i);
             if (tempObject.getID() == ID.Player) {
                 if (key == 38 || key == 87) { // Up
-                    tempObject.setSpeedY(-tempObject.SPEED);
+                    tempObject.setSpeedY(-5);
                 } else if (key == 40 || key == 83) { // Down
-                    tempObject.setSpeedY(tempObject.SPEED);
+                    tempObject.setSpeedY(5);
                 } else if (key == 39 || key == 68) { // Right
-                    tempObject.setSpeedX(tempObject.SPEED);
+                    tempObject.setSpeedX(5);
                 } else if (key == 37 || key == 65) { // Left
-                    tempObject.setSpeedX(-tempObject.SPEED);
+                    tempObject.setSpeedX(-5);
                 }
             }
         }

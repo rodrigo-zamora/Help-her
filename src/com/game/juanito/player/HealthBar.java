@@ -1,12 +1,13 @@
-package player;
+package com.game.juanito.player;
 
 import java.awt.*;
+import java.net.URL;
 
 public class HealthBar {
 
     private int health;
 
-    Image heart = Toolkit.getDefaultToolkit().getImage("res/player/heart.png");
+    URL heart = ClassLoader.getSystemResource("player/heart.png");
 
     public void tick(int health){
         this.health = health;
@@ -16,7 +17,7 @@ public class HealthBar {
         int xOffset = 0;
         for(int i = 1; i <= health; i++) {
             graphics.drawImage(
-                    heart,
+                    Toolkit.getDefaultToolkit().getImage(heart),
                     x + xOffset,
                     y,
                     null

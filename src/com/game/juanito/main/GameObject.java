@@ -1,9 +1,8 @@
-package main;
+package com.game.juanito.main;
 
 import java.awt.*;
 
 public abstract class GameObject {
-    protected final int SPEED = 5;
     protected int x, y;
     protected ID id;
     protected int speedX, speedY;
@@ -14,7 +13,7 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public abstract void tick();
+    public abstract boolean tick();
 
     public abstract void render(Graphics graphics);
 

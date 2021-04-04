@@ -1,8 +1,7 @@
-package map;
+package com.game.juanito.enemy;
 
-import main.Enemy;
-import main.Handler;
-import main.ID;
+import com.game.juanito.handler.Handler;
+import com.game.juanito.main.ID;
 
 import java.util.Random;
 
@@ -36,8 +35,8 @@ public class SpawnEnemy {
      */
     private Enemy spawnEnemy(int x, int y) {
         ID enemyType = getEnemy();
-        Enemy enemy = new Enemy(x, y, enemyType);
-        enemy.setSpeedX(-1);
+        Enemy enemy = new Enemy(x*2, y, enemyType);
+        enemy.setSpeedX(-5);
         return enemy;
     }
 

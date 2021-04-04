@@ -1,22 +1,24 @@
-package map;
+package com.game.juanito.map;
 
-import main.Player;
+import com.game.juanito.player.Player;
 
 import java.awt.*;
+import java.net.URL;
 
 public class Chunk {
 
     /**
      * Images with our map chunks
      */
-    Image chunk1 = Toolkit.getDefaultToolkit().getImage("res/map/1.png");
-    Image chunk2 = Toolkit.getDefaultToolkit().getImage("res/map/2.png");
-    Image chunk3 = Toolkit.getDefaultToolkit().getImage("res/map/3.png");
-    Image chunk4 = Toolkit.getDefaultToolkit().getImage("res/map/4.png");
-    Image chunk5 = Toolkit.getDefaultToolkit().getImage("res/map/5.png");
-    Image chunk6 = Toolkit.getDefaultToolkit().getImage("res/map/6.png");
-    Image chunk7 = Toolkit.getDefaultToolkit().getImage("res/map/7.png");
-    Image chunk8 = Toolkit.getDefaultToolkit().getImage("res/map/8.png");
+
+    URL chunk1 = ClassLoader.getSystemResource("map/1.png");
+    URL chunk2 = ClassLoader.getSystemResource("map/2.png");
+    URL chunk3 = ClassLoader.getSystemResource("map/3.png");
+    URL chunk4 = ClassLoader.getSystemResource("map/4.png");
+    URL chunk5 = ClassLoader.getSystemResource("map/5.png");
+    URL chunk6 = ClassLoader.getSystemResource("map/6.png");
+    URL chunk7 = ClassLoader.getSystemResource("map/7.png");
+    URL chunk8 = ClassLoader.getSystemResource("map/8.png");
     /**
      * Variables for our Chunk class
      */
@@ -36,7 +38,7 @@ public class Chunk {
      *
      * @return an Image of the next chunk
      */
-    public Image nextChunk() {
+    public URL nextChunk() {
         return switch (currentChunk) {
             case 1 -> chunk2;
             case 2 -> chunk3;
@@ -55,7 +57,7 @@ public class Chunk {
      *
      * @return an Image of the previous chunk
      */
-    public Image previousChunk() {
+    public URL previousChunk() {
         return switch (currentChunk) {
             case 1 -> chunk8;
             case 2 -> chunk1;
@@ -74,7 +76,7 @@ public class Chunk {
      *
      * @return an Image of the current chunk
      */
-    public Image getChunk() {
+    public URL getChunk() {
         return switch (currentChunk) {
             case 1 -> chunk1;
             case 2 -> chunk2;
@@ -154,10 +156,10 @@ public class Chunk {
      */
     public void tick(int playerX, Player player) {
         this.setX(-playerX + 508);
-        if (x < -1118) {
+        if (x <= -1118) {
             addChunk();
             player.setX(508);
-        } else if (x > 1118) {
+        } else if (x >= 1118) {
             addChunkNegative();
             player.setX(508);
         }

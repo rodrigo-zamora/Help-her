@@ -1,8 +1,11 @@
-package main;
+package com.game.juanito.main;
 
-import map.Chunk;
-import map.SpawnEnemy;
-import player.HealthBar;
+import com.game.juanito.handler.Handler;
+import com.game.juanito.handler.KeyboardInput;
+import com.game.juanito.player.Player;
+import com.game.juanito.map.Chunk;
+import com.game.juanito.enemy.SpawnEnemy;
+import com.game.juanito.player.HealthBar;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -15,12 +18,12 @@ public class Game extends Canvas implements Runnable {
     public static final String TITLE = "El escape de Juanito";
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
-    private final Handler handler;
     public int FPS;
     Player player;
     Chunk chunk = new Chunk();
     HealthBar healthBar = new HealthBar();
     SpawnEnemy spawnEnemy = new SpawnEnemy();
+    Handler handler = new Handler();
     private Thread thread;
     private boolean isRunning = false;
 
@@ -28,13 +31,11 @@ public class Game extends Canvas implements Runnable {
      *
      */
     public Game() {
-        handler = new Handler();
         this.addKeyListener(new KeyboardInput(handler));
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player);
         player.setHealth(6);
         handler.addObject(player);
-
     }
 
     public static void main(String[] args) {
@@ -128,24 +129,24 @@ public class Game extends Canvas implements Runnable {
 
         // Render next chunk
         graphics.drawImage(
-                chunk.nextChunk(),
+                Toolkit.getDefaultToolkit().getImage(chunk.nextChunk()),
                 chunk.getX() + 1118,
-                -50,
-                null
-        );
-
-        // Render previous chunk
-        graphics.drawImage(
-                chunk.previousChunk(),
-                chunk.getX() - 1118,
                 -50,
                 null
         );
 
         // Render current chunk
         graphics.drawImage(
-                chunk.getChunk(),
+                Toolkit.getDefaultToolkit().getImage(chunk.getChunk()),
                 chunk.getX(),
+                -50,
+                null
+        );
+
+        // Render previous chunk
+        graphics.drawImage(
+                Toolkit.getDefaultToolkit().getImage(chunk.previousChunk()),
+                chunk.getX() - 1118,
                 -50,
                 null
         );

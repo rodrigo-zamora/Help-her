@@ -1,4 +1,6 @@
-package main;
+package com.game.juanito.handler;
+
+import com.game.juanito.main.GameObject;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -9,7 +11,9 @@ public class Handler {
 
     public void tick() {
         for (GameObject tempObject : object) {
-            tempObject.tick();
+            if(!tempObject.tick()){
+                removeObject(tempObject);
+            }
         }
     }
 

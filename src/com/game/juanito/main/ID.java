@@ -1,4 +1,4 @@
-package main;
+package com.game.juanito.main;
 
 public enum ID {
     Player(),
