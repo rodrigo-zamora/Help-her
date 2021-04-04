@@ -9,13 +9,13 @@ import java.net.URL;
 public class Enemy extends GameObject {
 
     URL aaravImage = ClassLoader.getSystemResource("enemies/Aarav.gif");
-    URL deidamiaLeftImage = ClassLoader.getSystemResource("enemies/DeidamiaR.gif");
+    URL deidamiaLeftImage = ClassLoader.getSystemResource("enemies/DeidamiaL.gif");
     //Image deidamiaRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/DeidamiaR.gif");
-    URL gereonLeftImage = ClassLoader.getSystemResource("enemies/GereonR.gif");
+    URL gereonLeftImage = ClassLoader.getSystemResource("enemies/GereonL.gif");
     //Image gereonRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/GereonR.gif");
-    URL nasraLeftImage = ClassLoader.getSystemResource("enemies/NasraR.gif");
+    URL nasraLeftImage = ClassLoader.getSystemResource("enemies/NasraL.gif");
     //Image nasraRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/NasraR.gif");
-    URL sephtisLeftImage = ClassLoader.getSystemResource("enemies/SephtisR.gif");
+    URL sephtisLeftImage = ClassLoader.getSystemResource("enemies/SephtisL.gif");
     //Image sephtisRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/SephtisR.gif");
 
     public Enemy(int x, int y, ID id) {
