@@ -15,6 +15,7 @@ public class Player extends GameObject {
     URL leftPlayerImage = ClassLoader.getSystemResource("player/leftPlayerImage.gif");
 
     private int health;
+    private boolean isMoving;
 
     /**
      * @param x
@@ -25,12 +26,36 @@ public class Player extends GameObject {
         super(x, y, id);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHealth() {
         return health;
     }
 
+    /**
+     *
+     * @param health
+     */
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    /**
+     *
+     * @param moving
+     */
+    public void setMoving(boolean moving) {
+        isMoving = moving;
     }
 
     /**
@@ -38,6 +63,7 @@ public class Player extends GameObject {
      */
     @Override
     public boolean tick() {
+        setMoving(speedX != 0);
         x += speedX;
         if (y <= 260)
             y += +5;

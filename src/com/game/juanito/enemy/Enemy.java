@@ -25,7 +25,7 @@ public class Enemy extends GameObject {
     @Override
     public boolean tick() {
         x += speedX;
-        return x >= -50;
+        return x >= -100;
     }
 
     @Override

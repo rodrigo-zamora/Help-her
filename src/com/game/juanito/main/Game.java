@@ -6,6 +6,7 @@ import com.game.juanito.player.Player;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.enemy.SpawnEnemy;
 import com.game.juanito.player.HealthBar;
+import com.game.juanito.map.Door;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -24,6 +25,7 @@ public class Game extends Canvas implements Runnable {
     HealthBar healthBar = new HealthBar();
     SpawnEnemy spawnEnemy = new SpawnEnemy();
     Handler handler = new Handler();
+    Door door = new Door();
     private Thread thread;
     private boolean isRunning = false;
 
@@ -113,6 +115,9 @@ public class Game extends Canvas implements Runnable {
 
         // Tick spawnEnemy
         spawnEnemy.tick(handler, chunk.getX());
+
+        // Tick door
+        door.tick(chunk.getIterations(), player.isMoving());
     }
 
     /**
@@ -159,6 +164,9 @@ public class Game extends Canvas implements Runnable {
                 15,
                 20
         );
+
+        // Door
+        door.render(graphics);
 
         // Health
         healthBar.render(graphics, 650, 5);

@@ -24,6 +24,7 @@ public class Chunk {
      */
     private int currentChunk;
     private int x;
+    private int iterations;
 
     /**
      * Constructor for our Chunk class
@@ -31,6 +32,59 @@ public class Chunk {
     public Chunk() {
         currentChunk = 1;
         x = 0;
+        iterations = 0;
+    }
+
+    /**
+     * Getter for x
+     *
+     * @return an integer
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * Setter for X
+     *
+     * @param x receives an integer
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * Getter for currentChunk
+     *
+     * @return an integer
+     */
+    public int getCurrentChunk() {
+        return currentChunk;
+    }
+
+    /**
+     * Setter for currentChunk
+     *
+     * @param currentChunk receives an integer
+     */
+    public void setCurrentChunk(int currentChunk) {
+        this.currentChunk = currentChunk;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getIterations() {
+        return iterations;
+    }
+
+    /**
+     *
+     * @param iterations
+     */
+    public void setIterations(int iterations) {
+        this.iterations = iterations;
     }
 
     /**
@@ -91,42 +145,6 @@ public class Chunk {
     }
 
     /**
-     * Getter for x
-     *
-     * @return an integer
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * Setter for X
-     *
-     * @param x receives an integer
-     */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /**
-     * Getter for currentChunk
-     *
-     * @return an integer
-     */
-    public int getCurrentChunk() {
-        return currentChunk;
-    }
-
-    /**
-     * Setter for currentChunk
-     *
-     * @param currentChunk receives an integer
-     */
-    public void setCurrentChunk(int currentChunk) {
-        this.currentChunk = currentChunk;
-    }
-
-    /**
      * This method adds the next chunk
      */
     private void addChunk() {
@@ -159,6 +177,7 @@ public class Chunk {
         if (x <= -1118) {
             addChunk();
             player.setX(508);
+            iterations++;
         } else if (x >= 1118) {
             addChunkNegative();
             player.setX(508);
