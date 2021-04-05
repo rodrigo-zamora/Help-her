@@ -1,12 +1,12 @@
 package com.game.juanito.main;
 
+import com.game.juanito.enemy.SpawnEnemy;
 import com.game.juanito.handler.Handler;
 import com.game.juanito.handler.KeyboardInput;
-import com.game.juanito.player.Player;
 import com.game.juanito.map.Chunk;
-import com.game.juanito.enemy.SpawnEnemy;
-import com.game.juanito.player.HealthBar;
 import com.game.juanito.map.Door;
+import com.game.juanito.player.HealthBar;
+import com.game.juanito.player.Player;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -122,7 +122,7 @@ public class Game extends Canvas implements Runnable {
         door.tick(chunk.getIterations(), player.isMovingRight(), player.isMovingLeft());
 
         isMovingRight = player.isMovingRight();
-        isMovingLeft =  player.isMovingLeft();
+        isMovingLeft = player.isMovingLeft();
     }
 
     /**

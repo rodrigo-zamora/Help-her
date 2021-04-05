@@ -10,14 +10,19 @@ import java.net.URL;
 public class Enemy extends GameObject {
 
     URL aaravImage = ClassLoader.getSystemResource("enemies/Aarav.gif");
+    URL aaravImageIdle = ClassLoader.getSystemResource("enemies/AaravIdle.gif");
+
     URL deidamiaLeftImage = ClassLoader.getSystemResource("enemies/DeidamiaL.gif");
-    //Image deidamiaRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/DeidamiaR.gif");
+    URL deidamiaIdleImage = ClassLoader.getSystemResource("enemies/DeidamiaIdle.gif");
+
     URL gereonLeftImage = ClassLoader.getSystemResource("enemies/GereonL.gif");
-    //Image gereonRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/GereonR.gif");
+    URL gereonIdleImage = ClassLoader.getSystemResource("enemies/GereonIdle.gif");
+
     URL nasraLeftImage = ClassLoader.getSystemResource("enemies/NasraL.gif");
-    //Image nasraRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/NasraR.gif");
+    URL nasraIdleImage = ClassLoader.getSystemResource("enemies/NasraIdle.gif");
+
     URL sephtisLeftImage = ClassLoader.getSystemResource("enemies/SephtisL.gif");
-    //Image sephtisRightImage = Toolkit.getDefaultToolkit().getImage("res/enemies/SephtisR.gif");
+    URL sephtisIdleImage = ClassLoader.getSystemResource("enemies/SephtisIdle.gif");
 
     public Enemy(int x, int y, ID id) {
         super(x, y, id);
@@ -36,15 +41,35 @@ public class Enemy extends GameObject {
     @Override
     public void render(Graphics graphics) {
         if (getID() == ID.Aarav) {
-            graphics.drawImage(Toolkit.getDefaultToolkit().getImage(aaravImage), getX(), getY(), null);
+            if (Game.isMovingLeft || Game.isMovingRight) {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(aaravImage), getX(), getY(), null);
+            } else {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(aaravImageIdle), getX(), getY(), null);
+            }
         } else if (getID() == ID.Deidamia) {
-            graphics.drawImage(Toolkit.getDefaultToolkit().getImage(deidamiaLeftImage), getX(), getY(), null);
+            if (Game.isMovingLeft || Game.isMovingRight) {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(deidamiaLeftImage), getX(), getY(), null);
+            } else {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(deidamiaIdleImage), getX(), getY(), null);
+            }
         } else if (getID() == ID.Gereon) {
-            graphics.drawImage(Toolkit.getDefaultToolkit().getImage(gereonLeftImage), getX(), getY(), null);
+            if (Game.isMovingLeft || Game.isMovingRight) {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(gereonLeftImage), getX(), getY(), null);
+            } else {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(gereonIdleImage), getX(), getY(), null);
+            }
         } else if (getID() == ID.Nasra) {
-            graphics.drawImage(Toolkit.getDefaultToolkit().getImage(nasraLeftImage), getX(), getY(), null);
+            if (Game.isMovingLeft || Game.isMovingRight) {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(nasraLeftImage), getX(), getY(), null);
+            } else {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(nasraIdleImage), getX(), getY(), null);
+            }
         } else if (getID() == ID.Sephtis) {
-            graphics.drawImage(Toolkit.getDefaultToolkit().getImage(sephtisLeftImage), getX(), getY(), null);
+            if (Game.isMovingLeft || Game.isMovingRight) {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(sephtisLeftImage), getX(), getY(), null);
+            } else {
+                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(sephtisIdleImage), getX(), getY(), null);
+            }
         } else throw new IllegalStateException("Unexpected value at enemy.render(): " + getID());
     }
 }
