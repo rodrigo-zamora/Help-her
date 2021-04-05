@@ -1,5 +1,6 @@
 package com.game.juanito.enemy;
 
+import com.game.juanito.enemy.enemies.*;
 import com.game.juanito.handler.Handler;
 import com.game.juanito.main.ID;
 
@@ -35,7 +36,15 @@ public class SpawnEnemy {
      */
     private Enemy spawnEnemy(int x, int y) {
         ID enemyType = getEnemy();
-        Enemy enemy = new Enemy(x*2, y, enemyType);
+        Enemy enemy;
+        switch (enemyType) {
+            case Aarav -> enemy = new Aarav(x * 2, y, ID.Aarav);
+            case Nasra -> enemy = new Nasra(x * 2, y, ID.Nasra);
+            case Gereon -> enemy = new Gereon(x * 2, y, ID.Gereon);
+            case Sephtis -> enemy = new Sephtis(x * 2, y, ID.Sephtis);
+            case Deidamia -> enemy = new Deidamia(x * 2, y, ID.Deidamia);
+            default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
+        };
         enemy.setSpeedX(-5);
         return enemy;
     }
