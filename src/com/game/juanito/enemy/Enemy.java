@@ -72,7 +72,7 @@ public class Enemy extends GameObject {
             if (Game.isMovingLeft || Game.isMovingRight) {
                 graphics.drawImage(nasraLeftImage, getX(), getY(), null);
             } else {
-                graphics.drawImage((nasraIdleImage, getX(), getY(), null);
+                graphics.drawImage(nasraIdleImage, getX(), getY(), null);
             }
         } else if (getID() == ID.Sephtis) {
             if (Game.isMovingLeft || Game.isMovingRight) {
