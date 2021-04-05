@@ -9,20 +9,30 @@ import java.net.URL;
 
 public class Enemy extends GameObject {
 
-    URL aaravImage = ClassLoader.getSystemResource("enemies/Aarav.gif");
-    URL aaravImageIdle = ClassLoader.getSystemResource("enemies/AaravIdle.gif");
+    URL aarav = ClassLoader.getSystemResource("enemies/Aarav.gif");
+    URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.gif");
+    Image aaravLeftImage = Toolkit.getDefaultToolkit().getImage(aarav);
+    Image aaravIdleImage = Toolkit.getDefaultToolkit().getImage(aaravIdle);
 
-    URL deidamiaLeftImage = ClassLoader.getSystemResource("enemies/DeidamiaL.gif");
-    URL deidamiaIdleImage = ClassLoader.getSystemResource("enemies/DeidamiaIdle.gif");
+    URL deidamiaLeft = ClassLoader.getSystemResource("enemies/DeidamiaL.gif");
+    URL deidamiaIdle = ClassLoader.getSystemResource("enemies/DeidamiaIdle.gif");
+    Image deidamiaLeftImage = Toolkit.getDefaultToolkit().getImage(deidamiaLeft);
+    Image deidamiaIdleImage = Toolkit.getDefaultToolkit().getImage(deidamiaIdle);
 
-    URL gereonLeftImage = ClassLoader.getSystemResource("enemies/GereonL.gif");
-    URL gereonIdleImage = ClassLoader.getSystemResource("enemies/GereonIdle.gif");
+    URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
+    URL gereonIdle = ClassLoader.getSystemResource("enemies/GereonIdle.gif");
+    Image gereonLeftImage = Toolkit.getDefaultToolkit().getImage(gereonLeft);
+    Image gereonIdleImage = Toolkit.getDefaultToolkit().getImage(gereonIdle);
 
-    URL nasraLeftImage = ClassLoader.getSystemResource("enemies/NasraL.gif");
-    URL nasraIdleImage = ClassLoader.getSystemResource("enemies/NasraIdle.gif");
+    URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
+    URL nasraIdle = ClassLoader.getSystemResource("enemies/NasraIdle.gif");
+    Image nasraLeftImage = Toolkit.getDefaultToolkit().getImage(nasraLeft);
+    Image nasraIdleImage = Toolkit.getDefaultToolkit().getImage(nasraIdle);
 
-    URL sephtisLeftImage = ClassLoader.getSystemResource("enemies/SephtisL.gif");
-    URL sephtisIdleImage = ClassLoader.getSystemResource("enemies/SephtisIdle.gif");
+    URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
+    URL sephtisIdle = ClassLoader.getSystemResource("enemies/SephtisIdle.gif");
+    Image sephtisLeftImage = Toolkit.getDefaultToolkit().getImage(sephtisLeft);
+    Image sephtisIdleImage = Toolkit.getDefaultToolkit().getImage(sephtisIdle);
 
     public Enemy(int x, int y, ID id) {
         super(x, y, id);
@@ -42,33 +52,33 @@ public class Enemy extends GameObject {
     public void render(Graphics graphics) {
         if (getID() == ID.Aarav) {
             if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(aaravImage), getX(), getY(), null);
+                graphics.drawImage(aaravLeftImage, getX(), getY(), null);
             } else {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(aaravImageIdle), getX(), getY(), null);
+                graphics.drawImage(aaravIdleImage, getX(), getY(), null);
             }
         } else if (getID() == ID.Deidamia) {
             if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(deidamiaLeftImage), getX(), getY(), null);
+                graphics.drawImage(deidamiaLeftImage, getX(), getY(), null);
             } else {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(deidamiaIdleImage), getX(), getY(), null);
+                graphics.drawImage(deidamiaIdleImage, getX(), getY(), null);
             }
         } else if (getID() == ID.Gereon) {
             if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(gereonLeftImage), getX(), getY(), null);
+                graphics.drawImage(gereonLeftImage, getX(), getY(), null);
             } else {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(gereonIdleImage), getX(), getY(), null);
+                graphics.drawImage(gereonIdleImage, getX(), getY(), null);
             }
         } else if (getID() == ID.Nasra) {
             if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(nasraLeftImage), getX(), getY(), null);
+                graphics.drawImage(nasraLeftImage, getX(), getY(), null);
             } else {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(nasraIdleImage), getX(), getY(), null);
+                graphics.drawImage((nasraIdleImage, getX(), getY(), null);
             }
         } else if (getID() == ID.Sephtis) {
             if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(sephtisLeftImage), getX(), getY(), null);
+                graphics.drawImage(sephtisLeftImage, getX(), getY(), null);
             } else {
-                graphics.drawImage(Toolkit.getDefaultToolkit().getImage(sephtisIdleImage), getX(), getY(), null);
+                graphics.drawImage(sephtisIdleImage, getX(), getY(), null);
             }
         } else throw new IllegalStateException("Unexpected value at enemy.render(): " + getID());
     }
