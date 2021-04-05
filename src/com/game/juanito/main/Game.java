@@ -19,6 +19,7 @@ public class Game extends Canvas implements Runnable {
     public static final String TITLE = "El escape de Juanito";
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
+    public static boolean isMovingLeft, isMovingRight;
     public int FPS;
     Player player;
     Chunk chunk = new Chunk();
@@ -85,6 +86,7 @@ public class Game extends Canvas implements Runnable {
                 tick();
                 delta--;
                 //System.out.println("X: " + player.getX() + " Y: " + player.getY());
+                //System.out.println("isMovingRight: " + player.isMovingRight() + " isMovingLeft: " + player.isMovingLeft());
             }
             render();
             frames++;
@@ -117,7 +119,10 @@ public class Game extends Canvas implements Runnable {
         spawnEnemy.tick(handler, chunk.getX());
 
         // Tick door
-        door.tick(chunk.getIterations(), player.isMoving());
+        door.tick(chunk.getIterations(), player.isMovingRight(), player.isMovingLeft());
+
+        isMovingRight = player.isMovingRight();
+        isMovingLeft =  player.isMovingLeft();
     }
 
     /**

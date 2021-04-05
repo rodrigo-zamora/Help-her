@@ -1,5 +1,6 @@
 package com.game.juanito.enemy;
 
+import com.game.juanito.main.Game;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
 
@@ -24,7 +25,11 @@ public class Enemy extends GameObject {
 
     @Override
     public boolean tick() {
-        x += speedX;
+        if(Game.isMovingRight){
+            x += speedX;
+        } else if(Game.isMovingLeft) {
+            x -= speedX;
+        }
         return x >= -100;
     }
 

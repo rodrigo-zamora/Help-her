@@ -5,20 +5,18 @@ import java.net.URL;
 
 public class Door {
 
+    URL doorImage = ClassLoader.getSystemResource("map/door.png");
     private boolean shouldRender;
     private int x;
-
-    URL doorImage = ClassLoader.getSystemResource("map/door.png");
 
     /**
      *
      */
-    public Door(){
+    public Door() {
         shouldRender = false;
     }
 
     /**
-     *
      * @return
      */
     public int getX() {
@@ -26,7 +24,6 @@ public class Door {
     }
 
     /**
-     *
      * @param x
      */
     public void setX(int x) {
@@ -34,24 +31,26 @@ public class Door {
     }
 
     /**
-     *
      * @param iterations
      */
-    public void tick(int iterations, boolean isMoving){
-        if(iterations == 10){
+    public void tick(int iterations, boolean isMovingRight, boolean isMovingLeft) {
+        if (iterations == 10) {
             shouldRender = true;
         }
-        if(shouldRender && isMoving){
-            x += 5;
+        if (shouldRender) {
+            if (isMovingRight) {
+                x += 5;
+            } else if (isMovingLeft) {
+                x -= 5;
+            }
         }
     }
 
     /**
-     *
      * @param graphics
      */
-    public void render(Graphics graphics){
-        if(shouldRender){
+    public void render(Graphics graphics) {
+        if (shouldRender) {
             graphics.drawImage(
                     Toolkit.getDefaultToolkit().getImage(doorImage),
                     x,

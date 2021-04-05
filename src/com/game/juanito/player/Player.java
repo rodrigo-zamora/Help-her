@@ -15,7 +15,7 @@ public class Player extends GameObject {
     URL leftPlayerImage = ClassLoader.getSystemResource("player/leftPlayerImage.gif");
 
     private int health;
-    private boolean isMoving;
+    private boolean isMovingRight, isMovingLeft;
 
     /**
      * @param x
@@ -46,16 +46,45 @@ public class Player extends GameObject {
      *
      * @return
      */
-    public boolean isMoving() {
-        return isMoving;
+    public boolean isMovingRight() {
+        return isMovingRight;
     }
 
     /**
      *
-     * @param moving
+     * @param movingRight
      */
-    public void setMoving(boolean moving) {
-        isMoving = moving;
+    public void setMovingRight(boolean movingRight) {
+        isMovingRight = movingRight;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isMovingLeft() {
+        return isMovingLeft;
+    }
+
+    /**
+     *
+     * @param movingLeft
+     */
+    public void setMovingLeft(boolean movingLeft) {
+        isMovingLeft = movingLeft;
+    }
+
+    private void changeMoving(String movement){
+        if(movement == "left"){
+            isMovingRight = false;
+            isMovingLeft = true;
+        } else if(movement == "right"){
+            isMovingRight = true;
+            isMovingLeft = false;
+        } else if(movement == "none"){
+            isMovingLeft = false;
+            isMovingRight = false;
+        }
     }
 
     /**
@@ -63,7 +92,13 @@ public class Player extends GameObject {
      */
     @Override
     public boolean tick() {
-        setMoving(speedX != 0);
+        if(speedX > 0){
+            changeMoving("right");
+        } else if(speedX < 0){
+            changeMoving("left");
+        } else {
+            changeMoving("none");
+        }
         x += speedX;
         if (y <= 260)
             y += +5;

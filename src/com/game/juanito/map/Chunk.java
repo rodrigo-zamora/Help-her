@@ -2,7 +2,6 @@ package com.game.juanito.map;
 
 import com.game.juanito.player.Player;
 
-import java.awt.*;
 import java.net.URL;
 
 public class Chunk {
@@ -72,7 +71,6 @@ public class Chunk {
     }
 
     /**
-     *
      * @return
      */
     public int getIterations() {
@@ -80,7 +78,6 @@ public class Chunk {
     }
 
     /**
-     *
      * @param iterations
      */
     public void setIterations(int iterations) {
@@ -178,6 +175,7 @@ public class Chunk {
             addChunk();
             player.setX(508);
             iterations++;
+            System.out.println("Iterations: " + iterations);
         } else if (x >= 1118) {
             addChunkNegative();
             player.setX(508);

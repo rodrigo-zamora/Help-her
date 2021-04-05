@@ -1,6 +1,7 @@
 package com.game.juanito.handler;
 
 import com.game.juanito.main.GameObject;
+import com.game.juanito.main.ID;
 
 import java.awt.*;
 import java.util.LinkedList;
