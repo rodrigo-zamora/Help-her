@@ -44,7 +44,7 @@ public class Gereon extends Enemy {
     }
 
     private Image getImage(ID id, boolean isMovingLeft, boolean isMovingRight) {
-        if(isMovingLeft || isMovingRight){
+        if (isMovingLeft || isMovingRight) {
             return gereonLeftImage;
         } else return gereonIdleImage;
     }

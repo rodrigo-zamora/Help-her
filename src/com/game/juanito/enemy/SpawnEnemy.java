@@ -44,13 +44,12 @@ public class SpawnEnemy {
             case Sephtis -> enemy = new Sephtis(x * 2, y, ID.Sephtis);
             case Deidamia -> enemy = new Deidamia(x * 2, y, ID.Deidamia);
             default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
-        };
+        }
         enemy.setSpeedX(-5);
         return enemy;
     }
 
     /**
-     *
      * @param handler
      * @param x
      */

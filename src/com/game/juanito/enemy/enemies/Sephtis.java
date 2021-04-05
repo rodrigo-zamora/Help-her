@@ -44,7 +44,7 @@ public class Sephtis extends Enemy {
     }
 
     private Image getImage(ID id, boolean isMovingLeft, boolean isMovingRight) {
-        if(isMovingLeft || isMovingRight){
+        if (isMovingLeft || isMovingRight) {
             return sephtisLeftImage;
         } else return sephtisIdleImage;
     }

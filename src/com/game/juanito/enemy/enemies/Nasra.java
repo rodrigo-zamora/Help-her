@@ -44,7 +44,7 @@ public class Nasra extends Enemy {
     }
 
     private Image getImage(ID id, boolean isMovingLeft, boolean isMovingRight) {
-        if(isMovingLeft || isMovingRight){
+        if (isMovingLeft || isMovingRight) {
             return nasraLeftImage;
         } else return nasraIdleImage;
     }
