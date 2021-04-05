@@ -36,14 +36,14 @@ public class Sephtis extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(getID(), Game.isMovingLeft, Game.isMovingRight),
+                getImage(Game.isMovingLeft, Game.isMovingRight),
                 getX(),
                 getY(),
                 null
         );
     }
 
-    private Image getImage(ID id, boolean isMovingLeft, boolean isMovingRight) {
+    private Image getImage(boolean isMovingLeft, boolean isMovingRight) {
         if (isMovingLeft || isMovingRight) {
             return sephtisLeftImage;
         } else return sephtisIdleImage;
