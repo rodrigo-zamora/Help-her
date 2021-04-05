@@ -7,7 +7,7 @@ public class Door {
 
     URL doorImage = ClassLoader.getSystemResource("map/door.png");
     private boolean shouldRender;
-    private int x;
+    private int x = 1500;
 
     /**
      *
@@ -34,14 +34,14 @@ public class Door {
      * @param iterations
      */
     public void tick(int iterations, boolean isMovingRight, boolean isMovingLeft) {
-        if (iterations == 10) {
+        if (iterations == 5) {
             shouldRender = true;
         }
         if (shouldRender) {
             if (isMovingRight) {
-                x += 5;
-            } else if (isMovingLeft) {
                 x -= 5;
+            } else if (isMovingLeft) {
+                x += 5;
             }
         }
     }

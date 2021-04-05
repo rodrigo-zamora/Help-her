@@ -12,7 +12,7 @@ public class SpawnEnemy {
      */
     private ID getEnemy() {
         Random random = new Random();
-        return switch (random.nextInt(4)) {
+        return switch (random.nextInt(5)) {
             case 0 -> ID.Aarav;
             case 1 -> ID.Deidamia;
             case 2 -> ID.Gereon;
