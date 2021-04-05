@@ -9,6 +9,10 @@ import java.net.URL;
 
 public class Enemy extends GameObject {
 
+    /**
+     * Load images of all enemies
+     */
+
     URL aarav = ClassLoader.getSystemResource("enemies/Aarav.gif");
     URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.gif");
     Image aaravLeftImage = Toolkit.getDefaultToolkit().getImage(aarav);
@@ -38,16 +42,24 @@ public class Enemy extends GameObject {
         super(x, y, id);
     }
 
+    /**
+     * @return a boolean to know if the enemy is being rendered on the player's screen
+     */
     @Override
     public boolean tick() {
-        if(Game.isMovingRight){
+        if (Game.isMovingRight) {
             x += speedX;
-        } else if(Game.isMovingLeft) {
+        } else if (Game.isMovingLeft) {
             x -= speedX;
         }
         return x >= -100;
     }
 
+    /**
+     * This method renders the enemy depending on the player movement
+     *
+     * @param graphics receives the graphics object
+     */
     @Override
     public void render(Graphics graphics) {
         if (getID() == ID.Aarav) {
