@@ -55,6 +55,40 @@ public class Enemy extends GameObject {
         return x >= -100;
     }
 
+    private Image getImage(ID id, boolean isMovingLeft, boolean isMovingRight) {
+        if (id == ID.Aarav) {
+            if (isMovingLeft || isMovingRight) {
+                return aaravLeftImage;
+            } else {
+                return aaravIdleImage;
+            }
+        } else if (getID() == ID.Deidamia) {
+            if (isMovingLeft || isMovingRight) {
+                return deidamiaLeftImage;
+            } else {
+                return deidamiaIdleImage;
+            }
+        } else if (getID() == ID.Gereon) {
+            if (isMovingLeft || isMovingRight) {
+                return gereonLeftImage;
+            } else {
+                return gereonIdleImage;
+            }
+        } else if (getID() == ID.Nasra) {
+            if (isMovingLeft || isMovingRight) {
+                return nasraLeftImage;
+            } else {
+                return nasraIdleImage;
+            }
+        } else if (getID() == ID.Sephtis) {
+            if (isMovingLeft || isMovingRight) {
+                return sephtisLeftImage;
+            } else {
+                return sephtisIdleImage;
+            }
+        } else throw new IllegalStateException("Unexpected value at getImage: " + getID());
+    }
+
     /**
      * This method renders the enemy depending on the player movement
      *
@@ -62,36 +96,11 @@ public class Enemy extends GameObject {
      */
     @Override
     public void render(Graphics graphics) {
-        if (getID() == ID.Aarav) {
-            if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(aaravLeftImage, getX(), getY(), null);
-            } else {
-                graphics.drawImage(aaravIdleImage, getX(), getY(), null);
-            }
-        } else if (getID() == ID.Deidamia) {
-            if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(deidamiaLeftImage, getX(), getY(), null);
-            } else {
-                graphics.drawImage(deidamiaIdleImage, getX(), getY(), null);
-            }
-        } else if (getID() == ID.Gereon) {
-            if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(gereonLeftImage, getX(), getY(), null);
-            } else {
-                graphics.drawImage(gereonIdleImage, getX(), getY(), null);
-            }
-        } else if (getID() == ID.Nasra) {
-            if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(nasraLeftImage, getX(), getY(), null);
-            } else {
-                graphics.drawImage(nasraIdleImage, getX(), getY(), null);
-            }
-        } else if (getID() == ID.Sephtis) {
-            if (Game.isMovingLeft || Game.isMovingRight) {
-                graphics.drawImage(sephtisLeftImage, getX(), getY(), null);
-            } else {
-                graphics.drawImage(sephtisIdleImage, getX(), getY(), null);
-            }
-        } else throw new IllegalStateException("Unexpected value at enemy.render(): " + getID());
+        graphics.drawImage(
+                getImage(getID(), Game.isMovingLeft, Game.isMovingRight),
+                getX(),
+                getY(),
+                null
+        );
     }
 }

@@ -5,7 +5,8 @@ import java.net.URL;
 
 public class Door {
 
-    URL doorImage = ClassLoader.getSystemResource("map/door.png");
+    URL door = ClassLoader.getSystemResource("map/door.png");
+    Image doorImage = Toolkit.getDefaultToolkit().getImage(door);
     private boolean shouldRender;
     private int x = 1500;
 
@@ -52,9 +53,9 @@ public class Door {
     public void render(Graphics graphics) {
         if (shouldRender) {
             graphics.drawImage(
-                    Toolkit.getDefaultToolkit().getImage(doorImage),
+                    doorImage,
                     x,
-                    430,
+                    260,
                     null
             );
         }
