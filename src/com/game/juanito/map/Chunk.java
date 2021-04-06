@@ -11,22 +11,24 @@ public class Chunk {
      * Images with our map chunks
      */
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL chunk1 = ClassLoader.getSystemResource("map/1.png");
-    Image chunkImage1 = Toolkit.getDefaultToolkit().getImage(chunk1);
+    Image chunkImage1 = toolkit.getImage(chunk1);
     URL chunk2 = ClassLoader.getSystemResource("map/2.png");
-    Image chunkImage2 = Toolkit.getDefaultToolkit().getImage(chunk2);
+    Image chunkImage2 = toolkit.getImage(chunk2);
     URL chunk3 = ClassLoader.getSystemResource("map/3.png");
-    Image chunkImage3 = Toolkit.getDefaultToolkit().getImage(chunk3);
+    Image chunkImage3 = toolkit.getImage(chunk3);
     URL chunk4 = ClassLoader.getSystemResource("map/4.png");
-    Image chunkImage4 = Toolkit.getDefaultToolkit().getImage(chunk4);
+    Image chunkImage4 = toolkit.getImage(chunk4);
     URL chunk5 = ClassLoader.getSystemResource("map/5.png");
-    Image chunkImage5 = Toolkit.getDefaultToolkit().getImage(chunk5);
+    Image chunkImage5 = toolkit.getImage(chunk5);
     URL chunk6 = ClassLoader.getSystemResource("map/6.png");
-    Image chunkImage6 = Toolkit.getDefaultToolkit().getImage(chunk6);
+    Image chunkImage6 = toolkit.getImage(chunk6);
     URL chunk7 = ClassLoader.getSystemResource("map/7.png");
-    Image chunkImage7 = Toolkit.getDefaultToolkit().getImage(chunk7);
+    Image chunkImage7 = toolkit.getImage(chunk7);
     URL chunk8 = ClassLoader.getSystemResource("map/8.png");
-    Image chunkImage8 = Toolkit.getDefaultToolkit().getImage(chunk8);
+    Image chunkImage8 = toolkit.getImage(chunk8);
     /**
      * Variables for our Chunk class
      */

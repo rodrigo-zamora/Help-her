@@ -9,10 +9,12 @@ import java.net.URL;
 
 public class Nasra extends Enemy {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
+    Image nasraLeftImage = toolkit.getImage(nasraLeft);
     URL nasraIdle = ClassLoader.getSystemResource("enemies/NasraIdle.gif");
-    Image nasraLeftImage = Toolkit.getDefaultToolkit().getImage(nasraLeft);
-    Image nasraIdleImage = Toolkit.getDefaultToolkit().getImage(nasraIdle);
+    Image nasraIdleImage = toolkit.getImage(nasraIdle);
 
     /**
      * @param x

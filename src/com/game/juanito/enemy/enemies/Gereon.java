@@ -9,10 +9,12 @@ import java.net.URL;
 
 public class Gereon extends Enemy {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
+    Image gereonLeftImage = toolkit.getImage(gereonLeft);
     URL gereonIdle = ClassLoader.getSystemResource("enemies/GereonIdle.gif");
-    Image gereonLeftImage = Toolkit.getDefaultToolkit().getImage(gereonLeft);
-    Image gereonIdleImage = Toolkit.getDefaultToolkit().getImage(gereonIdle);
+    Image gereonIdleImage = toolkit.getImage(gereonIdle);
 
     /**
      * @param x

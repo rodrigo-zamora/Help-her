@@ -11,8 +11,12 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
-    URL rightPlayerImage = ClassLoader.getSystemResource("player/rightPlayerImage.gif");
-    URL leftPlayerImage = ClassLoader.getSystemResource("player/leftPlayerImage.gif");
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+    URL rightPlayer = ClassLoader.getSystemResource("player/rightPlayerImage.gif");
+    Image rightPlayerImage = toolkit.getImage(rightPlayer);
+    URL leftImage = ClassLoader.getSystemResource("player/leftPlayerImage.gif");
+    Image leftPlayerImage = toolkit.getImage(leftImage);
 
     private int health;
     private boolean isMovingRight, isMovingLeft;
@@ -114,9 +118,9 @@ public class Player extends GameObject {
     @Override
     public void render(Graphics graphics) {
         if (speedX >= 0) {
-            graphics.drawImage(Toolkit.getDefaultToolkit().getImage(rightPlayerImage), 75, getY(), null);
+            graphics.drawImage(rightPlayerImage, 75, getY(), null);
         } else {
-            graphics.drawImage(Toolkit.getDefaultToolkit().getImage(leftPlayerImage), 75, getY(), null);
+            graphics.drawImage(leftPlayerImage, 75, getY(), null);
         }
     }
 }

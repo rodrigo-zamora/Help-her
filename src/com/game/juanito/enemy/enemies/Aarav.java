@@ -9,10 +9,12 @@ import java.net.URL;
 
 public class Aarav extends Enemy {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL aarav = ClassLoader.getSystemResource("enemies/Aarav.gif");
+    Image aaravLeftImage = toolkit.getImage(aarav);
     URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.gif");
-    Image aaravLeftImage = Toolkit.getDefaultToolkit().getImage(aarav);
-    Image aaravIdleImage = Toolkit.getDefaultToolkit().getImage(aaravIdle);
+    Image aaravIdleImage = toolkit.getImage(aaravIdle);
 
     /**
      * @param x

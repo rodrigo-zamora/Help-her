@@ -7,7 +7,10 @@ public class HealthBar {
 
     private int health;
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL heart = ClassLoader.getSystemResource("player/heart.png");
+    Image heartImage = toolkit.getImage(heart);
 
     public void tick(int health){
         this.health = health;
@@ -17,7 +20,7 @@ public class HealthBar {
         int xOffset = 0;
         for(int i = 1; i <= health; i++) {
             graphics.drawImage(
-                    Toolkit.getDefaultToolkit().getImage(heart),
+                    heartImage,
                     x + xOffset,
                     y,
                     null

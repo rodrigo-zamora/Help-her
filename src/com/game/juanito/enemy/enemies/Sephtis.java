@@ -9,10 +9,12 @@ import java.net.URL;
 
 public class Sephtis extends Enemy {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
+    Image sephtisLeftImage = toolkit.getImage(sephtisLeft);
     URL sephtisIdle = ClassLoader.getSystemResource("enemies/SephtisIdle.gif");
-    Image sephtisLeftImage = Toolkit.getDefaultToolkit().getImage(sephtisLeft);
-    Image sephtisIdleImage = Toolkit.getDefaultToolkit().getImage(sephtisIdle);
+    Image sephtisIdleImage = toolkit.getImage(sephtisIdle);
 
     /**
      * @param x

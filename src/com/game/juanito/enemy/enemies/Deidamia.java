@@ -9,10 +9,12 @@ import java.net.URL;
 
 public class Deidamia extends Enemy {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL deidamiaLeft = ClassLoader.getSystemResource("enemies/DeidamiaL.gif");
+    Image deidamiaLeftImage = toolkit.getImage(deidamiaLeft);
     URL deidamiaIdle = ClassLoader.getSystemResource("enemies/DeidamiaIdle.gif");
-    Image deidamiaLeftImage = Toolkit.getDefaultToolkit().getImage(deidamiaLeft);
-    Image deidamiaIdleImage = Toolkit.getDefaultToolkit().getImage(deidamiaIdle);
+    Image deidamiaIdleImage = toolkit.getImage(deidamiaIdle);
 
     /**
      * @param x
