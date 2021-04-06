@@ -2,6 +2,7 @@ package com.game.juanito.map;
 
 import com.game.juanito.player.Player;
 
+import java.awt.*;
 import java.net.URL;
 
 public class Chunk {
@@ -89,7 +90,7 @@ public class Chunk {
      *
      * @return an Image of the next chunk
      */
-    public URL nextChunk() {
+    private URL nextChunk() {
         return switch (currentChunk) {
             case 1 -> chunk2;
             case 2 -> chunk3;
@@ -108,7 +109,7 @@ public class Chunk {
      *
      * @return an Image of the previous chunk
      */
-    public URL previousChunk() {
+    private URL previousChunk() {
         return switch (currentChunk) {
             case 1 -> chunk8;
             case 2 -> chunk1;
@@ -127,7 +128,7 @@ public class Chunk {
      *
      * @return an Image of the current chunk
      */
-    public URL getChunk() {
+    private URL getChunk() {
         return switch (currentChunk) {
             case 1 -> chunk1;
             case 2 -> chunk2;
@@ -147,6 +148,7 @@ public class Chunk {
     private void addChunk() {
         if (currentChunk == 8) {
             currentChunk = 1;
+            x = 0;
         } else {
             currentChunk++;
         }
@@ -180,5 +182,31 @@ public class Chunk {
             addChunkNegative();
             player.setX(508);
         }
+    }
+
+    public void render(Graphics graphics) {
+        // Render next chunk
+        graphics.drawImage(
+                Toolkit.getDefaultToolkit().getImage(nextChunk()),
+                x + 1118,
+                -50,
+                null
+        );
+
+        // Render current chunk
+        graphics.drawImage(
+                Toolkit.getDefaultToolkit().getImage(getChunk()),
+                x,
+                -50,
+                null
+        );
+
+        // Render previous chunk
+        graphics.drawImage(
+                Toolkit.getDefaultToolkit().getImage(previousChunk()),
+                x - 1118,
+                -50,
+                null
+        );
     }
 }

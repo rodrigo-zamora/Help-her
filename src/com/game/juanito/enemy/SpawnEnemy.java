@@ -9,7 +9,9 @@ import java.util.Random;
 public class SpawnEnemy {
 
     /**
-     * @return
+     * Method to get a random enemy ID
+     *
+     * @return an ID of the random enemy
      */
     private ID getEnemy() {
         Random random = new Random();
@@ -24,15 +26,21 @@ public class SpawnEnemy {
     }
 
     /**
-     * @return
+     * Method to get a random Y to spawn the enemy
+     *
+     * @return a random integer from 210 to 410
      */
     private int getRandomY() {
         Random random = new Random();
-        return random.nextInt(430 - 260) + 260;
+        return random.nextInt(410 - 210) + 210;
     }
 
     /**
+     * Method to spawn an enemy
      *
+     * @param x receives the X to spawn the enemy
+     * @param y receives the X to spawn the enemy
+     * @return the enemy object
      */
     private Enemy spawnEnemy(int x, int y) {
         ID enemyType = getEnemy();

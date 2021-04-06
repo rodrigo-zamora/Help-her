@@ -137,29 +137,7 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
-        // Render next chunk
-        graphics.drawImage(
-                Toolkit.getDefaultToolkit().getImage(chunk.nextChunk()),
-                chunk.getX() + 1118,
-                -50,
-                null
-        );
-
-        // Render current chunk
-        graphics.drawImage(
-                Toolkit.getDefaultToolkit().getImage(chunk.getChunk()),
-                chunk.getX(),
-                -50,
-                null
-        );
-
-        // Render previous chunk
-        graphics.drawImage(
-                Toolkit.getDefaultToolkit().getImage(chunk.previousChunk()),
-                chunk.getX() - 1118,
-                -50,
-                null
-        );
+        chunk.render(graphics);
 
         // FPS
         graphics.setColor(Color.BLACK);
