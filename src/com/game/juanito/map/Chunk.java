@@ -12,13 +12,21 @@ public class Chunk {
      */
 
     URL chunk1 = ClassLoader.getSystemResource("map/1.png");
+    Image chunkImage1 = Toolkit.getDefaultToolkit().getImage(chunk1);
     URL chunk2 = ClassLoader.getSystemResource("map/2.png");
+    Image chunkImage2 = Toolkit.getDefaultToolkit().getImage(chunk2);
     URL chunk3 = ClassLoader.getSystemResource("map/3.png");
+    Image chunkImage3 = Toolkit.getDefaultToolkit().getImage(chunk3);
     URL chunk4 = ClassLoader.getSystemResource("map/4.png");
+    Image chunkImage4 = Toolkit.getDefaultToolkit().getImage(chunk4);
     URL chunk5 = ClassLoader.getSystemResource("map/5.png");
+    Image chunkImage5 = Toolkit.getDefaultToolkit().getImage(chunk5);
     URL chunk6 = ClassLoader.getSystemResource("map/6.png");
+    Image chunkImage6 = Toolkit.getDefaultToolkit().getImage(chunk6);
     URL chunk7 = ClassLoader.getSystemResource("map/7.png");
+    Image chunkImage7 = Toolkit.getDefaultToolkit().getImage(chunk7);
     URL chunk8 = ClassLoader.getSystemResource("map/8.png");
+    Image chunkImage8 = Toolkit.getDefaultToolkit().getImage(chunk8);
     /**
      * Variables for our Chunk class
      */
@@ -90,16 +98,16 @@ public class Chunk {
      *
      * @return an Image of the next chunk
      */
-    private URL nextChunk() {
+    private Image nextChunk() {
         return switch (currentChunk) {
-            case 1 -> chunk2;
-            case 2 -> chunk3;
-            case 3 -> chunk4;
-            case 4 -> chunk5;
-            case 5 -> chunk6;
-            case 6 -> chunk7;
-            case 7 -> chunk8;
-            case 8 -> chunk1;
+            case 1 -> chunkImage2;
+            case 2 -> chunkImage3;
+            case 3 -> chunkImage4;
+            case 4 -> chunkImage5;
+            case 5 -> chunkImage6;
+            case 6 -> chunkImage7;
+            case 7 -> chunkImage8;
+            case 8 -> chunkImage1;
             default -> throw new IllegalStateException("Unexpected value at nextChunk: " + currentChunk);
         };
     }
@@ -109,16 +117,16 @@ public class Chunk {
      *
      * @return an Image of the previous chunk
      */
-    private URL previousChunk() {
+    private Image previousChunk() {
         return switch (currentChunk) {
-            case 1 -> chunk8;
-            case 2 -> chunk1;
-            case 3 -> chunk2;
-            case 4 -> chunk3;
-            case 5 -> chunk4;
-            case 6 -> chunk5;
-            case 7 -> chunk6;
-            case 8 -> chunk7;
+            case 1 -> chunkImage8;
+            case 2 -> chunkImage1;
+            case 3 -> chunkImage2;
+            case 4 -> chunkImage3;
+            case 5 -> chunkImage4;
+            case 6 -> chunkImage5;
+            case 7 -> chunkImage6;
+            case 8 -> chunkImage7;
             default -> throw new IllegalStateException("Unexpected value at previousChunk: " + currentChunk);
         };
     }
@@ -128,16 +136,16 @@ public class Chunk {
      *
      * @return an Image of the current chunk
      */
-    private URL getChunk() {
+    private Image getChunk() {
         return switch (currentChunk) {
-            case 1 -> chunk1;
-            case 2 -> chunk2;
-            case 3 -> chunk3;
-            case 4 -> chunk4;
-            case 5 -> chunk5;
-            case 6 -> chunk6;
-            case 7 -> chunk7;
-            case 8 -> chunk8;
+            case 1 -> chunkImage1;
+            case 2 -> chunkImage2;
+            case 3 -> chunkImage3;
+            case 4 -> chunkImage4;
+            case 5 -> chunkImage5;
+            case 6 -> chunkImage6;
+            case 7 -> chunkImage7;
+            case 8 -> chunkImage8;
             default -> throw new IllegalStateException("Unexpected value at getChunk: " + currentChunk);
         };
     }
@@ -185,28 +193,30 @@ public class Chunk {
     }
 
     public void render(Graphics graphics) {
-        // Render next chunk
+
+        // Render previous chunk
         graphics.drawImage(
-                Toolkit.getDefaultToolkit().getImage(nextChunk()),
-                x + 1118,
+                previousChunk(),
+                x - 1118,
                 -50,
                 null
         );
 
         // Render current chunk
         graphics.drawImage(
-                Toolkit.getDefaultToolkit().getImage(getChunk()),
+                getChunk(),
                 x,
                 -50,
                 null
         );
 
-        // Render previous chunk
+        // Render next chunk
         graphics.drawImage(
-                Toolkit.getDefaultToolkit().getImage(previousChunk()),
-                x - 1118,
+                nextChunk(),
+                x + 1118,
                 -50,
                 null
         );
+
     }
 }
