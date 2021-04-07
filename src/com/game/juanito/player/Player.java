@@ -22,9 +22,11 @@ public class Player extends GameObject {
     private boolean isMovingRight, isMovingLeft;
 
     /**
-     * @param x
-     * @param y
-     * @param id
+     * Constructor for Player class
+     *
+     * @param x  receives an integer with the Player's X position
+     * @param y  receives an integer with the Player's Y position
+     * @param id receives an ID with the Player's ID
      */
     public Player(int x, int y, ID id) {
         super(x, y, id);

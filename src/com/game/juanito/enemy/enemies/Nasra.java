@@ -13,10 +13,10 @@ public class Nasra extends Enemy {
 
     URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
     Image nasraLeftImage = toolkit.getImage(nasraLeft);
-    URL nasraIdle = ClassLoader.getSystemResource("enemies/NasraIdle.gif");
-    Image nasraIdleImage = toolkit.getImage(nasraIdle);
 
     /**
+     * Constructor for Nasra class
+     *
      * @param x
      * @param y
      * @param id
@@ -32,22 +32,16 @@ public class Nasra extends Enemy {
         } else if (Game.isMovingLeft) {
             x -= speedX;
         }
-        return x >= -100;
+        return x >= -150;
     }
 
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(Game.isMovingLeft, Game.isMovingRight),
+                nasraLeftImage,
                 getX(),
                 getY(),
                 null
         );
-    }
-
-    private Image getImage(boolean isMovingLeft, boolean isMovingRight) {
-        if (isMovingLeft || isMovingRight) {
-            return nasraLeftImage;
-        } else return nasraIdleImage;
     }
 }

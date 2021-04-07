@@ -17,6 +17,8 @@ public class Deidamia extends Enemy {
     Image deidamiaIdleImage = toolkit.getImage(deidamiaIdle);
 
     /**
+     * Constructor for Deidamia class
+     *
      * @param x
      * @param y
      * @param id
@@ -32,7 +34,7 @@ public class Deidamia extends Enemy {
         } else if (Game.isMovingLeft) {
             x -= speedX;
         }
-        return x >= -100;
+        return x >= -150;
     }
 
     @Override
@@ -45,6 +47,13 @@ public class Deidamia extends Enemy {
         );
     }
 
+    /**
+     * Method to get the image of Deidamia depending in the player movement
+     *
+     * @param isMovingLeft  receives a boolean
+     * @param isMovingRight receives a boolean
+     * @return              an Image
+     */
     private Image getImage(boolean isMovingLeft, boolean isMovingRight) {
         if (isMovingLeft || isMovingRight) {
             return deidamiaLeftImage;

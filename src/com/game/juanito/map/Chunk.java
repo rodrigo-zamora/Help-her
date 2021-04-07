@@ -120,25 +120,6 @@ public class Chunk {
     }
 
     /**
-     * This method returns the Image to be displayed at the previous chunk
-     *
-     * @return an Image of the previous chunk
-     */
-    private Image previousChunk() {
-        return switch (currentChunk) {
-            case 1 -> chunkImage8;
-            case 2 -> chunkImage1;
-            case 3 -> chunkImage2;
-            case 4 -> chunkImage3;
-            case 5 -> chunkImage4;
-            case 6 -> chunkImage5;
-            case 7 -> chunkImage6;
-            case 8 -> chunkImage7;
-            default -> throw new IllegalStateException("Unexpected value at previousChunk: " + currentChunk);
-        };
-    }
-
-    /**
      * This method returns the Image to be displayed at the current chunk
      *
      * @return an Image of the current chunk
@@ -163,7 +144,6 @@ public class Chunk {
     private void addChunk() {
         if (currentChunk == 8) {
             currentChunk = 1;
-            x = 0;
         } else {
             currentChunk++;
         }
@@ -187,15 +167,12 @@ public class Chunk {
      * @param player  receives the player object
      */
     public void tick(int playerX, Player player) {
-        this.setX(-playerX + 508);
-        if (x <= -1118) {
+        x = -playerX + 508;
+        if (x < -1118) {
             addChunk();
             player.setX(508);
             iterations++;
-            System.out.println("Iterations: " + iterations);
-        } else if (x >= 1118) {
-            addChunkNegative();
-            player.setX(508);
+            System.out.println("currentChunk: " + currentChunk);
         }
     }
 
@@ -205,14 +182,6 @@ public class Chunk {
      * @param graphics receives the graphics object
      */
     public void render(Graphics graphics) {
-
-        // Render previous chunk
-        graphics.drawImage(
-                previousChunk(),
-                x - 1118,
-                -50,
-                null
-        );
 
         // Render current chunk
         graphics.drawImage(

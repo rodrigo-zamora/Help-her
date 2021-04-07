@@ -13,10 +13,10 @@ public class Sephtis extends Enemy {
 
     URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
     Image sephtisLeftImage = toolkit.getImage(sephtisLeft);
-    URL sephtisIdle = ClassLoader.getSystemResource("enemies/SephtisIdle.gif");
-    Image sephtisIdleImage = toolkit.getImage(sephtisIdle);
 
     /**
+     * Constructor for Sephtis class
+     *
      * @param x
      * @param y
      * @param id
@@ -32,22 +32,16 @@ public class Sephtis extends Enemy {
         } else if (Game.isMovingLeft) {
             x -= speedX;
         }
-        return x >= -100;
+        return x >= -150;
     }
 
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(Game.isMovingLeft, Game.isMovingRight),
+                sephtisLeftImage,
                 getX(),
                 getY(),
                 null
         );
-    }
-
-    private Image getImage(boolean isMovingLeft, boolean isMovingRight) {
-        if (isMovingLeft || isMovingRight) {
-            return sephtisLeftImage;
-        } else return sephtisIdleImage;
     }
 }

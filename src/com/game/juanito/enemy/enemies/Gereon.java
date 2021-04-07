@@ -13,10 +13,10 @@ public class Gereon extends Enemy {
 
     URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
     Image gereonLeftImage = toolkit.getImage(gereonLeft);
-    URL gereonIdle = ClassLoader.getSystemResource("enemies/GereonIdle.gif");
-    Image gereonIdleImage = toolkit.getImage(gereonIdle);
 
     /**
+     * Constructor for Gereon class
+     *
      * @param x
      * @param y
      * @param id
@@ -32,22 +32,16 @@ public class Gereon extends Enemy {
         } else if (Game.isMovingLeft) {
             x -= speedX;
         }
-        return x >= -100;
+        return x >= -150;
     }
 
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(Game.isMovingLeft, Game.isMovingRight),
+                gereonLeftImage,
                 getX(),
                 getY(),
                 null
         );
-    }
-
-    private Image getImage(boolean isMovingLeft, boolean isMovingRight) {
-        if (isMovingLeft || isMovingRight) {
-            return gereonLeftImage;
-        } else return gereonIdleImage;
     }
 }
