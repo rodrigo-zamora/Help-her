@@ -85,8 +85,6 @@ public class Game extends Canvas implements Runnable {
             if (delta >= 1) {
                 tick();
                 delta--;
-                //System.out.println("X: " + player.getX() + " Y: " + player.getY());
-                //System.out.println("isMovingRight: " + player.isMovingRight() + " isMovingLeft: " + player.isMovingLeft());
             }
             render();
             frames++;
@@ -137,6 +135,7 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
+        // Render map
         chunk.render(graphics);
 
         // FPS

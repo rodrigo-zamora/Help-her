@@ -5,8 +5,11 @@ import java.net.URL;
 
 public class Door {
 
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     URL door = ClassLoader.getSystemResource("map/door.png");
-    Image doorImage = Toolkit.getDefaultToolkit().getImage(door);
+    Image doorImage = toolkit.getImage(door);
+
     private boolean shouldRender;
     private int x = 1500;
 
