@@ -13,7 +13,7 @@ public class Aarav extends Enemy {
 
     URL aarav = ClassLoader.getSystemResource("enemies/Aarav.gif");
     Image aaravLeftImage = toolkit.getImage(aarav);
-    URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.gif");
+    URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.png");
     Image aaravIdleImage = toolkit.getImage(aaravIdle);
 
     /**

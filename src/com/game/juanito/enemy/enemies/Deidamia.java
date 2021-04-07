@@ -13,7 +13,7 @@ public class Deidamia extends Enemy {
 
     URL deidamiaLeft = ClassLoader.getSystemResource("enemies/DeidamiaL.gif");
     Image deidamiaLeftImage = toolkit.getImage(deidamiaLeft);
-    URL deidamiaIdle = ClassLoader.getSystemResource("enemies/DeidamiaIdle.gif");
+    URL deidamiaIdle = ClassLoader.getSystemResource("enemies/DeidamiaIdle.png");
     Image deidamiaIdleImage = toolkit.getImage(deidamiaIdle);
 
     /**
