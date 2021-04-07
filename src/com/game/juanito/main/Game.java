@@ -31,7 +31,7 @@ public class Game extends Canvas implements Runnable {
     private boolean isRunning = false;
 
     /**
-     *
+     * Constructor for Game class
      */
     public Game() {
         this.addKeyListener(new KeyboardInput(handler));
@@ -47,7 +47,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     *
+     * Start threat
      */
     public synchronized void start() {
         if (isRunning) return;
@@ -68,7 +68,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     *
+     * Run method
      */
     public void run() {
         long lastTime = System.nanoTime();
@@ -100,7 +100,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     *
+     * Tick method
      */
     private void tick() {
 
@@ -124,7 +124,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     *
+     * Render method
      */
     private void render() {
         BufferStrategy bufferStrategy = this.getBufferStrategy();

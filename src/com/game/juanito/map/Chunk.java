@@ -29,6 +29,7 @@ public class Chunk {
     Image chunkImage7 = toolkit.getImage(chunk7);
     URL chunk8 = ClassLoader.getSystemResource("map/8.png");
     Image chunkImage8 = toolkit.getImage(chunk8);
+
     /**
      * Variables for our Chunk class
      */
@@ -82,14 +83,18 @@ public class Chunk {
     }
 
     /**
-     * @return
+     * Getter for iterations
+     *
+     * @return an integer
      */
     public int getIterations() {
         return iterations;
     }
 
     /**
-     * @param iterations
+     * Setter for iterations
+     *
+     * @param iterations receives an integer
      */
     public void setIterations(int iterations) {
         this.iterations = iterations;
@@ -194,6 +199,11 @@ public class Chunk {
         }
     }
 
+    /**
+     * This method renders the previous chunk, current chunk and next chunk
+     *
+     * @param graphics receives the graphics object
+     */
     public void render(Graphics graphics) {
 
         // Render previous chunk

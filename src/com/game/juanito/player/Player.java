@@ -31,68 +31,83 @@ public class Player extends GameObject {
     }
 
     /**
+     * Getter for health
      *
-     * @return
+     * @return an integer
      */
     public int getHealth() {
         return health;
     }
 
     /**
+     * Setter for health
      *
-     * @param health
+     * @param health receives an integer
      */
     public void setHealth(int health) {
         this.health = health;
     }
 
     /**
+     * Getter for isMovingRight
      *
-     * @return
+     * @return a boolean
      */
     public boolean isMovingRight() {
         return isMovingRight;
     }
 
     /**
+     * Setter for isMovingRight
      *
-     * @param movingRight
+     * @param movingRight receives a boolean
      */
     public void setMovingRight(boolean movingRight) {
         isMovingRight = movingRight;
     }
 
     /**
+     * Getter for isMovingLeft
      *
-     * @return
+     * @return a boolean
      */
     public boolean isMovingLeft() {
         return isMovingLeft;
     }
 
     /**
+     * Setter for isMovingLeft
      *
-     * @param movingLeft
+     * @param movingLeft receives a boolean
      */
     public void setMovingLeft(boolean movingLeft) {
         isMovingLeft = movingLeft;
     }
 
+    /**
+     * Method to change player moving flags
+     *
+     * @param movement receives a string with the current player movement
+     */
     private void changeMoving(String movement){
-        if(movement == "left"){
-            isMovingRight = false;
-            isMovingLeft = true;
-        } else if(movement == "right"){
-            isMovingRight = true;
-            isMovingLeft = false;
-        } else if(movement == "none"){
-            isMovingLeft = false;
-            isMovingRight = false;
+        switch (movement) {
+            case "left" -> {
+                isMovingRight = false;
+                isMovingLeft = true;
+            }
+            case "right" -> {
+                isMovingRight = true;
+                isMovingLeft = false;
+            }
+            case "none" -> {
+                isMovingLeft = false;
+                isMovingRight = false;
+            }
         }
     }
 
     /**
-     *
+     * Tick method
      */
     @Override
     public boolean tick() {
@@ -113,7 +128,9 @@ public class Player extends GameObject {
     }
 
     /**
-     * @param graphics
+     * Render method for player
+     *
+     * @param graphics receives the graphic object
      */
     @Override
     public void render(Graphics graphics) {
