@@ -25,8 +25,6 @@ public class KeyboardInput extends KeyAdapter {
                     tempObject.setSpeedY(5);
                 } else if (key == 39 || key == 68) { // Right
                     tempObject.setSpeedX(5);
-                } else if (key == 37 || key == 65) { // Left
-                    tempObject.setSpeedX(-5);
                 }
             }
         }
@@ -42,8 +40,6 @@ public class KeyboardInput extends KeyAdapter {
                 } else if (key == 40 || key == 83) { // Down
                     tempObject.setSpeedY(0);
                 } else if (key == 39 || key == 68) { // Right
-                    tempObject.setSpeedX(0);
-                } else if (key == 37 || key == 65) { // Left
                     tempObject.setSpeedX(0);
                 }
             }

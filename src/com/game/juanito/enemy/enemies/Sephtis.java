@@ -27,11 +27,8 @@ public class Sephtis extends Enemy {
 
     @Override
     public boolean tick() {
-        if (Game.isMovingRight) {
+        if (Game.isMoving)
             x += speedX;
-        } else if (Game.isMovingLeft) {
-            x -= speedX;
-        }
         return x >= -150;
     }
 

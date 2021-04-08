@@ -13,7 +13,7 @@ public class SpawnEnemy {
      *
      * @return an ID of the random enemy
      */
-    private ID getEnemy() {
+    private ID getRandomEnemy() {
         Random random = new Random();
         return switch (random.nextInt(5)) {
             case 0 -> ID.Aarav;
@@ -38,19 +38,18 @@ public class SpawnEnemy {
     /**
      * Method to spawn an enemy
      *
-     * @param x receives the X to spawn the enemy
      * @param y receives the X to spawn the enemy
      * @return the enemy object
      */
-    private Enemy spawnEnemy(int x, int y) {
-        ID enemyType = getEnemy();
+    private Enemy spawnEnemy(int y) {
+        ID enemyType = getRandomEnemy();
         Enemy enemy;
         switch (enemyType) {
-            case Aarav -> enemy = new Aarav(x * 2, y, ID.Aarav);
-            case Nasra -> enemy = new Nasra(x * 2, y, ID.Nasra);
-            case Gereon -> enemy = new Gereon(x * 2, y, ID.Gereon);
-            case Sephtis -> enemy = new Sephtis(x * 2, y, ID.Sephtis);
-            case Deidamia -> enemy = new Deidamia(x * 2, y, ID.Deidamia);
+            case Aarav -> enemy = new Aarav(1016, y, ID.Aarav);
+            case Nasra -> enemy = new Nasra(1016, y, ID.Nasra);
+            case Gereon -> enemy = new Gereon(1016, y, ID.Gereon);
+            case Sephtis -> enemy = new Sephtis(1016, y, ID.Sephtis);
+            case Deidamia -> enemy = new Deidamia(1016, y, ID.Deidamia);
             default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
         }
         enemy.setSpeedX(-5);
@@ -63,7 +62,7 @@ public class SpawnEnemy {
      */
     public void tick(Handler handler, int x) {
         if (x < -1118) {
-            handler.addObject(spawnEnemy(508, getRandomY()));
+            handler.addObject(spawnEnemy(getRandomY()));
         }
     }
 }

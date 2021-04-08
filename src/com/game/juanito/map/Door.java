@@ -37,15 +37,13 @@ public class Door {
     /**
      * @param iterations
      */
-    public void tick(int iterations, boolean isMovingRight, boolean isMovingLeft) {
+    public void tick(int iterations, boolean isMoving) {
         if (iterations == 5) {
             shouldRender = true;
         }
         if (shouldRender) {
-            if (isMovingRight) {
+            if (isMoving) {
                 x -= 5;
-            } else if (isMovingLeft) {
-                x += 5;
             }
         }
     }

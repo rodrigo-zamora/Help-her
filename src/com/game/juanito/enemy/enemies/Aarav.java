@@ -29,18 +29,15 @@ public class Aarav extends Enemy {
 
     @Override
     public boolean tick() {
-        if (Game.isMovingRight) {
+        if (Game.isMoving)
             x += speedX;
-        } else if (Game.isMovingLeft) {
-            x -= speedX;
-        }
         return x >= -150;
     }
 
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(Game.isMovingLeft, Game.isMovingRight),
+                getImage(Game.isMoving),
                 getX(),
                 getY(),
                 null
@@ -50,12 +47,11 @@ public class Aarav extends Enemy {
     /**
      * Method to get the image of Aarav depending in the player movement
      *
-     * @param isMovingLeft  receives a boolean
-     * @param isMovingRight receives a boolean
-     * @return              an Image
+     * @param isMoving  receives a boolean
+     * @return an Image
      */
-    private Image getImage(boolean isMovingLeft, boolean isMovingRight) {
-        if (isMovingLeft || isMovingRight) {
+    private Image getImage(boolean isMoving) {
+        if (isMoving) {
             return aaravLeftImage;
         } else return aaravIdleImage;
     }
