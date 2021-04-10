@@ -25,6 +25,13 @@ public class Aarav extends Enemy {
      */
     public Aarav(int x, int y, ID id) {
         super(x, y, id);
+        setWidth(210);
+        setHeight(150);
+    }
+
+    @Override
+    public void collision() {
+        System.out.println("collision!");
     }
 
     @Override

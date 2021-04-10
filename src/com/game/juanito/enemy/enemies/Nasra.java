@@ -23,6 +23,13 @@ public class Nasra extends Enemy {
      */
     public Nasra(int x, int y, ID id) {
         super(x, y, id);
+        setWidth(70);
+        setHeight(128);
+    }
+
+    @Override
+    public void collision() {
+
     }
 
     @Override

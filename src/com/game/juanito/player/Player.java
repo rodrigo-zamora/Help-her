@@ -13,8 +13,8 @@ public class Player extends GameObject {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-    URL rightPlayer = ClassLoader.getSystemResource("player/rightPlayerImage.gif");
-    Image rightPlayerImage = toolkit.getImage(rightPlayer);
+    URL player = ClassLoader.getSystemResource("player/rightPlayerImage.gif");
+    Image playerImage = toolkit.getImage(player);
 
     private int health;
     private boolean isMoving;
@@ -28,6 +28,8 @@ public class Player extends GameObject {
      */
     public Player(int x, int y, ID id) {
         super(x, y, id);
+        setWidth(128);
+        setHeight(128);
     }
 
     /**
@@ -66,6 +68,8 @@ public class Player extends GameObject {
         isMoving = moving;
     }
 
+
+
     /**
      * Tick method
      */
@@ -88,6 +92,14 @@ public class Player extends GameObject {
      */
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(rightPlayerImage, 75, getY(), null);
+        graphics.drawImage(playerImage,
+                75,
+                 y,
+                null);
+    }
+
+    @Override
+    public void collision() {
+        System.out.println("collision! p");
     }
 }

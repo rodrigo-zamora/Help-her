@@ -23,6 +23,13 @@ public class Gereon extends Enemy {
      */
     public Gereon(int x, int y, ID id) {
         super(x, y, id);
+        setWidth(70);
+        setHeight(128);
+    }
+
+    @Override
+    public void collision() {
+
     }
 
     @Override

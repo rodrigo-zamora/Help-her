@@ -23,6 +23,13 @@ public class Sephtis extends Enemy {
      */
     public Sephtis(int x, int y, ID id) {
         super(x, y, id);
+        setWidth(164);
+        setHeight(160);
+    }
+
+    @Override
+    public void collision() {
+
     }
 
     @Override

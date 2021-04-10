@@ -3,7 +3,7 @@ package com.game.juanito.main;
 import java.awt.*;
 
 public abstract class GameObject {
-    protected int x, y;
+    protected int x, y, width, height;
     protected ID id;
     protected int speedX, speedY;
 
@@ -58,4 +58,22 @@ public abstract class GameObject {
     public void setSpeedY(int speedY) {
         this.speedY = speedY;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public abstract void collision();
 }

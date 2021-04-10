@@ -172,7 +172,6 @@ public class Chunk {
             addChunk();
             player.setX(508);
             iterations++;
-            System.out.println("currentChunk: " + currentChunk);
         }
     }
 

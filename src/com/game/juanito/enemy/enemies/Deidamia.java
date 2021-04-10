@@ -25,6 +25,13 @@ public class Deidamia extends Enemy {
      */
     public Deidamia(int x, int y, ID id) {
         super(x, y, id);
+        setWidth(149);
+        setHeight(100);
+    }
+
+    @Override
+    public void collision() {
+
     }
 
     @Override
