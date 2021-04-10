@@ -62,8 +62,8 @@ public class Game extends Canvas implements Runnable {
         try {
             System.exit(1);
             thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -105,7 +105,8 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
 
         // Tick all game objects
-        handler.tick();
+        handler.tick(player.collisionHandler.getRectangle());
+        System.out.println("Player rectangle: " + player.collisionHandler.getRectangle());
 
         // Tick healthbar
         healthBar.tick(player.getHealth());

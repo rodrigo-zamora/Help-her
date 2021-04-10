@@ -1,6 +1,7 @@
 package com.game.juanito.enemy.enemies;
 
 import com.game.juanito.enemy.Enemy;
+import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.Game;
 import com.game.juanito.main.ID;
 
@@ -16,6 +17,8 @@ public class Aarav extends Enemy {
     URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.png");
     Image aaravIdleImage = toolkit.getImage(aaravIdle);
 
+    CollisionHandler collisionHandler = new CollisionHandler(210, 150);
+
     /**
      * Constructor for Aarav class
      *
@@ -25,19 +28,15 @@ public class Aarav extends Enemy {
      */
     public Aarav(int x, int y, ID id) {
         super(x, y, id);
-        setWidth(210);
-        setHeight(150);
-    }
-
-    @Override
-    public void collision() {
-        System.out.println("collision!");
     }
 
     @Override
     public boolean tick() {
+        collisionHandler.setX(x);
+        collisionHandler.setY(y);
         if (Game.isMoving)
             x += speedX;
+        collisionHandler.setRectangle(new Rectangle(x, y, collisionHandler.getWidth(), collisionHandler.getHeight()));
         return x >= -150;
     }
 
@@ -51,6 +50,23 @@ public class Aarav extends Enemy {
         );
     }
 
+    @Override
+    public void collision(Rectangle rectangle) {
+        if(collisionHandler.getRectangle() == rectangle){
+            System.out.println("Colisión! ");
+        }
+    }
+
+    @Override
+    public int getWidth() {
+        return collisionHandler.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return collisionHandler.getHeight();
+    }
+
     /**
      * Method to get the image of Aarav depending in the player movement
      *
@@ -62,4 +78,6 @@ public class Aarav extends Enemy {
             return aaravLeftImage;
         } else return aaravIdleImage;
     }
+
+
 }

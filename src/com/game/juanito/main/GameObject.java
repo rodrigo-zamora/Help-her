@@ -1,9 +1,11 @@
 package com.game.juanito.main;
 
+import com.game.juanito.handler.CollisionHandler;
+
 import java.awt.*;
 
 public abstract class GameObject {
-    protected int x, y, width, height;
+    protected int x, y;
     protected ID id;
     protected int speedX, speedY;
 
@@ -59,21 +61,9 @@ public abstract class GameObject {
         this.speedY = speedY;
     }
 
-    public int getWidth() {
-        return width;
-    }
+    public abstract void collision(Rectangle rectangle);
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
+    public abstract int getWidth();
 
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public abstract void collision();
+    public abstract int getHeight();
 }

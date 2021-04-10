@@ -1,6 +1,7 @@
 package com.game.juanito.enemy.enemies;
 
 import com.game.juanito.enemy.Enemy;
+import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.Game;
 import com.game.juanito.main.ID;
 
@@ -16,6 +17,8 @@ public class Deidamia extends Enemy {
     URL deidamiaIdle = ClassLoader.getSystemResource("enemies/DeidamiaIdle.png");
     Image deidamiaIdleImage = toolkit.getImage(deidamiaIdle);
 
+    CollisionHandler collisionHandler = new CollisionHandler(149, 100);
+
     /**
      * Constructor for Deidamia class
      *
@@ -25,19 +28,15 @@ public class Deidamia extends Enemy {
      */
     public Deidamia(int x, int y, ID id) {
         super(x, y, id);
-        setWidth(149);
-        setHeight(100);
-    }
-
-    @Override
-    public void collision() {
-
     }
 
     @Override
     public boolean tick() {
+        collisionHandler.setX(x);
+        collisionHandler.setY(y);
         if (Game.isMoving)
             x += speedX;
+        collisionHandler.setRectangle(new Rectangle(x, y, collisionHandler.getWidth(), collisionHandler.getHeight()));
         return x >= -150;
     }
 
@@ -49,6 +48,21 @@ public class Deidamia extends Enemy {
                 getY(),
                 null
         );
+    }
+
+    @Override
+    public void collision(Rectangle rectangle) {
+
+    }
+
+    @Override
+    public int getWidth() {
+        return collisionHandler.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return collisionHandler.getHeight();
     }
 
     /**

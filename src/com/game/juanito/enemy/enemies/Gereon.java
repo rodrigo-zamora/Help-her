@@ -1,6 +1,7 @@
 package com.game.juanito.enemy.enemies;
 
 import com.game.juanito.enemy.Enemy;
+import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.Game;
 import com.game.juanito.main.ID;
 
@@ -14,6 +15,8 @@ public class Gereon extends Enemy {
     URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
     Image gereonLeftImage = toolkit.getImage(gereonLeft);
 
+    CollisionHandler collisionHandler = new CollisionHandler(70, 128);
+
     /**
      * Constructor for Gereon class
      *
@@ -23,19 +26,15 @@ public class Gereon extends Enemy {
      */
     public Gereon(int x, int y, ID id) {
         super(x, y, id);
-        setWidth(70);
-        setHeight(128);
-    }
-
-    @Override
-    public void collision() {
-
     }
 
     @Override
     public boolean tick() {
+        collisionHandler.setX(x);
+        collisionHandler.setY(y);
         if (Game.isMoving)
             x += speedX;
+        collisionHandler.setRectangle(new Rectangle(x, y, collisionHandler.getWidth(), collisionHandler.getHeight()));
         return x >= -150;
     }
 
@@ -47,5 +46,20 @@ public class Gereon extends Enemy {
                 getY(),
                 null
         );
+    }
+
+    @Override
+    public int getWidth() {
+        return collisionHandler.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return collisionHandler.getHeight();
+    }
+
+    @Override
+    public void collision(Rectangle rectangle) {
+
     }
 }

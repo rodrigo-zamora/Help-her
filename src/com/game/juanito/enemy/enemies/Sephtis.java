@@ -1,6 +1,7 @@
 package com.game.juanito.enemy.enemies;
 
 import com.game.juanito.enemy.Enemy;
+import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.Game;
 import com.game.juanito.main.ID;
 
@@ -14,6 +15,8 @@ public class Sephtis extends Enemy {
     URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
     Image sephtisLeftImage = toolkit.getImage(sephtisLeft);
 
+    CollisionHandler collisionHandler = new CollisionHandler(164, 160);
+
     /**
      * Constructor for Sephtis class
      *
@@ -23,17 +26,12 @@ public class Sephtis extends Enemy {
      */
     public Sephtis(int x, int y, ID id) {
         super(x, y, id);
-        setWidth(164);
-        setHeight(160);
-    }
-
-    @Override
-    public void collision() {
-
     }
 
     @Override
     public boolean tick() {
+        collisionHandler.setX(x);
+        collisionHandler.setY(y);
         if (Game.isMoving)
             x += speedX;
         return x >= -150;
@@ -47,5 +45,20 @@ public class Sephtis extends Enemy {
                 getY(),
                 null
         );
+    }
+
+    @Override
+    public void collision(Rectangle rectangle) {
+
+    }
+
+    @Override
+    public int getWidth() {
+        return collisionHandler.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return collisionHandler.getHeight();
     }
 }
