@@ -60,7 +60,7 @@ public class SpawnEnemy {
      * @param x
      */
     public void tick(GameObjectHandler gameObjectHandler, int x) {
-        if (x < -1118) {
+        if (x == -1115) {
             gameObjectHandler.addObject(spawnEnemy(getRandomY()));
         }
     }

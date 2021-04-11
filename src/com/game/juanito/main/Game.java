@@ -17,19 +17,22 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1080;
     public static final int HEIGHT = 640;
     public static final String TITLE = "El escape de Juanito";
+
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
+
     public static boolean isMoving;
     public int FPS;
+
     Player player;
     Chunk chunk = new Chunk();
     HealthBar healthBar = new HealthBar();
     SpawnEnemy spawnEnemy = new SpawnEnemy();
     GameObjectHandler gameObjectHandler = new GameObjectHandler();
     Door door = new Door();
+
     private Thread thread;
     private boolean isRunning = false;
-    private int speed = 0;
 
     /**
      * Constructor for Game class
@@ -45,14 +48,6 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
         System.setProperty("sun.java2d.opengl", "true");
         new Game();
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
     }
 
     /**
@@ -128,7 +123,7 @@ public class Game extends Canvas implements Runnable {
         // Tick door
         door.tick(chunk.getIterations(), player.isMoving());
 
-        isMoving = player.isMoving();
+        isMoving = Chunk.getSpeed() > 0;
     }
 
     /**
