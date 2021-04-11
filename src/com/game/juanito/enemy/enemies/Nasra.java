@@ -49,16 +49,6 @@ public class Nasra extends Enemy {
     }
 
     @Override
-    public int getWidth() {
-        return collisionHandler.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return collisionHandler.getHeight();
-    }
-
-    @Override
     public void collision(Rectangle rectangle) {
 
     }

@@ -52,8 +52,4 @@ public abstract class GameObject {
     }
 
     public abstract void collision(Rectangle rectangle);
-
-    public abstract int getWidth();
-
-    public abstract int getHeight();
 }

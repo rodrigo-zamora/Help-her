@@ -5,7 +5,6 @@ import java.net.URL;
 
 public class Chunk {
 
-    private static int speed;
     /**
      * Images with our map chunks
      */
@@ -27,9 +26,12 @@ public class Chunk {
     Image chunkImage7 = toolkit.getImage(chunk7);
     URL chunk8 = ClassLoader.getSystemResource("map/8.png");
     Image chunkImage8 = toolkit.getImage(chunk8);
+
     /**
      * Variables for our Chunk class
      */
+
+    private static int speed;
     private int currentChunk;
     private int x;
     private int iterations;
@@ -67,24 +69,6 @@ public class Chunk {
      */
     public void setX(int x) {
         this.x = x;
-    }
-
-    /**
-     * Getter for currentChunk
-     *
-     * @return an integer
-     */
-    public int getCurrentChunk() {
-        return currentChunk;
-    }
-
-    /**
-     * Setter for currentChunk
-     *
-     * @param currentChunk receives an integer
-     */
-    public void setCurrentChunk(int currentChunk) {
-        this.currentChunk = currentChunk;
     }
 
     /**
@@ -151,17 +135,6 @@ public class Chunk {
             currentChunk = 1;
         } else {
             currentChunk++;
-        }
-    }
-
-    /**
-     * This method adds the previous chunk
-     */
-    private void addChunkNegative() {
-        if (currentChunk == 1) {
-            currentChunk = 8;
-        } else {
-            currentChunk--;
         }
     }
 

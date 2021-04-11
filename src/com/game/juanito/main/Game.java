@@ -121,7 +121,7 @@ public class Game extends Canvas implements Runnable {
         spawnEnemy.tick(gameObjectHandler, chunk.getX());
 
         // Tick door
-        door.tick(chunk.getIterations(), player.isMoving());
+        door.tick(chunk.getIterations(), isMoving);
 
         isMoving = Chunk.getSpeed() > 0;
     }

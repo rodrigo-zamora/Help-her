@@ -51,14 +51,4 @@ public class Sephtis extends Enemy {
     public void collision(Rectangle rectangle) {
 
     }
-
-    @Override
-    public int getWidth() {
-        return collisionHandler.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return collisionHandler.getHeight();
-    }
 }

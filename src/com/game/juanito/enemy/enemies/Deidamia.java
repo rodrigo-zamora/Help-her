@@ -56,16 +56,6 @@ public class Deidamia extends Enemy {
 
     }
 
-    @Override
-    public int getWidth() {
-        return collisionHandler.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return collisionHandler.getHeight();
-    }
-
     /**
      * Method to get the image of Deidamia depending in the player movement
      *
