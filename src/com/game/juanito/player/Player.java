@@ -69,8 +69,7 @@ public class Player extends GameObject {
         else if (y >= 430)
             y -= 5;
         y += speedY;
-        collisionHandler.setRectangle(new Rectangle(75, collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
-        //System.out.println("Player: " + collisionHandler.getRectangle());
+        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
         return true;
     }
 
@@ -88,7 +87,7 @@ public class Player extends GameObject {
                 null);
         graphics.setColor(Color.BLACK);
         graphics.drawRect(
-                75,
+                collisionHandler.getX(),
                 collisionHandler.getY(),
                 collisionHandler.getWidth(),
                 collisionHandler.getHeight());
