@@ -108,6 +108,8 @@ public class Game extends Canvas implements Runnable {
      */
     private void tick() {
 
+        isMoving = Chunk.getSpeed() > 0;
+
         // Tick all game objects
         gameObjectHandler.tick(player.collisionHandler.getRectangle());
 
@@ -123,7 +125,8 @@ public class Game extends Canvas implements Runnable {
         // Tick door
         door.tick(chunk.getIterations(), isMoving);
 
-        isMoving = Chunk.getSpeed() > 0;
+
+
     }
 
     /**

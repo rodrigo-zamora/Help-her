@@ -34,7 +34,7 @@ public class Gereon extends Enemy {
         collisionHandler.setY(y);
         if (Chunk.getSpeed() != 0)
             x += -Chunk.getSpeed();
-        collisionHandler.setRectangle(new Rectangle(x, y, collisionHandler.getWidth(), collisionHandler.getHeight()));
+        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
         return x >= -150;
     }
 
@@ -46,10 +46,18 @@ public class Gereon extends Enemy {
                 getY(),
                 null
         );
+        graphics.setColor(Color.RED);
+        graphics.drawRect(
+                collisionHandler.getX(),
+                collisionHandler.getY(),
+                collisionHandler.getWidth(),
+                collisionHandler.getHeight());
     }
 
     @Override
     public void collision(Rectangle rectangle) {
-
+        if (rectangle.intersects(collisionHandler.getRectangle())) {
+            System.out.println("Colision from Gereon!");
+        }
     }
 }

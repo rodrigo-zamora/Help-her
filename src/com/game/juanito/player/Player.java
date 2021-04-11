@@ -62,12 +62,15 @@ public class Player extends GameObject {
      */
     @Override
     public boolean tick() {
+        collisionHandler.setX(x);
+        collisionHandler.setY(y);
         if (y <= 260)
             y += +5;
         else if (y >= 430)
             y -= 5;
         y += speedY;
-        collisionHandler.setRectangle(new Rectangle(x, y, collisionHandler.getWidth(), collisionHandler.getHeight()));
+        collisionHandler.setRectangle(new Rectangle(75, collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+        //System.out.println("Player: " + collisionHandler.getRectangle());
         return true;
     }
 
@@ -78,10 +81,17 @@ public class Player extends GameObject {
      */
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(playerImage,
+        graphics.drawImage(
+                playerImage,
                 75,
                 y,
                 null);
+        graphics.setColor(Color.BLACK);
+        graphics.drawRect(
+                75,
+                collisionHandler.getY(),
+                collisionHandler.getWidth(),
+                collisionHandler.getHeight());
     }
 
     @Override
