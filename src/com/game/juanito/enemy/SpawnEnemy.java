@@ -1,7 +1,7 @@
 package com.game.juanito.enemy;
 
 import com.game.juanito.enemy.enemies.*;
-import com.game.juanito.handler.Handler;
+import com.game.juanito.handler.GameObjectHandler;
 import com.game.juanito.main.ID;
 
 import java.util.Random;
@@ -52,17 +52,16 @@ public class SpawnEnemy {
             case Deidamia -> enemy = new Deidamia(1016, y, ID.Deidamia);
             default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
         }
-        enemy.setSpeedX(-5);
         return enemy;
     }
 
     /**
-     * @param handler
+     * @param gameObjectHandler
      * @param x
      */
-    public void tick(Handler handler, int x) {
+    public void tick(GameObjectHandler gameObjectHandler, int x) {
         if (x < -1118) {
-            handler.addObject(spawnEnemy(getRandomY()));
+            gameObjectHandler.addObject(spawnEnemy(getRandomY()));
         }
     }
 }

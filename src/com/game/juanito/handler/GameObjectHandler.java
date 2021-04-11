@@ -6,17 +6,16 @@ import com.game.juanito.main.ID;
 import java.awt.*;
 import java.util.LinkedList;
 
-public class Handler {
+public class GameObjectHandler {
 
     LinkedList<GameObject> object = new LinkedList<GameObject>();
 
     public void tick(Rectangle playerRectangle) {
         for (GameObject tempObject : object) {
-            if(!tempObject.tick()){
+            if (!tempObject.tick()) {
                 removeObject(tempObject);
             }
-            if(tempObject.getID() != ID.Player){
-                System.out.println("Enemy rectangle: " + new Rectangle(tempObject.getX(), tempObject.getY(), tempObject.getWidth(), tempObject.getHeight()));
+            if (tempObject.getID() != ID.Player) {
                 tempObject.collision(playerRectangle);
             }
         }

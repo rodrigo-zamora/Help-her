@@ -12,13 +12,11 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
+    private static int speedY;
+    public CollisionHandler collisionHandler = new CollisionHandler(128, 128);
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-
     URL player = ClassLoader.getSystemResource("player/rightPlayerImage.gif");
     Image playerImage = toolkit.getImage(player);
-
-    public CollisionHandler collisionHandler = new CollisionHandler(128, 128);
-
     private int health;
     private boolean isMoving;
 
@@ -31,6 +29,14 @@ public class Player extends GameObject {
      */
     public Player(int x, int y, ID id) {
         super(x, y, id);
+    }
+
+    public static int getSpeedY() {
+        return speedY;
+    }
+
+    public static void setSpeedY(int speedY) {
+        Player.speedY = speedY;
     }
 
     /**
@@ -69,15 +75,11 @@ public class Player extends GameObject {
         isMoving = moving;
     }
 
-
-
     /**
      * Tick method
      */
     @Override
     public boolean tick() {
-        isMoving = speedX > 0;
-        x += speedX;
         if (y <= 260)
             y += +5;
         else if (y >= 430)
@@ -96,7 +98,7 @@ public class Player extends GameObject {
     public void render(Graphics graphics) {
         graphics.drawImage(playerImage,
                 75,
-                 y,
+                y,
                 null);
     }
 

@@ -1,13 +1,11 @@
 package com.game.juanito.main;
 
-import com.game.juanito.handler.CollisionHandler;
-
 import java.awt.*;
 
 public abstract class GameObject {
+    protected static int speedY;
     protected int x, y;
     protected ID id;
-    protected int speedX, speedY;
 
     public GameObject(int x, int y, ID id) {
         this.x = x;
@@ -15,11 +13,19 @@ public abstract class GameObject {
         this.id = id;
     }
 
+    public static int getSpeedY() {
+        return speedY;
+    }
+
+    public static void setSpeedY(int speedY) {
+        GameObject.speedY = speedY;
+    }
+
+    // Setters and getters
+
     public abstract boolean tick();
 
     public abstract void render(Graphics graphics);
-
-    // Setters and getters
 
     public int getX() {
         return x;
@@ -43,22 +49,6 @@ public abstract class GameObject {
 
     public void setID(ID id) {
         this.id = id;
-    }
-
-    public int getSpeedX() {
-        return speedX;
-    }
-
-    public void setSpeedX(int speedX) {
-        this.speedX = speedX;
-    }
-
-    public int getSpeedY() {
-        return speedY;
-    }
-
-    public void setSpeedY(int speedY) {
-        this.speedY = speedY;
     }
 
     public abstract void collision(Rectangle rectangle);

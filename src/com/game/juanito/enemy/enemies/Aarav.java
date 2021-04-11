@@ -4,6 +4,7 @@ import com.game.juanito.enemy.Enemy;
 import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.Game;
 import com.game.juanito.main.ID;
+import com.game.juanito.map.Chunk;
 
 import java.awt.*;
 import java.net.URL;
@@ -34,8 +35,8 @@ public class Aarav extends Enemy {
     public boolean tick() {
         collisionHandler.setX(x);
         collisionHandler.setY(y);
-        if (Game.isMoving)
-            x += speedX;
+        if (Chunk.getSpeed() != 0)
+            x += -Chunk.getSpeed();
         collisionHandler.setRectangle(new Rectangle(x, y, collisionHandler.getWidth(), collisionHandler.getHeight()));
         return x >= -150;
     }
@@ -52,7 +53,7 @@ public class Aarav extends Enemy {
 
     @Override
     public void collision(Rectangle rectangle) {
-        if(collisionHandler.getRectangle() == rectangle){
+        if (collisionHandler.getRectangle() == rectangle) {
             System.out.println("Colisión! ");
         }
     }
@@ -70,7 +71,7 @@ public class Aarav extends Enemy {
     /**
      * Method to get the image of Aarav depending in the player movement
      *
-     * @param isMoving  receives a boolean
+     * @param isMoving receives a boolean
      * @return an Image
      */
     private Image getImage(boolean isMoving) {

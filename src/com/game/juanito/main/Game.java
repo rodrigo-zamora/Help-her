@@ -1,7 +1,7 @@
 package com.game.juanito.main;
 
 import com.game.juanito.enemy.SpawnEnemy;
-import com.game.juanito.handler.Handler;
+import com.game.juanito.handler.GameObjectHandler;
 import com.game.juanito.handler.KeyboardInput;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
@@ -25,25 +25,34 @@ public class Game extends Canvas implements Runnable {
     Chunk chunk = new Chunk();
     HealthBar healthBar = new HealthBar();
     SpawnEnemy spawnEnemy = new SpawnEnemy();
-    Handler handler = new Handler();
+    GameObjectHandler gameObjectHandler = new GameObjectHandler();
     Door door = new Door();
     private Thread thread;
     private boolean isRunning = false;
+    private int speed = 0;
 
     /**
      * Constructor for Game class
      */
     public Game() {
-        this.addKeyListener(new KeyboardInput(handler));
+        this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player);
         player.setHealth(6);
-        handler.addObject(player);
+        gameObjectHandler.addObject(player);
     }
 
     public static void main(String[] args) {
         System.setProperty("sun.java2d.opengl", "true");
         new Game();
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     /**
@@ -105,17 +114,16 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
 
         // Tick all game objects
-        handler.tick(player.collisionHandler.getRectangle());
-        System.out.println("Player rectangle: " + player.collisionHandler.getRectangle());
+        gameObjectHandler.tick(player.collisionHandler.getRectangle());
 
         // Tick healthbar
         healthBar.tick(player.getHealth());
 
         // Tick chunk
-        chunk.tick(player.getX(), player);
+        chunk.tick();
 
         // Tick spawnEnemy
-        spawnEnemy.tick(handler, chunk.getX());
+        spawnEnemy.tick(gameObjectHandler, chunk.getX());
 
         // Tick door
         door.tick(chunk.getIterations(), player.isMoving());
@@ -154,7 +162,7 @@ public class Game extends Canvas implements Runnable {
         healthBar.render(graphics, 650, 5);
 
         // Render all game objects
-        handler.render(graphics);
+        gameObjectHandler.render(graphics);
 
         graphics.dispose();
         bufferStrategy.show();

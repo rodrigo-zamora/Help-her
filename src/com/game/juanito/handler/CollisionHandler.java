@@ -8,7 +8,7 @@ public class CollisionHandler {
 
     private Rectangle rectangle;
 
-    public CollisionHandler(int width, int height){
+    public CollisionHandler(int width, int height) {
         this.width = width;
         this.height = height;
         rectangle = new Rectangle(x, y, width, height);

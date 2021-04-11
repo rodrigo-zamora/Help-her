@@ -1,18 +1,16 @@
 package com.game.juanito.map;
 
-import com.game.juanito.player.Player;
-
 import java.awt.*;
 import java.net.URL;
 
 public class Chunk {
 
+    private static int speed;
     /**
      * Images with our map chunks
      */
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-
     URL chunk1 = ClassLoader.getSystemResource("map/1.png");
     Image chunkImage1 = toolkit.getImage(chunk1);
     URL chunk2 = ClassLoader.getSystemResource("map/2.png");
@@ -29,7 +27,6 @@ public class Chunk {
     Image chunkImage7 = toolkit.getImage(chunk7);
     URL chunk8 = ClassLoader.getSystemResource("map/8.png");
     Image chunkImage8 = toolkit.getImage(chunk8);
-
     /**
      * Variables for our Chunk class
      */
@@ -44,6 +41,14 @@ public class Chunk {
         currentChunk = 1;
         x = 0;
         iterations = 0;
+    }
+
+    public static int getSpeed() {
+        return speed;
+    }
+
+    public static void setSpeed(int speed) {
+        Chunk.speed = speed;
     }
 
     /**
@@ -162,15 +167,12 @@ public class Chunk {
 
     /**
      * This method calculates which chunk should be displayed and where
-     *
-     * @param playerX receives the current position in X of the player
-     * @param player  receives the player object
      */
-    public void tick(int playerX, Player player) {
-        x = -playerX + 508;
+    public void tick() {
+        x += -speed;
         if (x < -1118) {
             addChunk();
-            player.setX(508);
+            setX(0);
             iterations++;
         }
     }
