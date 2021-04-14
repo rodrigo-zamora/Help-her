@@ -1,5 +1,7 @@
 package com.game.juanito.map;
 
+import com.game.juanito.handler.CollisionHandler;
+
 import java.awt.*;
 import java.net.URL;
 
@@ -11,13 +13,18 @@ public class Door {
     Image doorImage = toolkit.getImage(door);
 
     private boolean shouldRender;
-    private int x = 1500;
+    private int x = 1500, y;
+
+    // Replace with actual door width and height
+    CollisionHandler collisionHandler = new CollisionHandler(50, 50);
 
     /**
      *
      */
     public Door() {
         shouldRender = false;
+        collisionHandler.setX(x);
+        collisionHandler.setY(y);
     }
 
     /**
@@ -36,12 +43,30 @@ public class Door {
 
     /**
      *
+     * @return
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     *
+     * @param y
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    /**
+     *
      */
     public void tick() {
         if (Chunk.getIterations() == 5) {
             shouldRender = true;
         }
         if (shouldRender) {
+            collisionHandler.setX(x);
+            collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
             if (Chunk.getSpeed() > 0) {
                 x -= 5;
             }
