@@ -1,4 +1,4 @@
-package main;
+package com.game.juanito.main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,11 +16,10 @@ public class Window extends Canvas {
     private static final long serialVersionUID = -6357664197674207224L;
 
     /**
-     *
-     * @param width     receives width in pixels
-     * @param height    receives height in pixels
-     * @param title     receives the title of the window
-     * @param game      receives the gameStruct
+     * @param width  receives width in pixels
+     * @param height receives height in pixels
+     * @param title  receives the title of the window
+     * @param game   receives the gameStruct
      */
     public Window(int width, int height, String title, Game game) {
         JFrame frame = new JFrame(title);
