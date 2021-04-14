@@ -13,12 +13,14 @@ import java.net.URL;
 public class Player extends GameObject {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    URL player = ClassLoader.getSystemResource("player/rightPlayerImage.gif");
+    URL player = ClassLoader.getSystemResource("player/player.gif");
     Image playerImage = toolkit.getImage(player);
+    URL playerDamage = ClassLoader.getSystemResource("player/player.gif");
+    Image playerDamageImage = toolkit.getImage(playerDamage);
 
-    private int health;
+    private int health = 6;
     private static int speedY;
-    public CollisionHandler collisionHandler = new CollisionHandler(128, 128);
+    public CollisionHandler collisionHandler = new CollisionHandler(90, 64);
 
     /**
      * Constructor for Player class
@@ -29,6 +31,8 @@ public class Player extends GameObject {
      */
     public Player(int x, int y, ID id) {
         super(x, y, id);
+        collisionHandler.setX(x + 20);
+        collisionHandler.setY(y);
     }
 
     public static int getSpeedY() {
@@ -62,13 +66,12 @@ public class Player extends GameObject {
      */
     @Override
     public boolean tick() {
-        collisionHandler.setX(x);
-        collisionHandler.setY(y);
+        y += speedY;
         if (y <= 260)
             y += +5;
         else if (y >= 430)
             y -= 5;
-        y += speedY;
+        collisionHandler.setY(y + 65);
         collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
         return true;
     }

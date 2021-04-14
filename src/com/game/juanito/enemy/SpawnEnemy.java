@@ -15,13 +15,14 @@ public class SpawnEnemy {
      */
     private ID getRandomEnemy() {
         Random random = new Random();
-        return switch (random.nextInt(5)) {
+        int randomInteger = random.nextInt(5);
+        return switch (randomInteger) {
             case 0 -> ID.Aarav;
             case 1 -> ID.Deidamia;
             case 2 -> ID.Gereon;
             case 3 -> ID.Nasra;
             case 4 -> ID.Sephtis;
-            default -> throw new IllegalStateException("Unexpected value at getEnemy: " + random.nextInt(5));
+            default -> throw new IllegalStateException("Unexpected value at getEnemy: " + randomInteger);
         };
     }
 

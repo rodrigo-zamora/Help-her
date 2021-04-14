@@ -18,7 +18,7 @@ public class Deidamia extends Enemy {
     URL deidamiaIdle = ClassLoader.getSystemResource("enemies/DeidamiaIdle.png");
     Image deidamiaIdleImage = toolkit.getImage(deidamiaIdle);
 
-    CollisionHandler collisionHandler = new CollisionHandler(149, 100);
+    CollisionHandler collisionHandler = new CollisionHandler(149, 50);
 
     /**
      * Constructor for Deidamia class
@@ -29,12 +29,13 @@ public class Deidamia extends Enemy {
      */
     public Deidamia(int x, int y, ID id) {
         super(x, y, id);
+        collisionHandler.setY(y + 45);
+        collisionHandler.setX(x);
     }
 
     @Override
     public boolean tick() {
         collisionHandler.setX(x);
-        collisionHandler.setY(y);
         if (Chunk.getSpeed() != 0)
             x += -Chunk.getSpeed();
         collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
@@ -60,7 +61,7 @@ public class Deidamia extends Enemy {
     @Override
     public void collision(Rectangle rectangle) {
         if (rectangle.intersects(collisionHandler.getRectangle())) {
-            System.out.println("Colision from Deidamia!");
+            System.out.println("Collision from Deidamia!");
         }
     }
 

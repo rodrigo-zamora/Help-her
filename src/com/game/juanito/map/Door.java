@@ -35,14 +35,14 @@ public class Door {
     }
 
     /**
-     * @param iterations
+     *
      */
-    public void tick(int iterations, boolean isMoving) {
-        if (iterations == 5) {
+    public void tick() {
+        if (Chunk.getIterations() == 5) {
             shouldRender = true;
         }
         if (shouldRender) {
-            if (isMoving) {
+            if (Chunk.getSpeed() > 0) {
                 x -= 5;
             }
         }
@@ -58,6 +58,13 @@ public class Door {
                     x,
                     260,
                     null
+            );
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(new Font("TimesRoman", Font.PLAIN, 24));
+            graphics.drawString(
+                    "Presiona 'E' para entrar",
+                    x,
+                    240
             );
         }
     }

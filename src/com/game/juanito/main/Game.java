@@ -113,17 +113,13 @@ public class Game extends Canvas implements Runnable {
         // Tick all game objects
         gameObjectHandler.tick(player.collisionHandler.getRectangle());
 
-        // Tick healthbar
         healthBar.tick(player.getHealth());
 
-        // Tick chunk
         chunk.tick();
 
-        // Tick spawnEnemy
         spawnEnemy.tick(gameObjectHandler, chunk.getX());
 
-        // Tick door
-        door.tick(chunk.getIterations(), isMoving);
+        door.tick();
 
 
 
@@ -153,10 +149,8 @@ public class Game extends Canvas implements Runnable {
                 20
         );
 
-        // Door
         door.render(graphics);
 
-        // Health
         healthBar.render(graphics, 650, 5);
 
         // Render all game objects

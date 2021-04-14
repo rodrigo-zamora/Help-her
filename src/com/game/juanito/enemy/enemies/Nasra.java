@@ -15,7 +15,7 @@ public class Nasra extends Enemy {
     URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
     Image nasraLeftImage = toolkit.getImage(nasraLeft);
 
-    CollisionHandler collisionHandler = new CollisionHandler(70, 128);
+    CollisionHandler collisionHandler = new CollisionHandler(70, 64);
 
     /**
      * Constructor for Nasra class
@@ -26,12 +26,13 @@ public class Nasra extends Enemy {
      */
     public Nasra(int x, int y, ID id) {
         super(x, y, id);
+        collisionHandler.setY(y + 20);
+        collisionHandler.setX(x);
     }
 
     @Override
     public boolean tick() {
         collisionHandler.setX(x);
-        collisionHandler.setY(y);
         if (Chunk.getSpeed() != 0)
             x += -Chunk.getSpeed();
         collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
@@ -57,7 +58,7 @@ public class Nasra extends Enemy {
     @Override
     public void collision(Rectangle rectangle) {
         if (rectangle.intersects(collisionHandler.getRectangle())) {
-            System.out.println("Colision from Nasra!");
+            System.out.println("Collision from Nasra!");
         }
     }
 }

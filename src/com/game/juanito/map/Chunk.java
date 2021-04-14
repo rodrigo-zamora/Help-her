@@ -34,7 +34,7 @@ public class Chunk {
     private static int speed;
     private int currentChunk;
     private int x;
-    private int iterations;
+    private static int iterations;
 
     /**
      * Constructor for our Chunk class
@@ -76,7 +76,7 @@ public class Chunk {
      *
      * @return an integer
      */
-    public int getIterations() {
+    public static int getIterations() {
         return iterations;
     }
 
@@ -86,7 +86,7 @@ public class Chunk {
      * @param iterations receives an integer
      */
     public void setIterations(int iterations) {
-        this.iterations = iterations;
+        Chunk.iterations = iterations;
     }
 
     /**
