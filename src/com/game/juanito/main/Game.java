@@ -8,16 +8,12 @@ import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
 import com.game.juanito.player.HealthBar;
 import com.game.juanito.player.Player;
-import com.game.juanito.screen.MainMenu;
-import com.game.juanito.screen.Screen;
+import com.game.juanito.screen.*;
 import com.game.juanito.screen.Window;
 
-import javax.sound.sampled.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.io.IOException;
 import java.io.Serial;
-import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
@@ -34,11 +30,9 @@ public class Game extends Canvas implements Runnable {
 
     Player player;
     Chunk chunk = new Chunk();
-    HealthBar healthBar = new HealthBar();
     SpawnEnemy spawnEnemy = new SpawnEnemy();
     GameObjectHandler gameObjectHandler = new GameObjectHandler();
     Door door = new Door();
-    MainMenu mainMenu = new MainMenu();
 
     private Thread thread;
     private boolean isRunning = false;
@@ -153,7 +147,7 @@ public class Game extends Canvas implements Runnable {
 
         switch (screen) {
             case MAIN_MENU -> {
-                mainMenu.render(graphics);
+                MainMenu.render(graphics);
             }
 
             case GAME -> {
@@ -172,18 +166,22 @@ public class Game extends Canvas implements Runnable {
 
                 door.render(graphics);
 
-                healthBar.render(graphics);
+                HealthBar.render(graphics);
 
                 // Render all game objects
                 gameObjectHandler.render(graphics);
             }
 
             case DEATH -> {
-
+                Death.render(graphics);
             }
 
             case CREDITS -> {
+                Credits.render(graphics);
+            }
 
+            case LOADING -> {
+                Loading.render(graphics);
             }
 
         }

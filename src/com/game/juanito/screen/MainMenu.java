@@ -7,15 +7,15 @@ import java.net.URL;
 
 public class MainMenu {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-    URL background = ClassLoader.getSystemResource("Menu/Intro.png");
-    Image backgroundImage = toolkit.getImage(background);
-    URL start = ClassLoader.getSystemResource("Menu/Empezar.png");
-    Image startImage = toolkit.getImage(start);
-    URL credits = ClassLoader.getSystemResource("Menu/Creditos.png");
-    Image creditsImage = toolkit.getImage(credits);
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private static final URL background = ClassLoader.getSystemResource("Menu/Intro.png");
+    private static final Image backgroundImage = toolkit.getImage(background);
+    private static final URL start = ClassLoader.getSystemResource("Menu/Empezar.png");
+    private static final Image startImage = toolkit.getImage(start);
+    private static final URL credits = ClassLoader.getSystemResource("Menu/Creditos.png");
+    private static final Image creditsImage = toolkit.getImage(credits);
 
-    public void render(Graphics graphics) {
+    public static void render(Graphics graphics) {
 
         graphics.drawImage(
                 backgroundImage,
