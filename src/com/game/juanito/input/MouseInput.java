@@ -12,12 +12,14 @@ public class MouseInput extends MouseAdapter {
         if (event.getX() >= 100 &&
                 event.getX() <= 323 &&
                 event.getY() >= 200 &&
-                event.getY() <= 270) {
+                event.getY() <= 270 &&
+                Game.screen == Screen.MAIN_MENU) {
             Game.screen = Screen.GAME;
         } else if (event.getX() >= 100 &&
                 event.getX() <= 323 &&
                 event.getY() >= 300 &&
-                event.getY() <= 370) {
+                event.getY() <= 370 &&
+                Game.screen == Screen.MAIN_MENU) {
             Game.screen = Screen.CREDITS;
         }
     }
