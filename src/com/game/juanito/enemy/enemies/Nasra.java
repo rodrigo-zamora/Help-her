@@ -3,8 +3,6 @@ package com.game.juanito.enemy.enemies;
 import com.game.juanito.enemy.Enemy;
 import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.ID;
-import com.game.juanito.map.Chunk;
-import com.game.juanito.player.Player;
 
 import java.awt.*;
 import java.net.URL;
@@ -58,7 +56,7 @@ public class Nasra extends Enemy {
                 collisionHandler.getY(),
                 collisionHandler.getWidth(),
                 collisionHandler.getHeight());
-}
+    }
 
     @Override
     public void collision(Rectangle rectangle) {

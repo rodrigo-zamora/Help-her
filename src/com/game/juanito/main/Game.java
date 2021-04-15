@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
-        player.setHealth(6);
+        Player.setHealth(6);
         gameObjectHandler.addObject(player);
     }
 

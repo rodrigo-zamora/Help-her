@@ -11,12 +11,10 @@ public class Door {
 
     URL door = ClassLoader.getSystemResource("map/door.png");
     Image doorImage = toolkit.getImage(door);
-
-    private boolean shouldRender;
-    private int x = 1500, y;
-
     // Replace with actual door width and height
     CollisionHandler collisionHandler = new CollisionHandler(50, 50);
+    private boolean shouldRender;
+    private int x = 1500, y;
 
     /**
      *
@@ -42,7 +40,6 @@ public class Door {
     }
 
     /**
-     *
      * @return
      */
     public int getY() {
@@ -50,7 +47,6 @@ public class Door {
     }
 
     /**
-     *
      * @param y
      */
     public void setY(int y) {

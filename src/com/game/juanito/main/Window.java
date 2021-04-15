@@ -3,7 +3,6 @@ package com.game.juanito.main;
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serial;
-import java.net.URL;
 
 /**
  *
@@ -40,7 +39,7 @@ public class Window extends Canvas {
         frame.setLocationRelativeTo(null);
         frame.add(game);
         frame.setVisible(true);
-        frame.setIconImage(imageIcon);
+        //frame.setIconImage(imageIcon);
         game.start();
     }
 }

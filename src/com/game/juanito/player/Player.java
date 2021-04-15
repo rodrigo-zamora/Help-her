@@ -63,6 +63,14 @@ public class Player extends GameObject {
         }
     }
 
+    public static void damageAnimation(boolean isDamaged) {
+        if (isDamaged) {
+            playerImage = toolkit.getImage(playerDamage);
+        } else {
+            playerImage = toolkit.getImage(player);
+        }
+    }
+
     /**
      * Tick method
      */
@@ -96,14 +104,6 @@ public class Player extends GameObject {
                 collisionHandler.getY(),
                 collisionHandler.getWidth(),
                 collisionHandler.getHeight());
-    }
-
-    public static void damageAnimation(boolean isDamaged){
-        if (isDamaged) {
-            playerImage = toolkit.getImage(playerDamage);
-        } else {
-            playerImage = toolkit.getImage(player);
-        }
     }
 
     @Override

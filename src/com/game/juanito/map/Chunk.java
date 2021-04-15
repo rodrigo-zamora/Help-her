@@ -6,6 +6,12 @@ import java.net.URL;
 public class Chunk {
 
     /**
+     * Variables for our Chunk class
+     */
+
+    private static int speed, x;
+    private static int iterations;
+    /**
      * Images with our map chunks
      */
 
@@ -26,14 +32,7 @@ public class Chunk {
     Image chunkImage7 = toolkit.getImage(chunk7);
     URL chunk8 = ClassLoader.getSystemResource("map/8.png");
     Image chunkImage8 = toolkit.getImage(chunk8);
-
-    /**
-     * Variables for our Chunk class
-     */
-
-    private static int speed, x;
     private int currentChunk;
-    private static int iterations;
 
     /**
      * Constructor for our Chunk class
