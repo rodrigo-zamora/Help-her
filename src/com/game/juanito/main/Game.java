@@ -115,11 +115,9 @@ public class Game extends Canvas implements Runnable {
 
         chunk.tick();
 
-        spawnEnemy.tick(gameObjectHandler, chunk.getX());
+        spawnEnemy.tick(gameObjectHandler);
 
         door.tick();
-
-
 
     }
 
