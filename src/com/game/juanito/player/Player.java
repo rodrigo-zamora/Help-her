@@ -12,11 +12,10 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-    URL player = ClassLoader.getSystemResource("player/player.gif");
-    Image playerImage = toolkit.getImage(player);
-    URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
-    Image playerDamageImage = toolkit.getImage(playerDamage);
+    static Toolkit toolkit = Toolkit.getDefaultToolkit();
+    static URL player = ClassLoader.getSystemResource("player/player.gif");
+    static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
+    static Image playerImage = toolkit.getImage(player);
 
     private static int health = 6;
     private static int speedY;
@@ -97,6 +96,14 @@ public class Player extends GameObject {
                 collisionHandler.getY(),
                 collisionHandler.getWidth(),
                 collisionHandler.getHeight());
+    }
+
+    public static void damageAnimation(boolean isDamaged){
+        if (isDamaged) {
+            playerImage = toolkit.getImage(playerDamage);
+        } else {
+            playerImage = toolkit.getImage(player);
+        }
     }
 
     @Override

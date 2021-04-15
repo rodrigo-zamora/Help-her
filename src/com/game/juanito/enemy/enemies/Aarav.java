@@ -21,8 +21,6 @@ public class Aarav extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(210, 75);
 
-    private boolean shouldRender;
-
     /**
      * Constructor for Aarav class
      *
@@ -34,7 +32,6 @@ public class Aarav extends Enemy {
         super(x, y, id);
         collisionHandler.setY(y + 75);
         collisionHandler.setX(x);
-        shouldRender = true;
     }
 
     /**
@@ -57,28 +54,24 @@ public class Aarav extends Enemy {
 
     @Override
     public void render(Graphics graphics) {
-        if (shouldRender) {
-            graphics.drawImage(
-                    getImage(Game.isMoving),
-                    getX(),
-                    getY(),
-                    null
-            );
-            graphics.setColor(Color.RED);
-            graphics.drawRect(
-                    collisionHandler.getX(),
-                    collisionHandler.getY(),
-                    collisionHandler.getWidth(),
-                    collisionHandler.getHeight());
-        }
+        graphics.drawImage(
+                getImage(Game.isMoving),
+                getX(),
+                getY(),
+                null
+        );
+        graphics.setColor(Color.RED);
+        graphics.drawRect(
+                collisionHandler.getX(),
+                collisionHandler.getY(),
+                collisionHandler.getWidth(),
+                collisionHandler.getHeight());
     }
 
     @Override
     public void collision(Rectangle rectangle) {
         if (rectangle.intersects(collisionHandler.getRectangle())) {
-            x = -150;
-            shouldRender = false;
-            Player.setHealth(Player.getHealth() - 1);
+            collisionIntersect();
         }
     }
 

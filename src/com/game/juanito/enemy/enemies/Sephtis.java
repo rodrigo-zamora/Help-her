@@ -3,7 +3,6 @@ package com.game.juanito.enemy.enemies;
 import com.game.juanito.enemy.Enemy;
 import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.ID;
-import com.game.juanito.map.Chunk;
 import com.game.juanito.player.Player;
 
 import java.awt.*;
@@ -18,8 +17,6 @@ public class Sephtis extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(164, 75);
 
-    private boolean shouldRender;
-
     /**
      * Constructor for Sephtis class
      *
@@ -31,7 +28,6 @@ public class Sephtis extends Enemy {
         super(x, y, id);
         collisionHandler.setY(y + 85);
         collisionHandler.setX(x);
-        shouldRender = true;
         speedY = 1;
     }
 
@@ -49,28 +45,24 @@ public class Sephtis extends Enemy {
 
     @Override
     public void render(Graphics graphics) {
-        if (shouldRender) {
-            graphics.drawImage(
-                    sephtisLeftImage,
-                    getX(),
-                    getY(),
-                    null
-            );
-            graphics.setColor(Color.RED);
-            graphics.drawRect(
-                    collisionHandler.getX(),
-                    collisionHandler.getY(),
-                    collisionHandler.getWidth(),
-                    collisionHandler.getHeight());
-        }
+        graphics.drawImage(
+                sephtisLeftImage,
+                getX(),
+                getY(),
+                null
+        );
+        graphics.setColor(Color.RED);
+        graphics.drawRect(
+                collisionHandler.getX(),
+                collisionHandler.getY(),
+                collisionHandler.getWidth(),
+                collisionHandler.getHeight());
     }
 
     @Override
     public void collision(Rectangle rectangle) {
         if (rectangle.intersects(collisionHandler.getRectangle())) {
-            x = -150;
-            shouldRender = false;
-            Player.setHealth(Player.getHealth() - 1);
+           collisionIntersect();
         }
     }
 }

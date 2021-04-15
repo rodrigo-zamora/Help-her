@@ -4,6 +4,7 @@ import com.game.juanito.enemy.enemies.*;
 import com.game.juanito.handler.GameObjectHandler;
 import com.game.juanito.main.ID;
 import com.game.juanito.map.Chunk;
+import com.game.juanito.player.Player;
 
 import java.util.Random;
 
@@ -62,6 +63,7 @@ public class SpawnEnemy {
      */
     public void tick(GameObjectHandler gameObjectHandler) {
         if (Chunk.getX() == -1115) {
+            Player.damageAnimation(false);
             gameObjectHandler.addObject(spawnEnemy(getRandomY()));
         }
     }
