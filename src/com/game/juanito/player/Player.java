@@ -19,7 +19,7 @@ public class Player extends GameObject {
 
     private static int health = 6;
     private static int speedY;
-    public CollisionHandler collisionHandler = new CollisionHandler(90, 64);
+    public CollisionHandler collisionHandler = new CollisionHandler(90, 32); // 90 & 64
 
     /**
      * Constructor for Player class
@@ -30,8 +30,8 @@ public class Player extends GameObject {
      */
     public Player(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setX(x + 20);
-        collisionHandler.setY(y);
+        collisionHandler.setX(x + 20); // 20
+        collisionHandler.setY(y); // 0
     }
 
     public static int getSpeedY() {
@@ -81,7 +81,7 @@ public class Player extends GameObject {
             y += +5;
         else if (y >= 430)
             y -= 5;
-        collisionHandler.setY(y + 65);
+        collisionHandler.setY(y + 92); // 65
         collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
         return true;
     }

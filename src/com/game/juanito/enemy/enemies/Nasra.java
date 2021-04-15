@@ -14,7 +14,7 @@ public class Nasra extends Enemy {
     URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
     Image nasraLeftImage = toolkit.getImage(nasraLeft);
 
-    CollisionHandler collisionHandler = new CollisionHandler(70, 64);
+    CollisionHandler collisionHandler = new CollisionHandler(62, 38); // 70, 64
 
     /**
      * Constructor for Nasra class
@@ -25,7 +25,7 @@ public class Nasra extends Enemy {
      */
     public Nasra(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y + 20);
+        collisionHandler.setY(y);
         collisionHandler.setX(x);
         speedY = 3;
     }
@@ -38,8 +38,11 @@ public class Nasra extends Enemy {
             speedY = -3;
         }
         y += speedY;
+        collisionHandler.setX(x+9);
+        collisionHandler.setY(y+41);
         collisionCheck(collisionHandler);
-        return x >= -150;
+        //collisionHandler.setX(x + 9); // 0
+        return x >= -200;
     }
 
     @Override

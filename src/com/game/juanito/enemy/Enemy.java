@@ -20,15 +20,13 @@ public abstract class Enemy extends GameObject {
     }
 
     protected void collisionCheck(CollisionHandler collisionHandler) {
-        collisionHandler.setX(x);
-        collisionHandler.setY(y);
         if (Chunk.getSpeed() != 0)
             x += -Chunk.getSpeed();
         collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
     }
 
     protected void collisionIntersect() {
-        x = -150;
+        x = -200;
         Player.setHealth(Player.getHealth() - 1);
         Player.damageAnimation(true);
     }

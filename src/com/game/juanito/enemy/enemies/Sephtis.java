@@ -14,7 +14,7 @@ public class Sephtis extends Enemy {
     URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
     Image sephtisLeftImage = toolkit.getImage(sephtisLeft);
 
-    CollisionHandler collisionHandler = new CollisionHandler(164, 75);
+    CollisionHandler collisionHandler = new CollisionHandler(164, 50); // 75
 
     /**
      * Constructor for Sephtis class
@@ -25,7 +25,7 @@ public class Sephtis extends Enemy {
      */
     public Sephtis(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y + 85);
+        collisionHandler.setY(y); // 85
         collisionHandler.setX(x);
         speedY = 1;
     }
@@ -38,8 +38,10 @@ public class Sephtis extends Enemy {
             speedY = -1;
         }
         y += speedY;
+        collisionHandler.setX(x);
+        collisionHandler.setY(y+108);
         collisionCheck(collisionHandler);
-        return x >= -150;
+        return x >= -200;
     }
 
     @Override

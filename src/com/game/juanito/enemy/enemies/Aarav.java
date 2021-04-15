@@ -17,7 +17,7 @@ public class Aarav extends Enemy {
     URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.png");
     Image aaravIdleImage = toolkit.getImage(aaravIdle);
 
-    CollisionHandler collisionHandler = new CollisionHandler(210, 75);
+    CollisionHandler collisionHandler = new CollisionHandler(210, 70);
 
     /**
      * Constructor for Aarav class
@@ -28,7 +28,7 @@ public class Aarav extends Enemy {
      */
     public Aarav(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y + 75);
+        collisionHandler.setY(y);
         collisionHandler.setX(x);
     }
 
@@ -46,8 +46,10 @@ public class Aarav extends Enemy {
 
     @Override
     public boolean tick() {
+        collisionHandler.setX(x);
+        collisionHandler.setY(y+79);
         collisionCheck(collisionHandler);
-        return x >= -150;
+        return x >= -200;
     }
 
     @Override
