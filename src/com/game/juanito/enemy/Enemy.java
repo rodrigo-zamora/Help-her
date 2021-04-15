@@ -4,6 +4,7 @@ import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
 import com.game.juanito.map.Chunk;
+import com.game.juanito.player.Player;
 
 import java.awt.*;
 
@@ -24,5 +25,11 @@ public abstract class Enemy extends GameObject {
         if (Chunk.getSpeed() != 0)
             x += -Chunk.getSpeed();
         collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+    }
+
+    protected void collisionIntersect(){
+        x = -150;
+        Player.setHealth(Player.getHealth() - 1);
+        Player.damageAnimation(true);
     }
 }

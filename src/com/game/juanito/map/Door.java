@@ -71,6 +71,11 @@ public class Door {
                 x -= 5;
             }
         }
+        if (x == -300) {
+            x = 1500;
+            Chunk.setIterations(0);
+            shouldRender = false;
+        }
     }
 
     /**
