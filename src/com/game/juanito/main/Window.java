@@ -3,6 +3,7 @@ package com.game.juanito.main;
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serial;
+import java.net.URL;
 
 /**
  *
@@ -14,6 +15,12 @@ public class Window extends Canvas {
      */
     @Serial
     private static final long serialVersionUID = -6357664197674207224L;
+
+    /*Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+    URL icon = ClassLoader.getSystemResource("icon.png");
+    Image imageIcon = toolkit.getImage(icon);
+    */
 
     /**
      * @param width  receives width in pixels
@@ -33,6 +40,7 @@ public class Window extends Canvas {
         frame.setLocationRelativeTo(null);
         frame.add(game);
         frame.setVisible(true);
+        frame.setIconImage(imageIcon);
         game.start();
     }
 }

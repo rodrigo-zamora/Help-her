@@ -61,7 +61,7 @@ public class Door {
      *
      */
     public void tick() {
-        if (Chunk.getIterations() == 5) {
+        if (Chunk.getIterations() == 2) {
             shouldRender = true;
         }
         if (shouldRender) {
@@ -86,15 +86,15 @@ public class Door {
             graphics.drawImage(
                     doorImage,
                     x,
-                    260,
+                    220,
                     null
             );
             graphics.setColor(Color.WHITE);
-            graphics.setFont(new Font("TimesRoman", Font.PLAIN, 24));
+            graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             graphics.drawString(
                     "Presiona 'E' para entrar",
-                    x,
-                    240
+                    x - 50,
+                    200
             );
         }
     }
