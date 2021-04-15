@@ -15,7 +15,7 @@ public class Player extends GameObject {
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     URL player = ClassLoader.getSystemResource("player/player.gif");
     Image playerImage = toolkit.getImage(player);
-    URL playerDamage = ClassLoader.getSystemResource("player/player.gif");
+    URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
     Image playerDamageImage = toolkit.getImage(playerDamage);
 
     private static int health = 6;

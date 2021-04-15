@@ -84,7 +84,7 @@ public class Chunk {
      *
      * @param iterations receives an integer
      */
-    public void setIterations(int iterations) {
+    public static void setIterations(int iterations) {
         Chunk.iterations = iterations;
     }
 
