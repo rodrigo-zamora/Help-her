@@ -32,14 +32,18 @@ public class Sephtis extends Enemy {
         collisionHandler.setY(y + 85);
         collisionHandler.setX(x);
         shouldRender = true;
+        speedY = 1;
     }
 
     @Override
     public boolean tick() {
-        collisionHandler.setX(x);
-        if (Chunk.getSpeed() != 0)
-            x += -Chunk.getSpeed();
-        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+        if (y <= 200) {
+            speedY = 1;
+        } else if (y >= 400) {
+            speedY = -1;
+        }
+        y += speedY;
+        collisionCheck(collisionHandler);
         return x >= -150;
     }
 
@@ -67,7 +71,6 @@ public class Sephtis extends Enemy {
             x = -150;
             shouldRender = false;
             Player.setHealth(Player.getHealth() - 1);
-            System.out.println("Collision from Sephtis!");
         }
     }
 }

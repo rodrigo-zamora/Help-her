@@ -31,9 +31,8 @@ public class Chunk {
      * Variables for our Chunk class
      */
 
-    private static int speed;
+    private static int speed, x;
     private int currentChunk;
-    private int x;
     private static int iterations;
 
     /**
@@ -58,7 +57,7 @@ public class Chunk {
      *
      * @return an integer
      */
-    public int getX() {
+    public static int getX() {
         return x;
     }
 
@@ -68,7 +67,7 @@ public class Chunk {
      * @param x receives an integer
      */
     public void setX(int x) {
-        this.x = x;
+        Chunk.x = x;
     }
 
     /**

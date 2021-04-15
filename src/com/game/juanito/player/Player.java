@@ -59,6 +59,9 @@ public class Player extends GameObject {
      */
     public static void setHealth(int health) {
         Player.health = health;
+        if (Player.health == 0) {
+            System.out.println("Juanito died");
+        }
     }
 
     /**

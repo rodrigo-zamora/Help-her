@@ -39,10 +39,7 @@ public class Deidamia extends Enemy {
 
     @Override
     public boolean tick() {
-        collisionHandler.setX(x);
-        if (Chunk.getSpeed() != 0)
-            x += -Chunk.getSpeed();
-        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+        collisionCheck(collisionHandler);
         return x >= -150;
     }
 
@@ -70,7 +67,6 @@ public class Deidamia extends Enemy {
             x = -150;
             shouldRender = false;
             Player.setHealth(Player.getHealth() - 1);
-            System.out.println("Collision from Deidamia!");
         }
     }
 

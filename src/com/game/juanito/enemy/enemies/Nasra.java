@@ -32,14 +32,18 @@ public class Nasra extends Enemy {
         collisionHandler.setY(y + 20);
         collisionHandler.setX(x);
         shouldRender = true;
+        speedY = 3;
     }
 
     @Override
     public boolean tick() {
-        collisionHandler.setX(x);
-        if (Chunk.getSpeed() != 0)
-            x += -Chunk.getSpeed();
-        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+        if (y <= 280) {
+            speedY = 3;
+        } else if (y >= 480) {
+            speedY = -3;
+        }
+        y += speedY;
+        collisionCheck(collisionHandler);
         return x >= -150;
     }
 
@@ -67,7 +71,6 @@ public class Nasra extends Enemy {
             x = -150;
             shouldRender = false;
             Player.setHealth(Player.getHealth() - 1);
-            System.out.println("Collision from Nasra!");
         }
     }
 }

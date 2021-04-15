@@ -1,7 +1,11 @@
 package com.game.juanito.enemy;
 
+import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
+import com.game.juanito.map.Chunk;
+
+import java.awt.*;
 
 public abstract class Enemy extends GameObject {
 
@@ -12,5 +16,13 @@ public abstract class Enemy extends GameObject {
      */
     public Enemy(int x, int y, ID id) {
         super(x, y, id);
+    }
+
+    protected void collisionCheck(CollisionHandler collisionHandler){
+        collisionHandler.setX(x);
+        collisionHandler.setY(y);
+        if (Chunk.getSpeed() != 0)
+            x += -Chunk.getSpeed();
+        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
     }
 }
