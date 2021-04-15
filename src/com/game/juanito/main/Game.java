@@ -118,8 +118,6 @@ public class Game extends Canvas implements Runnable {
 
         switch (screen) {
 
-            case MAIN_MENU -> mainMenu.tick();
-
             case GAME -> {
                 isMoving = Chunk.getSpeed() > 0;
 
@@ -179,6 +177,10 @@ public class Game extends Canvas implements Runnable {
             }
 
             case DEATH -> {
+
+            }
+
+            case CREDITS -> {
 
             }
 

@@ -12,12 +12,10 @@ public class MainMenu {
     Image backgroundImage = toolkit.getImage(background);
     URL start = ClassLoader.getSystemResource("Menu/Empezar.png");
     Image startImage = toolkit.getImage(start);
+    URL credits = ClassLoader.getSystemResource("Menu/Creditos.png");
+    Image creditsImage = toolkit.getImage(credits);
 
-    public void tick(){
-
-    }
-
-    public void render(Graphics graphics){
+    public void render(Graphics graphics) {
 
         graphics.drawImage(
                 backgroundImage,
@@ -30,6 +28,13 @@ public class MainMenu {
                 startImage,
                 100,
                 200,
+                null
+        );
+
+        graphics.drawImage(
+                creditsImage,
+                100,
+                300,
                 null
         );
 
