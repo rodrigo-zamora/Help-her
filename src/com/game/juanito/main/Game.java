@@ -10,6 +10,10 @@ import com.game.juanito.player.HealthBar;
 import com.game.juanito.player.Player;
 import com.game.juanito.screen.*;
 import com.game.juanito.screen.Window;
+import com.game.juanito.screen.screens.Credits;
+import com.game.juanito.screen.screens.Death;
+import com.game.juanito.screen.screens.Loading;
+import com.game.juanito.screen.screens.MainMenu;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;

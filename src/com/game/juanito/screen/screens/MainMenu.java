@@ -1,4 +1,4 @@
-package com.game.juanito.screen;
+package com.game.juanito.screen.screens;
 
 import com.game.juanito.main.Game;
 
