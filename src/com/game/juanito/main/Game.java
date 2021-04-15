@@ -12,9 +12,12 @@ import com.game.juanito.screen.MainMenu;
 import com.game.juanito.screen.Screen;
 import com.game.juanito.screen.Window;
 
+import javax.sound.sampled.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 import java.io.Serial;
+import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
@@ -48,7 +51,6 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
-        Player.setHealth(6);
         gameObjectHandler.addObject(player);
     }
 

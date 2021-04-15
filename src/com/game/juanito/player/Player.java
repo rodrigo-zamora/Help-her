@@ -1,10 +1,13 @@
 package com.game.juanito.player;
 
 import com.game.juanito.handler.CollisionHandler;
+import com.game.juanito.handler.SoundHandler;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
 
+import javax.sound.sampled.*;
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -16,6 +19,8 @@ public class Player extends GameObject {
     static URL player = ClassLoader.getSystemResource("player/player.gif");
     static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
     static Image playerImage = toolkit.getImage(player);
+
+    static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
 
     private static int health = 6;
     private static int speedY;
@@ -58,6 +63,11 @@ public class Player extends GameObject {
      */
     public static void setHealth(int health) {
         Player.health = health;
+        try {
+            SoundHandler.playSound(damageEffect, 0.5F, false);
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        }
         if (Player.health == 0) {
             System.out.println("Juanito died");
         }
