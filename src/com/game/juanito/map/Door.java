@@ -11,8 +11,9 @@ public class Door {
 
     URL door = ClassLoader.getSystemResource("map/door.png");
     Image doorImage = toolkit.getImage(door);
-    // Replace with actual door width and height
-    CollisionHandler collisionHandler = new CollisionHandler(80, 160);
+
+    public static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
+
     private boolean shouldRender;
     private int x = 1500, y;
 
@@ -101,5 +102,15 @@ public class Door {
                     200
             );
         }
+    }
+
+    public static void collision(Rectangle rectangle){
+        if (rectangle.intersects(collisionHandler.getRectangle())) {
+            collisionIntersect();
+        }
+    }
+
+    private static void collisionIntersect() {
+        System.out.println("You pressed E next to the door!");
     }
 }

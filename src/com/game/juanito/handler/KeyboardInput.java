@@ -1,6 +1,7 @@
 package com.game.juanito.handler;
 
 import com.game.juanito.map.Chunk;
+import com.game.juanito.map.Door;
 import com.game.juanito.player.Player;
 
 import java.awt.event.KeyAdapter;
@@ -16,6 +17,8 @@ public class KeyboardInput extends KeyAdapter {
             Player.setSpeedY(5);
         } else if (key == 39 || key == 68) { // Right
             Chunk.setSpeed(5);
+        } else if (key == 69) {
+            Door.collision(Player.collisionHandler.getRectangle());
         }
     }
 

@@ -19,7 +19,7 @@ public class Player extends GameObject {
 
     private static int health = 6;
     private static int speedY;
-    public CollisionHandler collisionHandler = new CollisionHandler(90, 32); // 90 & 64
+    public static CollisionHandler collisionHandler = new CollisionHandler(90, 32); // 90 & 64
 
     /**
      * Constructor for Player class
