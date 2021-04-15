@@ -13,7 +13,7 @@ import java.net.URL;
 
 public class MouseInput extends MouseAdapter {
 
-    static URL background = ClassLoader.getSystemResource("sounds/background/main.mp3");
+    static URL background = ClassLoader.getSystemResource("sounds/background/main.wav");
 
     public void mousePressed(MouseEvent event) {
         if (event.getX() >= 100 &&
