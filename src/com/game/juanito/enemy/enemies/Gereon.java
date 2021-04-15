@@ -4,6 +4,7 @@ import com.game.juanito.enemy.Enemy;
 import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.ID;
 import com.game.juanito.map.Chunk;
+import com.game.juanito.player.Player;
 
 import java.awt.*;
 import java.net.URL;
@@ -17,6 +18,8 @@ public class Gereon extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(70, 64);
 
+    private boolean shouldRender;
+
     /**
      * Constructor for Gereon class
      *
@@ -28,6 +31,7 @@ public class Gereon extends Enemy {
         super(x, y, id);
         collisionHandler.setY(y + 64);
         collisionHandler.setX(x);
+        shouldRender = true;
     }
 
     @Override
@@ -41,23 +45,28 @@ public class Gereon extends Enemy {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(
-                gereonLeftImage,
-                getX(),
-                getY(),
-                null
-        );
-        graphics.setColor(Color.RED);
-        graphics.drawRect(
-                collisionHandler.getX(),
-                collisionHandler.getY(),
-                collisionHandler.getWidth(),
-                collisionHandler.getHeight());
+        if (shouldRender) {
+            graphics.drawImage(
+                    gereonLeftImage,
+                    getX(),
+                    getY(),
+                    null
+            );
+            graphics.setColor(Color.RED);
+            graphics.drawRect(
+                    collisionHandler.getX(),
+                    collisionHandler.getY(),
+                    collisionHandler.getWidth(),
+                    collisionHandler.getHeight());
+        }
     }
 
     @Override
     public void collision(Rectangle rectangle) {
         if (rectangle.intersects(collisionHandler.getRectangle())) {
+            x = -150;
+            shouldRender = false;
+            Player.setHealth(Player.getHealth() - 1);
             System.out.println("Collision from Gereon!");
         }
     }

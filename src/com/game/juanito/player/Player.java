@@ -18,7 +18,7 @@ public class Player extends GameObject {
     URL playerDamage = ClassLoader.getSystemResource("player/player.gif");
     Image playerDamageImage = toolkit.getImage(playerDamage);
 
-    private int health = 6;
+    private static int health = 6;
     private static int speedY;
     public CollisionHandler collisionHandler = new CollisionHandler(90, 64);
 
@@ -48,7 +48,7 @@ public class Player extends GameObject {
      *
      * @return an integer
      */
-    public int getHealth() {
+    public static int getHealth() {
         return health;
     }
 
@@ -57,8 +57,8 @@ public class Player extends GameObject {
      *
      * @param health receives an integer
      */
-    public void setHealth(int health) {
-        this.health = health;
+    public static void setHealth(int health) {
+        Player.health = health;
     }
 
     /**

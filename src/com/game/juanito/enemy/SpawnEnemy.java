@@ -33,7 +33,7 @@ public class SpawnEnemy {
      */
     private int getRandomY() {
         Random random = new Random();
-        return random.nextInt(410 - 210) + 210;
+        return random.nextInt(410 - 250) + 250;
     }
 
     /**
