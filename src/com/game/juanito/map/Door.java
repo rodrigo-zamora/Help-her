@@ -12,7 +12,7 @@ public class Door {
     URL door = ClassLoader.getSystemResource("map/door.png");
     Image doorImage = toolkit.getImage(door);
     // Replace with actual door width and height
-    CollisionHandler collisionHandler = new CollisionHandler(50, 50);
+    CollisionHandler collisionHandler = new CollisionHandler(80, 160);
     private boolean shouldRender;
     private int x = 1500, y;
 
@@ -22,7 +22,7 @@ public class Door {
     public Door() {
         shouldRender = false;
         collisionHandler.setX(x);
-        collisionHandler.setY(y);
+        collisionHandler.setY(220);
     }
 
     /**
@@ -85,6 +85,14 @@ public class Door {
                     220,
                     null
             );
+
+            graphics.setColor(Color.BLUE);
+            graphics.drawRect(
+                    collisionHandler.getX(),
+                    collisionHandler.getY(),
+                    collisionHandler.getWidth(),
+                    collisionHandler.getHeight());
+
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             graphics.drawString(
