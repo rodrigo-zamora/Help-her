@@ -1,4 +1,4 @@
-package com.game.juanito.handler;
+package com.game.juanito.input;
 
 import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;

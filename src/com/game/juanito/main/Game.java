@@ -2,11 +2,15 @@ package com.game.juanito.main;
 
 import com.game.juanito.enemy.SpawnEnemy;
 import com.game.juanito.handler.GameObjectHandler;
-import com.game.juanito.handler.KeyboardInput;
+import com.game.juanito.input.KeyboardInput;
+import com.game.juanito.input.MouseInput;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
 import com.game.juanito.player.HealthBar;
 import com.game.juanito.player.Player;
+import com.game.juanito.screen.MainMenu;
+import com.game.juanito.screen.Screen;
+import com.game.juanito.screen.Window;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -21,8 +25,9 @@ public class Game extends Canvas implements Runnable {
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
 
+    public static Screen screen;
     public static boolean isMoving;
-    public int FPS;
+    public static int FPS;
 
     Player player;
     Chunk chunk = new Chunk();
@@ -30,6 +35,7 @@ public class Game extends Canvas implements Runnable {
     SpawnEnemy spawnEnemy = new SpawnEnemy();
     GameObjectHandler gameObjectHandler = new GameObjectHandler();
     Door door = new Door();
+    MainMenu mainMenu = new MainMenu();
 
     private Thread thread;
     private boolean isRunning = false;
@@ -38,6 +44,7 @@ public class Game extends Canvas implements Runnable {
      * Constructor for Game class
      */
     public Game() {
+        addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
@@ -47,6 +54,7 @@ public class Game extends Canvas implements Runnable {
 
     public static void main(String[] args) {
         System.setProperty("sun.java2d.opengl", "true");
+        screen = Screen.MAIN_MENU;
         new Game();
     }
 
@@ -108,16 +116,24 @@ public class Game extends Canvas implements Runnable {
      */
     private void tick() {
 
-        isMoving = Chunk.getSpeed() > 0;
+        switch (screen) {
 
-        // Tick all game objects
-        gameObjectHandler.tick(player.collisionHandler.getRectangle());
+            case GAME -> {
+                isMoving = Chunk.getSpeed() > 0;
 
-        chunk.tick();
+                // Tick all game objects
+                gameObjectHandler.tick(Player.collisionHandler.getRectangle());
+                chunk.tick();
+                spawnEnemy.tick(gameObjectHandler);
+                door.tick();
+            }
 
-        spawnEnemy.tick(gameObjectHandler);
+            case DEATH -> {
 
-        door.tick();
+            }
+        }
+
+
 
     }
 
@@ -133,24 +149,42 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
-        // Render map
-        chunk.render(graphics);
+        switch (screen) {
+            case MAIN_MENU -> {
+                mainMenu.render(graphics);
+            }
 
-        // FPS
-        graphics.setColor(Color.BLACK);
-        graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        graphics.drawString(
-                "FPS: " + FPS,
-                15,
-                20
-        );
+            case GAME -> {
 
-        door.render(graphics);
+                // Render map
+                chunk.render(graphics);
 
-        healthBar.render(graphics);
+                // FPS
+                graphics.setColor(Color.BLACK);
+                graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                graphics.drawString(
+                        "FPS: " + FPS,
+                        15,
+                        20
+                );
 
-        // Render all game objects
-        gameObjectHandler.render(graphics);
+                door.render(graphics);
+
+                healthBar.render(graphics);
+
+                // Render all game objects
+                gameObjectHandler.render(graphics);
+            }
+
+            case DEATH -> {
+
+            }
+
+            case CREDITS -> {
+
+            }
+
+        }
 
         graphics.dispose();
         bufferStrategy.show();
