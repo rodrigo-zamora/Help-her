@@ -7,15 +7,15 @@ import java.net.URL;
 
 public class Door {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-    URL door = ClassLoader.getSystemResource("map/door.png");
-    Image doorImage = toolkit.getImage(door);
+    private static final URL door = ClassLoader.getSystemResource("map/door.png");
+    private static final Image doorImage = toolkit.getImage(door);
 
     public static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
 
-    private boolean shouldRender;
-    private int x = 1500, y;
+    private static boolean shouldRender;
+    private static int x = 1500, y;
 
     /**
      *
@@ -29,35 +29,35 @@ public class Door {
     /**
      * @return
      */
-    public int getX() {
+    public static int getX() {
         return x;
     }
 
     /**
      * @param x
      */
-    public void setX(int x) {
-        this.x = x;
+    public static void setX(int x) {
+        Door.x = x;
     }
 
     /**
      * @return
      */
-    public int getY() {
+    public static int getY() {
         return y;
     }
 
     /**
      * @param y
      */
-    public void setY(int y) {
-        this.y = y;
+    public static void setY(int y) {
+        Door.y = y;
     }
 
     /**
      *
      */
-    public void tick() {
+    public static void tick() {
         if (Chunk.getIterations() == 2) {
             shouldRender = true;
         }
@@ -78,7 +78,7 @@ public class Door {
     /**
      * @param graphics
      */
-    public void render(Graphics graphics) {
+    public static void render(Graphics graphics) {
         if (shouldRender) {
             graphics.drawImage(
                     doorImage,

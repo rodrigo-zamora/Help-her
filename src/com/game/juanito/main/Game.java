@@ -17,6 +17,7 @@ import com.game.juanito.screen.screens.MainMenu;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 import java.io.Serial;
 
 public class Game extends Canvas implements Runnable {
@@ -33,10 +34,7 @@ public class Game extends Canvas implements Runnable {
     public static int FPS;
 
     Player player;
-    Chunk chunk = new Chunk();
-    SpawnEnemy spawnEnemy = new SpawnEnemy();
     GameObjectHandler gameObjectHandler = new GameObjectHandler();
-    Door door = new Door();
 
     private Thread thread;
     private boolean isRunning = false;
@@ -44,7 +42,7 @@ public class Game extends Canvas implements Runnable {
     /**
      * Constructor for Game class
      */
-    public Game() {
+    public Game() throws IOException {
         addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
@@ -52,7 +50,7 @@ public class Game extends Canvas implements Runnable {
         gameObjectHandler.addObject(player);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.setProperty("sun.java2d.opengl", "true");
         screen = Screen.MAIN_MENU;
         new Game();
@@ -117,13 +115,15 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
 
         if (screen == Screen.GAME) {
+            
             isMoving = Chunk.getSpeed() > 0;
 
             // Tick all game objects
             gameObjectHandler.tick(Player.collisionHandler.getRectangle());
-            chunk.tick();
-            spawnEnemy.tick(gameObjectHandler);
-            door.tick();
+
+            SpawnEnemy.tick(gameObjectHandler);
+            Chunk.tick();
+            Door.tick();
         }
 
     }
@@ -148,7 +148,7 @@ public class Game extends Canvas implements Runnable {
             case GAME -> {
 
                 // Render map
-                chunk.render(graphics);
+                Chunk.render(graphics);
 
                 // FPS
                 graphics.setColor(Color.BLACK);
@@ -159,7 +159,7 @@ public class Game extends Canvas implements Runnable {
                         20
                 );
 
-                door.render(graphics);
+                Door.render(graphics);
 
                 HealthBar.render(graphics);
 

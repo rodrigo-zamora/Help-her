@@ -15,7 +15,7 @@ public class SpawnEnemy {
      *
      * @return an ID of the random enemy
      */
-    private ID getRandomEnemy() {
+    private static ID getRandomEnemy() {
         Random random = new Random();
         int randomInteger = random.nextInt(5);
         return switch (randomInteger) {
@@ -33,7 +33,7 @@ public class SpawnEnemy {
      *
      * @return a random integer from 210 to 410
      */
-    private int getRandomY() {
+    private static int getRandomY() {
         Random random = new Random();
         return random.nextInt(410 - 250) + 250;
     }
@@ -44,7 +44,7 @@ public class SpawnEnemy {
      * @param y receives the X to spawn the enemy
      * @return the enemy object
      */
-    private Enemy spawnEnemy(int y) {
+    private static Enemy spawnEnemy(int y) {
         ID enemyType = getRandomEnemy();
         Enemy enemy;
         switch (enemyType) {
@@ -61,7 +61,7 @@ public class SpawnEnemy {
     /**
      * @param gameObjectHandler
      */
-    public void tick(GameObjectHandler gameObjectHandler) {
+    public static void tick(GameObjectHandler gameObjectHandler) {
         if (Chunk.getX() == -1115) {
             Player.damageAnimation(false);
             gameObjectHandler.addObject(spawnEnemy(getRandomY()));
