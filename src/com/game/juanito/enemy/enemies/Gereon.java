@@ -14,7 +14,7 @@ public class Gereon extends Enemy {
     URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
     Image gereonLeftImage = toolkit.getImage(gereonLeft);
 
-    CollisionHandler collisionHandler = new CollisionHandler(70, 28); // 64
+    CollisionHandler collisionHandler = new CollisionHandler(70, 28);
 
     /**
      * Constructor for Gereon class
@@ -25,14 +25,14 @@ public class Gereon extends Enemy {
      */
     public Gereon(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y); // 64 / 100
+        collisionHandler.setY(y);
         collisionHandler.setX(x);
     }
 
     @Override
     public boolean tick() {
         collisionHandler.setX(x);
-        collisionHandler.setY(y+100);
+        collisionHandler.setY(y + 100);
         collisionCheck(collisionHandler);
         return x >= -200;
     }

@@ -47,7 +47,7 @@ public class Aarav extends Enemy {
     @Override
     public boolean tick() {
         collisionHandler.setX(x);
-        collisionHandler.setY(y+79);
+        collisionHandler.setY(y + 79);
         collisionCheck(collisionHandler);
         return x >= -200;
     }

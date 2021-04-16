@@ -26,7 +26,10 @@ public abstract class Enemy extends GameObject {
     }
 
     protected void collisionIntersect() {
+
+        // Move enemy out of player's view
         x = -200;
+
         Player.setHealth(Player.getHealth() - 1);
         Player.damageAnimation(true);
     }
