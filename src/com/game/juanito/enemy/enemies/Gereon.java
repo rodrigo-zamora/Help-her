@@ -25,8 +25,6 @@ public class Gereon extends Enemy {
      */
     public Gereon(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y);
-        collisionHandler.setX(x);
     }
 
     @Override

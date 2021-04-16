@@ -28,8 +28,6 @@ public class Aarav extends Enemy {
      */
     public Aarav(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y);
-        collisionHandler.setX(x);
     }
 
     /**

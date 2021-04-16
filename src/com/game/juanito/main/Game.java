@@ -167,17 +167,11 @@ public class Game extends Canvas implements Runnable {
                 gameObjectHandler.render(graphics);
             }
 
-            case DEATH -> {
-                Death.render(graphics);
-            }
+            case DEATH -> Death.render(graphics);
 
-            case CREDITS -> {
-                Credits.render(graphics);
-            }
+            case CREDITS -> Credits.render(graphics);
 
-            case LOADING -> {
-                Loading.render(graphics);
-            }
+            case LOADING -> Loading.render(graphics);
 
         }
 

@@ -25,8 +25,6 @@ public class Sephtis extends Enemy {
      */
     public Sephtis(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y);
-        collisionHandler.setX(x);
         speedY = 1;
     }
 

@@ -25,8 +25,6 @@ public class Nasra extends Enemy {
      */
     public Nasra(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y);
-        collisionHandler.setX(x);
         speedY = 3;
     }
 
