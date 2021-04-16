@@ -87,13 +87,6 @@ public class Door {
                     null
             );
 
-            graphics.setColor(Color.BLUE);
-            graphics.drawRect(
-                    collisionHandler.getX(),
-                    collisionHandler.getY(),
-                    collisionHandler.getWidth(),
-                    collisionHandler.getHeight());
-
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             graphics.drawString(

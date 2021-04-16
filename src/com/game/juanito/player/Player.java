@@ -98,12 +98,6 @@ public class Player extends GameObject {
                 75,
                 y,
                 null);
-        graphics.setColor(Color.BLACK);
-        graphics.drawRect(
-                collisionHandler.getX(),
-                collisionHandler.getY(),
-                collisionHandler.getWidth(),
-                collisionHandler.getHeight());
     }
 
     @Override
