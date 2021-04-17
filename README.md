@@ -8,7 +8,7 @@ This game was created by:
 * Rodrigo Zamora
 
 #### Built with
-* [Java](https://www.java.com/)
+* [Java 15](https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html)
 
 #### Compile & Run
 * **IntellIJ**
@@ -22,4 +22,5 @@ Install the `vscode-java-pack` extension and then click on the "Run" icon
   
 ## Game information
 #### How to play
+
 #### Screenshots in game
