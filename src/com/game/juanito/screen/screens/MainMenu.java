@@ -8,7 +8,7 @@ import java.net.URL;
 public class MainMenu {
 
     private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL background = ClassLoader.getSystemResource("Menu/Intro.png");
+    private static final URL background = ClassLoader.getSystemResource("Menu/IntroLarge.gif");
     private static final Image backgroundImage = toolkit.getImage(background);
     private static final URL start = ClassLoader.getSystemResource("Menu/Empezar.png");
     private static final Image startImage = toolkit.getImage(start);
@@ -47,5 +47,4 @@ public class MainMenu {
                 20
         );
     }
-
 }

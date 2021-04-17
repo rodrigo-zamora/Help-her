@@ -91,8 +91,16 @@ public class Player extends GameObject {
             y += +5;
         else if (y >= 430)
             y -= 5;
+
         collisionHandler.setY(y + 92); // 65
-        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+        collisionHandler.setRectangle(
+                new Rectangle(
+                        collisionHandler.getX(),
+                        collisionHandler.getY(),
+                        collisionHandler.getWidth(),
+                        collisionHandler.getHeight()
+                )
+        );
         return true;
     }
 
@@ -107,13 +115,15 @@ public class Player extends GameObject {
                 playerImage,
                 75,
                 y,
-                null);
+                null
+        );
         graphics.setColor(Color.BLACK);
         graphics.drawRect(
                 collisionHandler.getX(),
                 collisionHandler.getY(),
                 collisionHandler.getWidth(),
-                collisionHandler.getHeight());
+                collisionHandler.getHeight()
+        );
     }
 
     @Override

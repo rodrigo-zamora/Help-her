@@ -1,8 +1,10 @@
 package com.game.juanito.map;
 
 import com.game.juanito.handler.CollisionHandler;
+import com.game.juanito.main.GameObject;
 
 import java.awt.*;
+import java.net.DatagramPacket;
 import java.net.URL;
 
 public class Door {
@@ -63,7 +65,15 @@ public class Door {
         }
         if (shouldRender) {
             collisionHandler.setX(x);
-            collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+            collisionHandler.setRectangle(
+                    new Rectangle(
+                            collisionHandler.getX(),
+                            collisionHandler.getY(),
+                            collisionHandler.getWidth(),
+                            collisionHandler.getHeight()
+                    )
+            );
+
             if (Chunk.getSpeed() > 0) {
                 x -= 5;
             }
@@ -92,7 +102,8 @@ public class Door {
                     collisionHandler.getX(),
                     collisionHandler.getY(),
                     collisionHandler.getWidth(),
-                    collisionHandler.getHeight());
+                    collisionHandler.getHeight()
+            );
 
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
