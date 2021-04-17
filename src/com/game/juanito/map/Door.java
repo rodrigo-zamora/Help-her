@@ -65,6 +65,7 @@ public class Door {
         }
         if (shouldRender) {
             collisionHandler.setX(x);
+            collisionHandler.setY(y + 220);
             collisionHandler.setRectangle(
                     new Rectangle(
                             collisionHandler.getX(),
@@ -97,6 +98,7 @@ public class Door {
                     null
             );
 
+            // collision / border
             graphics.setColor(Color.BLUE);
             graphics.drawRect(
                     collisionHandler.getX(),
@@ -105,6 +107,7 @@ public class Door {
                     collisionHandler.getHeight()
             );
 
+            // Text
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             graphics.drawString(
