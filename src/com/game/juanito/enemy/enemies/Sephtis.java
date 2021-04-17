@@ -50,12 +50,13 @@ public class Sephtis extends Enemy {
                 getY(),
                 null
         );
-        graphics.setColor(Color.RED);
+        /*graphics.setColor(Color.RED);
         graphics.drawRect(
                 collisionHandler.getX(),
                 collisionHandler.getY(),
                 collisionHandler.getWidth(),
-                collisionHandler.getHeight());
+                collisionHandler.getHeight()
+        );*/
     }
 
     @Override

@@ -117,13 +117,13 @@ public class Player extends GameObject {
                 y,
                 null
         );
-        graphics.setColor(Color.BLACK);
+        /*graphics.setColor(Color.BLACK);
         graphics.drawRect(
                 collisionHandler.getX(),
                 collisionHandler.getY(),
                 collisionHandler.getWidth(),
                 collisionHandler.getHeight()
-        );
+        );*/
     }
 
     @Override

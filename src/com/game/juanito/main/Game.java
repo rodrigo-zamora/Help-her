@@ -29,8 +29,8 @@ public class Game extends Canvas implements Runnable {
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
 
-    public static Screen screen;
     public static boolean isMoving;
+    public static Screen screen;
     public static int FPS;
 
     Player player;
@@ -141,9 +141,14 @@ public class Game extends Canvas implements Runnable {
         Graphics graphics = bufferStrategy.getDrawGraphics();
 
         switch (screen) {
-            case MAIN_MENU -> {
-                MainMenu.render(graphics);
-            }
+
+            case MAIN_MENU -> MainMenu.render(graphics);
+
+            case CREDITS -> Credits.render(graphics);
+
+            case LOADING -> Loading.render(graphics);
+
+            case DEATH -> Death.render(graphics);
 
             case GAME -> {
 
@@ -166,13 +171,6 @@ public class Game extends Canvas implements Runnable {
                 // Render all game objects
                 gameObjectHandler.render(graphics);
             }
-
-            case DEATH -> Death.render(graphics);
-
-            case CREDITS -> Credits.render(graphics);
-
-            case LOADING -> Loading.render(graphics);
-
         }
 
         graphics.dispose();

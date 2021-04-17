@@ -99,13 +99,13 @@ public class Door {
             );
 
             // collision / border
-            graphics.setColor(Color.BLUE);
+            /*graphics.setColor(Color.BLUE);
             graphics.drawRect(
                     collisionHandler.getX(),
                     collisionHandler.getY(),
                     collisionHandler.getWidth(),
                     collisionHandler.getHeight()
-            );
+            );*/
 
             // Text
             graphics.setColor(Color.WHITE);
