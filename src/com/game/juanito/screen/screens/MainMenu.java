@@ -40,14 +40,5 @@ public class MainMenu {
                 (HEIGHT/2) - (creditsImage.getHeight(null)/2),
                 null
         );
-
-        // FPS
-        graphics.setColor(Color.WHITE);
-        graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        graphics.drawString(
-                "FPS: " + Game.FPS,
-                15,
-                20
-        );
     }
 }
