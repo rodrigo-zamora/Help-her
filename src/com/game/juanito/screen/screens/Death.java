@@ -5,7 +5,6 @@ import java.awt.*;
 public class Death {
 
 
-
     public static void render(Graphics graphics) {
 
     }

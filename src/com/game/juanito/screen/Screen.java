@@ -5,5 +5,5 @@ public enum Screen {
     GAME,
     MAIN_MENU,
     CREDITS,
-    DEATH;
+    DEATH
 }

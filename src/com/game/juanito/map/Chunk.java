@@ -134,19 +134,22 @@ public class Chunk {
     }
 
     /**
+     *
      * This method calculates which chunk should be displayed and where
+     *
+     * @param gameObjectHandler receives a GameObjectHandler to spawn the enemies
      */
     public static void tick(GameObjectHandler gameObjectHandler) {
         x += -speed;
         if (x < -1118) {
 
-            /**
-             *
+            /*
+             * Changes currentChunk to the next possible chunk, and
+             * set's chunk's x position to 0, to start the process again
              */
             addChunk();
             setX(0);
 
-            //
             iterations++;
 
             Player.damageAnimation(false);

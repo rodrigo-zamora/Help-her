@@ -51,7 +51,6 @@ public class SpawnEnemy {
     /**
      * Method to spawn an enemy
      *
-     * @param y receives the X to spawn the enemy
      * @return the enemy object
      */
     public static Enemy spawnEnemy() {

@@ -1,6 +1,5 @@
 package com.game.juanito.main;
 
-import com.game.juanito.enemy.SpawnEnemy;
 import com.game.juanito.handler.GameObjectHandler;
 import com.game.juanito.input.KeyboardInput;
 import com.game.juanito.input.MouseInput;
@@ -8,7 +7,7 @@ import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
 import com.game.juanito.player.HealthBar;
 import com.game.juanito.player.Player;
-import com.game.juanito.screen.*;
+import com.game.juanito.screen.Screen;
 import com.game.juanito.screen.Window;
 import com.game.juanito.screen.screens.Credits;
 import com.game.juanito.screen.screens.Death;
@@ -42,7 +41,7 @@ public class Game extends Canvas implements Runnable {
     /**
      * Constructor for Game class
      */
-    public Game() throws IOException {
+    public Game()  {
         addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);

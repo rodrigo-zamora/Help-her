@@ -1,7 +1,5 @@
 package com.game.juanito.screen.screens;
 
-import com.game.juanito.main.Game;
-
 import java.awt.*;
 import java.net.URL;
 
@@ -29,15 +27,15 @@ public class MainMenu {
 
         graphics.drawImage(
                 startImage,
-                (WIDTH/4) - (startImage.getWidth(null)/2),
-                (HEIGHT/2) - (startImage.getHeight(null)/2),
+                (WIDTH / 4) - (startImage.getWidth(null) / 2),
+                (HEIGHT / 2) - (startImage.getHeight(null) / 2),
                 null
         );
 
         graphics.drawImage(
                 creditsImage,
-                (WIDTH/2) + (WIDTH/4) - (creditsImage.getWidth(null)/2),
-                (HEIGHT/2) - (creditsImage.getHeight(null)/2),
+                (WIDTH / 2) + (WIDTH / 4) - (creditsImage.getWidth(null) / 2),
+                (HEIGHT / 2) - (creditsImage.getHeight(null) / 2),
                 null
         );
     }
