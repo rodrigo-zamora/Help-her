@@ -5,7 +5,8 @@ import com.game.juanito.handler.SoundHandler;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -15,16 +16,14 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
+    public static CollisionHandler collisionHandler = new CollisionHandler(90, 32); // 90 & 64
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static URL player = ClassLoader.getSystemResource("player/player.gif");
     static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
     static Image playerImage = toolkit.getImage(player);
-
     static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
-
     private static int health = 6;
     private static int speedY;
-    public static CollisionHandler collisionHandler = new CollisionHandler(90, 32); // 90 & 64
 
     /**
      * Constructor for Player class

@@ -10,15 +10,6 @@ import java.net.URL;
 public class Chunk {
 
     /**
-     * Variables for our Chunk class
-     */
-
-    private static int speed;
-    private static int x = 0;
-    private static int iterations = 0;
-    private static int currentChunk = 1;
-
-    /**
      * Images with our map chunks
      */
 
@@ -39,6 +30,14 @@ public class Chunk {
     private static final Image chunkImage7 = toolkit.getImage(chunk7);
     private static final URL chunk8 = ClassLoader.getSystemResource("map/chunks/8.png");
     private static final Image chunkImage8 = toolkit.getImage(chunk8);
+    /**
+     * Variables for our Chunk class
+     */
+
+    private static int speed;
+    private static int x = 0;
+    private static int iterations = 0;
+    private static int currentChunk = 1;
 
     public static int getSpeed() {
         return speed;
@@ -134,7 +133,6 @@ public class Chunk {
     }
 
     /**
-     *
      * This method calculates which chunk should be displayed and where
      *
      * @param gameObjectHandler receives a GameObjectHandler to spawn the enemies

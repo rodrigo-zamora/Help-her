@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
     /**
      * Constructor for Game class
      */
-    public Game()  {
+    public Game() {
         addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);

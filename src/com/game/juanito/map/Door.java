@@ -1,10 +1,8 @@
 package com.game.juanito.map;
 
 import com.game.juanito.handler.CollisionHandler;
-import com.game.juanito.main.GameObject;
 
 import java.awt.*;
-import java.net.DatagramPacket;
 import java.net.URL;
 
 public class Door {
@@ -118,7 +116,7 @@ public class Door {
         }
     }
 
-    public static void collision(Rectangle rectangle){
+    public static void collision(Rectangle rectangle) {
         if (rectangle.intersects(collisionHandler.getRectangle())) {
             collisionIntersect();
         }

@@ -9,11 +9,11 @@ public class SoundHandler {
     /**
      * Method to play a .wav sound file
      *
-     * @param soundFile receives an URL with the direction of the file
-     * @param volume receives a float from 0 to 1
+     * @param soundFile  receives an URL with the direction of the file
+     * @param volume     receives a float from 0 to 1
      * @param shouldLoop receives a boolean
-     * @throws LineUnavailableException if the file can't be opened
-     * @throws IOException if an I/O exception occurs
+     * @throws LineUnavailableException      if the file can't be opened
+     * @throws IOException                   if an I/O exception occurs
      * @throws UnsupportedAudioFileException if the audio file isn't valid
      */
     public static void playSound(URL soundFile, float volume, boolean shouldLoop) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
