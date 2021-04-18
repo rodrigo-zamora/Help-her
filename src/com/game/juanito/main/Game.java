@@ -115,14 +115,13 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
 
         if (screen == Screen.GAME) {
-            
+
             isMoving = Chunk.getSpeed() > 0;
 
             // Tick all game objects
             gameObjectHandler.tick(Player.collisionHandler.getRectangle());
 
-            SpawnEnemy.tick(gameObjectHandler);
-            Chunk.tick();
+            Chunk.tick(gameObjectHandler);
             Door.tick();
         }
 

@@ -1,5 +1,9 @@
 package com.game.juanito.map;
 
+import com.game.juanito.enemy.SpawnEnemy;
+import com.game.juanito.handler.GameObjectHandler;
+import com.game.juanito.player.Player;
+
 import java.awt.*;
 import java.net.URL;
 
@@ -132,12 +136,23 @@ public class Chunk {
     /**
      * This method calculates which chunk should be displayed and where
      */
-    public static void tick() {
+    public static void tick(GameObjectHandler gameObjectHandler) {
         x += -speed;
         if (x < -1118) {
+
+            /**
+             *
+             */
             addChunk();
             setX(0);
+
+            //
             iterations++;
+
+            Player.damageAnimation(false);
+
+            gameObjectHandler.addObject(SpawnEnemy.spawnEnemy());
+
         }
     }
 

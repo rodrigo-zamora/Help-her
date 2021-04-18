@@ -10,6 +10,16 @@ import java.util.Random;
 
 public class SpawnEnemy {
 
+    private static boolean shouldSpawn;
+
+    public static boolean isShouldSpawn() {
+        return shouldSpawn;
+    }
+
+    public static void setShouldSpawn(boolean shouldSpawn) {
+        SpawnEnemy.shouldSpawn = shouldSpawn;
+    }
+
     /**
      * Method to get a random enemy ID
      *
@@ -44,9 +54,10 @@ public class SpawnEnemy {
      * @param y receives the X to spawn the enemy
      * @return the enemy object
      */
-    private static Enemy spawnEnemy(int y) {
+    public static Enemy spawnEnemy() {
         ID enemyType = getRandomEnemy();
         Enemy enemy;
+        int y = getRandomY();
         switch (enemyType) {
             case Aarav -> enemy = new Aarav(1016, y, ID.Aarav);
             case Nasra -> enemy = new Nasra(1016, y, ID.Nasra);
@@ -56,15 +67,5 @@ public class SpawnEnemy {
             default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
         }
         return enemy;
-    }
-
-    /**
-     * @param gameObjectHandler
-     */
-    public static void tick(GameObjectHandler gameObjectHandler) {
-        if (Chunk.getX() == -1115) {
-            Player.damageAnimation(false);
-            gameObjectHandler.addObject(spawnEnemy(getRandomY()));
-        }
     }
 }
