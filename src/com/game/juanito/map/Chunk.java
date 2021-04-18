@@ -160,7 +160,7 @@ public class Chunk {
     }
 
     /**
-     * This method renders the previous chunk, current chunk and next chunk
+     * This method renders the current chunk and next chunk
      *
      * @param graphics receives the graphics object
      */

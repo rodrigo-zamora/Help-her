@@ -1,24 +1,11 @@
 package com.game.juanito.enemy;
 
 import com.game.juanito.enemy.enemies.*;
-import com.game.juanito.handler.GameObjectHandler;
 import com.game.juanito.main.ID;
-import com.game.juanito.map.Chunk;
-import com.game.juanito.player.Player;
 
 import java.util.Random;
 
 public class SpawnEnemy {
-
-    private static boolean shouldSpawn;
-
-    public static boolean isShouldSpawn() {
-        return shouldSpawn;
-    }
-
-    public static void setShouldSpawn(boolean shouldSpawn) {
-        SpawnEnemy.shouldSpawn = shouldSpawn;
-    }
 
     /**
      * Method to get a random enemy ID
