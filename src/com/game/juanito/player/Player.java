@@ -120,13 +120,28 @@ public class Player extends GameObject {
                 y,
                 null
         );
-        /*graphics.setColor(Color.BLACK);
-        graphics.drawRect(
-                collisionHandler.getX(),
-                collisionHandler.getY(),
-                collisionHandler.getWidth(),
-                collisionHandler.getHeight()
-        );*/
+
+        // Inventory
+
+        graphics.drawImage(
+                inventory.getContainerImage(),
+                75,
+                500,
+                null
+        );
+
+        int xOffset = 0;
+
+        for(int i = 0; i < inventory.getNotesCollected(); i++) {
+            graphics.drawImage(
+                    inventory.getInventoryImage(i),
+                    75 + xOffset,
+                    500,
+                    null
+            );
+            xOffset += 50;
+        }
+
     }
 
     @Override
