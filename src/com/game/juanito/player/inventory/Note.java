@@ -16,7 +16,7 @@ public class Note {
     public Note(String path, boolean hasBeenFound) {
         url = ClassLoader.getSystemResource(path);
         noteImage = toolkit.getImage(url);
-        this.beenFound = false;
+        this.beenFound = hasBeenFound;
     }
 
     public Image getNoteImage() {
