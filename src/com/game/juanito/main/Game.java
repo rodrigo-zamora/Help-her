@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1080;
     public static final int HEIGHT = 640;
-    public static final String TITLE = "El escape de Juanito";
+    public static final String TITLE = "Juanito";
 
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;

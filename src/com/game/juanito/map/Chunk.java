@@ -30,6 +30,7 @@ public class Chunk {
     private static final Image chunkImage7 = toolkit.getImage(chunk7);
     private static final URL chunk8 = ClassLoader.getSystemResource("map/chunks/8.png");
     private static final Image chunkImage8 = toolkit.getImage(chunk8);
+
     /**
      * Variables for our Chunk class
      */
@@ -152,7 +153,7 @@ public class Chunk {
 
             Player.damageAnimation(false);
 
-            gameObjectHandler.addObject(SpawnEnemy.spawnEnemy());
+            gameObjectHandler.addObject(SpawnEnemy.spawn());
 
         }
     }

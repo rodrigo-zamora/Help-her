@@ -40,7 +40,7 @@ public class SpawnEnemy {
      *
      * @return the enemy object
      */
-    public static Enemy spawnEnemy() {
+    public static Enemy spawn() {
         ID enemyType = getRandomEnemy();
         Enemy enemy;
         int y = getRandomY();
