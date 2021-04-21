@@ -11,12 +11,13 @@ public class Note {
 
     private URL url;
 
-    private boolean beenFound;
+    private boolean beenFound, open;
 
     public Note(String path, boolean hasBeenFound) {
         url = ClassLoader.getSystemResource(path);
         noteImage = toolkit.getImage(url);
         this.beenFound = hasBeenFound;
+        this.open = false;
     }
 
     public Image getNoteImage() {
@@ -43,11 +44,24 @@ public class Note {
         this.beenFound = beenFound;
     }
 
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    public void setOpen() {
+        this.open = !this.open;
+    }
+
     @Override
     public String toString() {
         return "Note{" +
                 "url=" + url +
                 ", hasBeenFound=" + beenFound +
+                ", isOpen=" + open +
                 '}';
     }
 }

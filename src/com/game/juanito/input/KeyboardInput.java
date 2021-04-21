@@ -11,25 +11,20 @@ public class KeyboardInput extends KeyAdapter {
 
     public void keyPressed(KeyEvent event) {
         int key = event.getKeyCode();
-        if (key == 38 || key == 87) { // Up
-            Player.setSpeedY(-5);
-        } else if (key == 40 || key == 83) { // Down
-            Player.setSpeedY(5);
-        } else if (key == 39 || key == 68) { // Right
-            Chunk.setSpeed(5);
-        } else if (key == 69) {
-            Door.collision(Player.collisionHandler.getRectangle());
+        switch (key) {
+            case 38, 87 -> Player.setSpeedY(-5);
+            case 40, 83 -> Player.setSpeedY(5);
+            case 39, 68 -> Chunk.setSpeed(5);
+            case 69 -> Door.collision(Player.collisionHandler.getRectangle());
+            case 49 - 57 -> Player.inventory.getNote(key - 48).setOpen();
         }
     }
 
     public void keyReleased(KeyEvent event) {
         int key = event.getKeyCode();
-        if (key == 38 || key == 87) { // Up
-            Player.setSpeedY(0);
-        } else if (key == 40 || key == 83) { // Down
-            Player.setSpeedY(0);
-        } else if (key == 39 || key == 68) { // Right
-            Chunk.setSpeed(0);
+        switch (key) {
+            case 38, 87, 40, 83 -> Player.setSpeedY(0);
+            case 39, 68 -> Chunk.setSpeed(0);
         }
     }
 }

@@ -56,4 +56,8 @@ public class Inventory {
     public Image getContainerImage() {
         return containerImage;
     }
+
+    public Note getNote(int index) {
+        return inventory.get(index);
+    }
 }
