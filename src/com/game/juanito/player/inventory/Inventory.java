@@ -18,7 +18,6 @@ public class Inventory {
 
     private final Image containerImage = toolkit.getImage(container);;
 
-
     public Inventory() {
 
         notesCollected = 0;
@@ -26,8 +25,10 @@ public class Inventory {
         File folder = new File("res/player/inventoryItems");
         File[] listOfFiles = folder.listFiles();
 
-        for (File listOfFile : listOfFiles) {
-            inventory.add(new Note(listOfFile.getPath(), false));
+        if (listOfFiles != null) {
+            for (File listOfFile : listOfFiles) {
+                inventory.add(new Note(listOfFile.getPath(), false));
+            }
         }
     }
 
