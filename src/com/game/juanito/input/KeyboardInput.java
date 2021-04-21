@@ -25,7 +25,7 @@ public class KeyboardInput extends KeyAdapter {
                     Chunk.setSpeed(5);
             }
             case 69 -> Door.collision(Player.collisionHandler.getRectangle());
-            case 49 - 57 -> Player.inventory.getNote(key - 48).setOpen();
+            case 49 - 57 -> Player.getInventory().getNote(key - 48).setOpen();
         }
     }
 

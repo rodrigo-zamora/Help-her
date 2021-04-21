@@ -17,8 +17,8 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
-    public static CollisionHandler collisionHandler = new CollisionHandler(90, 32);
-    public static Inventory inventory = new Inventory();
+    private static CollisionHandler collisionHandler = new CollisionHandler(90, 32);
+    private static Inventory inventory = new Inventory();
 
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static URL player = ClassLoader.getSystemResource("player/player.gif");
@@ -42,6 +42,14 @@ public class Player extends GameObject {
         collisionHandler.setX(x + 20); // 20
         collisionHandler.setY(y); // 0
         shouldRender = true;
+    }
+
+    public static CollisionHandler getCollisionHandler() {
+        return collisionHandler;
+    }
+
+    public static Inventory getInventory() {
+        return inventory;
     }
 
     public static int getSpeedY() {

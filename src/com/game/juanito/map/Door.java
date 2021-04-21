@@ -68,7 +68,7 @@ public class Door {
      *
      */
     public static void tick() {
-        if (Chunk.getIterations() == randomInteger) {
+        if (Chunk.getIterations() == 3) {
             shouldRender = true;
         }
         if (shouldRender) {
@@ -143,12 +143,11 @@ public class Door {
     }
 
     private static void collisionIntersect() {
-        System.out.println("You pressed E next to the door!");
         Player.setShouldRender();
         Player.setSpeedY(0);
         Chunk.setSpeed(0);
-        Player.inventory.setNotesCollected(Player.inventory.getNotesCollected() + 1);
-        Player.inventory.getNote(Player.inventory.getNotesCollected()).setBeenFound(true);
+        Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
+        Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
         if (Player.shouldRender()) {
             shouldRender = false;
         }
