@@ -12,9 +12,18 @@ public class KeyboardInput extends KeyAdapter {
     public void keyPressed(KeyEvent event) {
         int key = event.getKeyCode();
         switch (key) {
-            case 38, 87 -> Player.setSpeedY(-5);
-            case 40, 83 -> Player.setSpeedY(5);
-            case 39, 68 -> Chunk.setSpeed(5);
+            case 38, 87 -> {
+                if (Player.shouldRender())
+                    Player.setSpeedY(-5);
+            }
+            case 40, 83 -> {
+                if (Player.shouldRender())
+                    Player.setSpeedY(5);
+            }
+            case 39, 68 -> {
+                if (Player.shouldRender())
+                    Chunk.setSpeed(5);
+            }
             case 69 -> Door.collision(Player.collisionHandler.getRectangle());
             case 49 - 57 -> Player.inventory.getNote(key - 48).setOpen();
         }

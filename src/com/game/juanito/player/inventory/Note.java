@@ -5,17 +5,16 @@ import java.net.URL;
 
 public class Note {
 
-    private final Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    private Image noteImage;
+    private Image noteImage, noteIconImage;
 
     private URL url;
 
     private boolean beenFound, open;
 
-    public Note(String path, boolean hasBeenFound) {
-        url = ClassLoader.getSystemResource(path);
-        noteImage = toolkit.getImage(url);
+    public Note(URL imagePath, boolean hasBeenFound, URL iconPath) {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        noteImage = toolkit.getImage(imagePath);
+        noteIconImage = toolkit.getImage(iconPath);
         this.beenFound = hasBeenFound;
         this.open = false;
     }
@@ -26,6 +25,14 @@ public class Note {
 
     public void setNoteImage(Image noteImage) {
         this.noteImage = noteImage;
+    }
+
+    public Image getNoteIconImage() {
+        return noteIconImage;
+    }
+
+    public void setNoteIconImage(Image image) {
+        this.noteIconImage = image;
     }
 
     public URL getUrl() {

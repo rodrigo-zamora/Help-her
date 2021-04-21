@@ -28,6 +28,7 @@ public class Player extends GameObject {
 
     private static int health = 6;
     private static int speedY;
+    private static boolean shouldRender;
 
     /**
      * Constructor for Player class
@@ -40,6 +41,7 @@ public class Player extends GameObject {
         super(x, y, id);
         collisionHandler.setX(x + 20); // 20
         collisionHandler.setY(y); // 0
+        shouldRender = true;
     }
 
     public static int getSpeedY() {
@@ -74,6 +76,18 @@ public class Player extends GameObject {
         if (Player.health == 0) {
             System.out.println("Juanito died");
         }
+    }
+
+    public static boolean shouldRender() {
+        return shouldRender;
+    }
+
+    public static void setShouldRender(boolean shouldRender) {
+        Player.shouldRender = shouldRender;
+    }
+
+    public static void setShouldRender() {
+        shouldRender = !shouldRender;
     }
 
     public static void damageAnimation(boolean isDamaged) {
@@ -114,19 +128,22 @@ public class Player extends GameObject {
      */
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(
-                playerImage,
-                75,
-                y,
-                null
-        );
+
+        if (shouldRender) {
+            graphics.drawImage(
+                    playerImage,
+                    75,
+                    y,
+                    null
+            );
+        }
 
         // Inventory
 
         graphics.drawImage(
                 inventory.getContainerImage(),
-                75,
-                500,
+                252,
+                530,
                 null
         );
 
@@ -134,12 +151,12 @@ public class Player extends GameObject {
 
         for(int i = 0; i < inventory.getNotesCollected(); i++) {
             graphics.drawImage(
-                    inventory.getInventoryImage(i),
-                    75 + xOffset,
-                    500,
+                    inventory.getInventoryIconImage(i),
+                    252 + xOffset,
+                    530,
                     null
             );
-            xOffset += 50;
+            xOffset += 64;
         }
 
     }

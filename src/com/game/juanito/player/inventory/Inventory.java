@@ -1,7 +1,6 @@
 package com.game.juanito.player.inventory;
 
 import java.awt.*;
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +13,19 @@ public class Inventory {
 
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-    private final URL container  = ClassLoader.getSystemResource("player/inventory/container.png");;
+    private final URL container  = ClassLoader.getSystemResource("player/inventory/container.png");
 
     private final Image containerImage = toolkit.getImage(container);;
 
     public Inventory() {
-
         notesCollected = 0;
-
-        File folder = new File("res/player/inventoryItems");
-        File[] listOfFiles = folder.listFiles();
-
-        if (listOfFiles != null) {
-            for (File listOfFile : listOfFiles) {
-                inventory.add(new Note(listOfFile.getPath(), false));
-            }
+        String index;
+        URL path, pathIcon;
+        for(int i = 1; i <= 9; i++) {
+            index = i + ".png";
+            path = ClassLoader.getSystemResource("player/inventoryItems/" + index);
+            pathIcon = ClassLoader.getSystemResource("player/inventoryItems/icon-" + index);
+            inventory.add(new Note(path, false, pathIcon));
         }
     }
 
@@ -43,6 +40,11 @@ public class Inventory {
     public Image getInventoryImage(int inventoryIndex) {
         Note note = inventory.get(inventoryIndex);
         return note.getNoteImage();
+    }
+
+    public Image getInventoryIconImage(int inventoryIndex) {
+        Note note = inventory.get(inventoryIndex);
+        return note.getNoteIconImage();
     }
 
     public int getNotesCollected() {

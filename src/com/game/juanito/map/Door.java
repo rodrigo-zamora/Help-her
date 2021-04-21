@@ -1,9 +1,11 @@
 package com.game.juanito.map;
 
 import com.game.juanito.handler.CollisionHandler;
+import com.game.juanito.player.Player;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.Random;
 
 public class Door {
 
@@ -17,6 +19,8 @@ public class Door {
     private static boolean shouldRender;
     private static int x = 1500, y;
 
+    private static int randomInteger;
+
     /**
      *
      */
@@ -24,6 +28,12 @@ public class Door {
         shouldRender = false;
         collisionHandler.setX(x);
         collisionHandler.setY(220);
+        setRandomInteger();
+    }
+
+    private static void setRandomInteger() {
+        Random random = new Random();
+        randomInteger = random.nextInt(3);
     }
 
     /**
@@ -58,7 +68,7 @@ public class Door {
      *
      */
     public static void tick() {
-        if (Chunk.getIterations() == 2) {
+        if (Chunk.getIterations() == randomInteger) {
             shouldRender = true;
         }
         if (shouldRender) {
@@ -81,6 +91,7 @@ public class Door {
             x = 1500;
             Chunk.setIterations(0);
             shouldRender = false;
+            setRandomInteger();
         }
     }
 
@@ -108,11 +119,20 @@ public class Door {
             // Text
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-            graphics.drawString(
-                    "Presiona 'E' para entrar",
-                    x - 50,
-                    200
-            );
+
+            if (Player.shouldRender()) {
+                graphics.drawString(
+                        "Presiona 'E' para entrar",
+                        x - 50,
+                        200
+                );
+            } else {
+                graphics.drawString(
+                        "Presiona 'E' para salir",
+                        x - 50,
+                        200
+                );
+            }
         }
     }
 
@@ -124,5 +144,11 @@ public class Door {
 
     private static void collisionIntersect() {
         System.out.println("You pressed E next to the door!");
+        Player.setShouldRender();
+        Player.inventory.setNotesCollected(Player.inventory.getNotesCollected() + 1);
+        Player.inventory.getNote(Player.inventory.getNotesCollected()).setBeenFound(true);
+        if (Player.shouldRender()) {
+            shouldRender = false;
+        }
     }
 }
