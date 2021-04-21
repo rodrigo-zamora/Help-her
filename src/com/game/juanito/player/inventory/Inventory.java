@@ -15,26 +15,18 @@ public class Inventory {
 
     private final URL container  = ClassLoader.getSystemResource("player/inventory/container.png");
 
-    private final Image containerImage = toolkit.getImage(container);;
+    private final Image containerImage = toolkit.getImage(container);
 
     public Inventory() {
         notesCollected = 0;
         String index;
-        URL path, pathIcon;
+        URL imagePath, iconPath;
         for(int i = 1; i <= 9; i++) {
             index = i + ".png";
-            path = ClassLoader.getSystemResource("player/inventoryItems/" + index);
-            pathIcon = ClassLoader.getSystemResource("player/inventoryItems/icon-" + index);
-            inventory.add(new Note(path, false, pathIcon));
+            imagePath = ClassLoader.getSystemResource("player/inventoryItems/" + index);
+            iconPath = ClassLoader.getSystemResource("player/inventoryItems/icon-" + index);
+            inventory.add(new Note(imagePath, iconPath, false));
         }
-    }
-
-    public List<Note> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(List<Note> notes) {
-        this.inventory = notes;
     }
 
     public Image getInventoryImage(int inventoryIndex) {

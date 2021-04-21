@@ -11,7 +11,7 @@ public class Note {
 
     private boolean beenFound, open;
 
-    public Note(URL imagePath, boolean hasBeenFound, URL iconPath) {
+    public Note(URL imagePath, URL iconPath, boolean hasBeenFound) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         noteImage = toolkit.getImage(imagePath);
         noteIconImage = toolkit.getImage(iconPath);
