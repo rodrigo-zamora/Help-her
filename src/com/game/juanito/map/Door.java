@@ -145,6 +145,8 @@ public class Door {
     private static void collisionIntersect() {
         System.out.println("You pressed E next to the door!");
         Player.setShouldRender();
+        Player.setSpeedY(0);
+        Chunk.setSpeed(0);
         Player.inventory.setNotesCollected(Player.inventory.getNotesCollected() + 1);
         Player.inventory.getNote(Player.inventory.getNotesCollected()).setBeenFound(true);
         if (Player.shouldRender()) {
