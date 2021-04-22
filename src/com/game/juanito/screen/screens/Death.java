@@ -7,7 +7,7 @@ import java.net.URL;
 public class Death {
 
     private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL background = ClassLoader.getSystemResource("Screens/LoadingScreen1.gif");
+    private static final URL background = ClassLoader.getSystemResource("Screens/deadScreen.gif");
     private static final Image backgroundImage = toolkit.getImage(background);
     private static final URL backButton = ClassLoader.getSystemResource("buttons/backButtonPixel4.png");
     private static final Image backImage = toolkit.getImage(backButton);

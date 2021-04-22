@@ -13,7 +13,6 @@ import com.game.juanito.screen.screens.Credits;
 import com.game.juanito.screen.screens.Death;
 import com.game.juanito.screen.screens.Loading;
 import com.game.juanito.screen.screens.MainMenu;
-
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
