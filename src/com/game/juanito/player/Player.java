@@ -167,6 +167,17 @@ public class Player extends GameObject {
             xOffset += 64;
         }
 
+        // Note
+
+        if (inventory.getReadingNote() != 0) {
+            graphics.drawImage(
+                    inventory.getInventoryImage(inventory.getReadingNote()),
+                    80,
+                    80,
+                    null
+            );
+        }
+
     }
 
     @Override

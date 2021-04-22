@@ -3,6 +3,7 @@ package com.game.juanito.input;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
 import com.game.juanito.player.Player;
+import com.game.juanito.player.inventory.Inventory;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -24,8 +25,13 @@ public class KeyboardInput extends KeyAdapter {
                 if (Player.shouldRender())
                     Chunk.setSpeed(5);
             }
-            case 69 -> Door.collision(Player.collisionHandler.getRectangle());
-            case 49 - 57 -> Player.getInventory().getNote(key - 48).setOpen();
+            case 69 -> Door.collision(Player.getCollisionHandler().getRectangle());
+            case 49 - 57 -> {
+                Player.getInventory().getNote(key - 48).setOpen();
+                if (!Player.getInventory().getNote(key - 48).isOpen()) {
+                    Player.getInventory().setReadingNote(key - 48);
+                }
+            }
         }
     }
 

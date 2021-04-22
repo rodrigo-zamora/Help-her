@@ -11,6 +11,8 @@ public class Inventory {
 
     private int notesCollected;
 
+    private int readingNote;
+
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
 
     private final URL container  = ClassLoader.getSystemResource("player/inventory/container.png");
@@ -19,6 +21,7 @@ public class Inventory {
 
     public Inventory() {
         notesCollected = 0;
+        readingNote = 0;
         String index;
         URL imagePath, iconPath;
         for(int i = 1; i <= 9; i++) {
@@ -29,6 +32,22 @@ public class Inventory {
         }
     }
 
+    public int getNotesCollected() {
+        return notesCollected;
+    }
+
+    public void setNotesCollected(int notesCollected) {
+        this.notesCollected = notesCollected;
+    }
+
+    public int getReadingNote() {
+        return readingNote;
+    }
+
+    public void setReadingNote(int readingNote) {
+        this.readingNote = readingNote;
+    }
+
     public Image getInventoryImage(int inventoryIndex) {
         Note note = inventory.get(inventoryIndex);
         return note.getNoteImage();
@@ -37,14 +56,6 @@ public class Inventory {
     public Image getInventoryIconImage(int inventoryIndex) {
         Note note = inventory.get(inventoryIndex);
         return note.getNoteIconImage();
-    }
-
-    public int getNotesCollected() {
-        return notesCollected;
-    }
-
-    public void setNotesCollected(int notesCollected) {
-        this.notesCollected = notesCollected;
     }
 
     public Image getContainerImage() {
