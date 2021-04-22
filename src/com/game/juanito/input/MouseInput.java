@@ -53,7 +53,6 @@ public class MouseInput extends MouseAdapter {
                     background = ClassLoader.getSystemResource("sounds/background/8bitSong.wav");
                 }
 
-
                 try {
                     SoundHandler.playSound(background, 0.1F, true);
                 } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
@@ -68,7 +67,7 @@ public class MouseInput extends MouseAdapter {
 
                 Game.screen = Screen.CREDITS;
 
-                if (contadorMusica == 1) {
+                if (randomMusicNumber == 1) {
                     credits = ClassLoader.getSystemResource("sounds/credits/EndCredits.wav");
                 } else {
                     credits = ClassLoader.getSystemResource("sounds/credits/Credits.wav");
