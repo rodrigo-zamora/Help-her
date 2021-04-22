@@ -64,6 +64,14 @@ public class Door {
         Door.y = y;
     }
 
+    public static boolean isShouldRender() {
+        return shouldRender;
+    }
+
+    public static void setShouldRender(boolean shouldRender) {
+        Door.shouldRender = shouldRender;
+    }
+
     /**
      *
      */

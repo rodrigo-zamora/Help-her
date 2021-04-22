@@ -2,6 +2,8 @@ package com.game.juanito.input;
 
 import com.game.juanito.handler.SoundHandler;
 import com.game.juanito.main.Game;
+import com.game.juanito.map.Chunk;
+import com.game.juanito.map.Door;
 import com.game.juanito.player.Player;
 import com.game.juanito.screen.Screen;
 import javax.sound.sampled.LineUnavailableException;
@@ -74,8 +76,19 @@ public class MouseInput extends MouseAdapter {
             }
         } else if(Game.screen == Screen.DEATH) {
             dead = ClassLoader.getSystemResource("sounds/dead/deadSong.wav");
+
             Player.setHealth(6);
             Player.damageAnimation(false);
+
+            Player.getInventory().setNotesCollected(0);
+            Player.getInventory().setReadingNote(10);
+            for (int i = 0; i < 9; i++) {
+                Player.getInventory().getNote(i).setOpen(false);
+                Player.getInventory().getNote(i).setBeenFound(false);
+            }
+
+            Door.setShouldRender(false);
+            Chunk.setIterations(0);
 
             try {
                 SoundHandler.playSound(dead, 0.1F, true);
