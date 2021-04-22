@@ -30,6 +30,8 @@ public class KeyboardInput extends KeyAdapter {
                 Player.getInventory().getNote(key - 48).setOpen();
                 if (!Player.getInventory().getNote(key - 48).isOpen()) {
                     Player.getInventory().setReadingNote(key - 48);
+                } else {
+                    Player.getInventory().setReadingNote(0);
                 }
             }
         }
