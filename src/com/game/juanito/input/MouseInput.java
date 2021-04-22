@@ -3,19 +3,20 @@ package com.game.juanito.input;
 import com.game.juanito.handler.SoundHandler;
 import com.game.juanito.main.Game;
 import com.game.juanito.screen.Screen;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 public class MouseInput extends MouseAdapter {
 
     static URL background;
     static URL credits;
     static int contadorMusica = 1;
+    private int randomMusicNumber;
 
     private void increaseContadorMusica() {
         contadorMusica++;
@@ -24,11 +25,17 @@ public class MouseInput extends MouseAdapter {
         }
     }
 
+    private void randomMusic() {
+        Random random = new Random();
+        randomMusicNumber = random.nextInt(3 - 1) + 1;
+    }
+
     public void mousePressed(MouseEvent event) {
 
         if (Game.screen == Screen.MAIN_MENU) {
 
-            increaseContadorMusica();
+            //increaseContadorMusica();
+            randomMusic();
 
             if (event.getX() >= 155 &&
                     event.getX() <= 385 &&
@@ -38,9 +45,9 @@ public class MouseInput extends MouseAdapter {
 
                 Game.screen = Screen.GAME;
 
-                if (contadorMusica == 1) {
+                if (randomMusicNumber == 1) {
                     background = ClassLoader.getSystemResource("sounds/background/main.wav");
-                } else if (contadorMusica == 2) {
+                } else if (randomMusicNumber == 2) {
                     background = ClassLoader.getSystemResource("sounds/background/background.wav");
                 } else {
                     background = ClassLoader.getSystemResource("sounds/background/8bitSong.wav");

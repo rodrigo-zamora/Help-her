@@ -2,9 +2,11 @@ package com.game.juanito.player;
 
 import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.handler.SoundHandler;
+import com.game.juanito.main.Game;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
 import com.game.juanito.player.inventory.Inventory;
+import com.game.juanito.screen.Screen;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -83,6 +85,7 @@ public class Player extends GameObject {
         }
         if (Player.health == 0) {
             System.out.println("Juanito died");
+            Game.screen = Screen.DEATH;
         }
     }
 

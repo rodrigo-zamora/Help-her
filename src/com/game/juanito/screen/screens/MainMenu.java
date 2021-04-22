@@ -15,7 +15,6 @@ public class MainMenu {
     private static final URL creditsButton = ClassLoader.getSystemResource("buttons/CreditsButtonPixel4.png");
     private static final Image creditsImage = toolkit.getImage(creditsButton);
 
-
     public static void render(Graphics graphics) {
 
         graphics.drawImage(
