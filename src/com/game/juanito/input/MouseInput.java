@@ -17,15 +17,7 @@ public class MouseInput extends MouseAdapter {
     static URL background;
     static URL credits;
     static URL dead;
-    static int contadorMusica = 1;
     private int randomMusicNumber;
-
-    private void increaseContadorMusica() {
-        contadorMusica++;
-        if (contadorMusica == 3) {
-            contadorMusica = 1;
-        }
-    }
 
     private void randomMusic() {
         Random random = new Random();
@@ -36,7 +28,6 @@ public class MouseInput extends MouseAdapter {
 
         if (Game.screen == Screen.MAIN_MENU) {
 
-            //increaseContadorMusica();
             randomMusic();
 
             if (event.getX() >= 155 &&
@@ -83,6 +74,8 @@ public class MouseInput extends MouseAdapter {
             }
         } else if(Game.screen == Screen.DEATH) {
             dead = ClassLoader.getSystemResource("sounds/dead/deadSong.wav");
+            Player.setHealth(6);
+            Player.damageAnimation(false);
 
             try {
                 SoundHandler.playSound(dead, 0.1F, true);
@@ -96,13 +89,13 @@ public class MouseInput extends MouseAdapter {
                     event.getY() <= ((640/5) * 4) + 70
             ) {
                 Game.screen = Screen.MAIN_MENU;
+
             } else if(event.getX() >= 425 &&
                     event.getX() <= 655 &&
                     event.getY() >= (640/5) * 3 &&
                     event.getY() <= ((640/5) * 3) + 70
             ) {
                 Game.screen = Screen.GAME;
-                Player.setHealth(6);
             }
         } else if (Game.screen == Screen.CREDITS) {
             if (event.getX() >= 425 &&
