@@ -168,8 +168,7 @@ public class Player extends GameObject {
         }
 
         // Note
-
-        if (inventory.getReadingNote() != 0) {
+        if (inventory.getReadingNote() != 10) {
             graphics.drawImage(
                     inventory.getInventoryImage(inventory.getReadingNote()),
                     80,

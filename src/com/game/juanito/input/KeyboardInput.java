@@ -13,24 +13,28 @@ public class KeyboardInput extends KeyAdapter {
         int key = event.getKeyCode();
         switch (key) {
             case 38, 87 -> {
-                if (Player.shouldRender())
+                if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
                     Player.setSpeedY(-5);
             }
             case 40, 83 -> {
-                if (Player.shouldRender())
+                if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
                     Player.setSpeedY(5);
             }
             case 39, 68 -> {
-                if (Player.shouldRender())
+                if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
                     Chunk.setSpeed(5);
             }
             case 69 -> Door.collision(Player.getCollisionHandler().getRectangle());
-            case 49 - 57 -> {
-                Player.getInventory().getNote(key - 48).setOpen();
-                if (!Player.getInventory().getNote(key - 48).isOpen()) {
-                    Player.getInventory().setReadingNote(key - 48);
-                } else {
-                    Player.getInventory().setReadingNote(0);
+            case 49, 50, 51, 52, 53, 54, 55, 56, 57 -> {
+                if (Player.getInventory().getNote(key - 49).hasBeenFound()) {
+                    Player.getInventory().getNote(key - 49).setOpen();
+                    Player.setSpeedY(0);
+                    Chunk.setSpeed(0);
+                    if (!Player.getInventory().getNote(key - 49).isOpen()) {
+                        Player.getInventory().setReadingNote(key - 49);
+                    } else {
+                        Player.getInventory().setReadingNote(10);
+                    }
                 }
             }
         }
