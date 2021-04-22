@@ -3,7 +3,6 @@ package com.game.juanito.input;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
 import com.game.juanito.player.Player;
-import com.game.juanito.player.inventory.Inventory;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
