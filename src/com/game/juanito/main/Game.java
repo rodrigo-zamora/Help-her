@@ -56,7 +56,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Start threat
+     * Start thread
      */
     public synchronized void start() {
         if (isRunning) return;

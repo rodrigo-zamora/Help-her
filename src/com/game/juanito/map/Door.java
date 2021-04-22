@@ -33,7 +33,7 @@ public class Door {
 
     private static void setRandomInteger() {
         Random random = new Random();
-        randomInteger = random.nextInt(3);
+        randomInteger = random.nextInt(10 - 3) + 3;
     }
 
     /**
@@ -107,15 +107,6 @@ public class Door {
                     null
             );
 
-            // collision / border
-            graphics.setColor(Color.BLUE);
-            graphics.drawRect(
-                    collisionHandler.getX(),
-                    collisionHandler.getY(),
-                    collisionHandler.getWidth(),
-                    collisionHandler.getHeight()
-            );
-
             // Text
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
@@ -163,6 +154,11 @@ public class Door {
 
             // Increase notes found by 1
             Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
+
+            // All notes collected
+            if (Player.getInventory().getNotesCollected() == 9) {
+                System.out.println("a");
+            }
 
         } else {
             // Change door visibility

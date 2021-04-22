@@ -20,11 +20,17 @@ public class KeyboardInput extends KeyAdapter {
                 if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
                     Player.setSpeedY(5);
             }
+
+            // Movement to the right
             case 39, 68 -> {
                 if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
                     Chunk.setSpeed(5);
             }
+
+            // Open / close door
             case 69 -> Door.collision(Player.getCollisionHandler().getRectangle());
+
+            // Inventory
             case 49, 50, 51, 52, 53, 54, 55, 56, 57 -> {
                 if (Player.getInventory().getNote(key - 49).hasBeenFound()) {
                     Player.getInventory().getNote(key - 49).setOpen();
