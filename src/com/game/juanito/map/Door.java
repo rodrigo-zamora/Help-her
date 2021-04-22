@@ -68,7 +68,7 @@ public class Door {
      *
      */
     public static void tick() {
-        if (Chunk.getIterations() == 3) {
+        if (Chunk.getIterations() == randomInteger) {
             shouldRender = true;
         }
         if (shouldRender) {
@@ -89,7 +89,6 @@ public class Door {
         }
         if (x == -300) {
             x = 1500;
-            Chunk.setIterations(0);
             shouldRender = false;
             setRandomInteger();
         }
@@ -108,13 +107,13 @@ public class Door {
             );
 
             // collision / border
-            /*graphics.setColor(Color.BLUE);
+            graphics.setColor(Color.BLUE);
             graphics.drawRect(
                     collisionHandler.getX(),
                     collisionHandler.getY(),
                     collisionHandler.getWidth(),
                     collisionHandler.getHeight()
-            );*/
+            );
 
             // Text
             graphics.setColor(Color.WHITE);
@@ -166,6 +165,9 @@ public class Door {
 
         } else {
             // Change door visibility
+            x = -300;
+
+            Chunk.setIterations(0);
             Door.shouldRender = false;
         }
 
