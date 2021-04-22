@@ -136,12 +136,19 @@ public class Door {
         }
     }
 
+    /**
+     * Check for collision between player and door
+     * @param rectangle receives the player rectangle
+     */
     public static void collision(Rectangle rectangle) {
         if (rectangle.intersects(collisionHandler.getRectangle())) {
             collisionIntersect();
         }
     }
 
+    /**
+     * Collision between player and door
+     */
     private static void collisionIntersect() {
 
         // Only get new note if player is visible (outside of the door)
@@ -155,13 +162,12 @@ public class Door {
 
             // Set beenFound from latest note to true
             Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
-            if (Player.shouldRender()) {
-                shouldRender = false;
-            }
+
+            // Change player visibility (inside door)
+            shouldRender = false;
         }
 
         // Change player visibility
         Player.setShouldRender();
-
     }
 }
