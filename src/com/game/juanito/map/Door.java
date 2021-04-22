@@ -153,6 +153,7 @@ public class Door {
 
         // Only get new note if player is visible (outside of the door)
         if (Player.shouldRender()) {
+
             // Make player stop moving
             Player.setSpeedY(0);
             Chunk.setSpeed(0);
@@ -163,8 +164,9 @@ public class Door {
             // Set beenFound from latest note to true
             Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
 
-            // Change player visibility (inside door)
-            shouldRender = false;
+        } else {
+            // Change door visibility
+            Door.shouldRender = false;
         }
 
         // Change player visibility
