@@ -21,7 +21,7 @@ public class Inventory {
 
     public Inventory() {
         notesCollected = 0;
-        readingNote = 0;
+        readingNote = 10;
         String index;
         URL imagePath, iconPath;
         for(int i = 1; i <= 9; i++) {
@@ -64,5 +64,12 @@ public class Inventory {
 
     public Note getNote(int index) {
         return inventory.get(index);
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "inventory=" + inventory +
+                '}';
     }
 }

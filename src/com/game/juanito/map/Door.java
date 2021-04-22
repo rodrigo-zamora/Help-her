@@ -72,6 +72,10 @@ public class Door {
             shouldRender = true;
         }
         if (shouldRender) {
+            if (Chunk.getSpeed() > 0) {
+                x -= 5;
+            }
+
             collisionHandler.setX(x);
             collisionHandler.setY(y + 220);
             collisionHandler.setRectangle(
@@ -83,9 +87,6 @@ public class Door {
                     )
             );
 
-            if (Chunk.getSpeed() > 0) {
-                x -= 5;
-            }
         }
         if (x == -300) {
             x = 1500;
@@ -157,11 +158,11 @@ public class Door {
             Player.setSpeedY(0);
             Chunk.setSpeed(0);
 
-            // Increase notes found by 1
-            Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
-
             // Set beenFound from latest note to true
             Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
+
+            // Increase notes found by 1
+            Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
 
         } else {
             // Change door visibility
