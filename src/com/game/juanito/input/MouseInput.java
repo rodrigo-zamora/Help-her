@@ -2,6 +2,7 @@ package com.game.juanito.input;
 
 import com.game.juanito.handler.SoundHandler;
 import com.game.juanito.main.Game;
+import com.game.juanito.player.Player;
 import com.game.juanito.screen.Screen;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -15,6 +16,7 @@ public class MouseInput extends MouseAdapter {
 
     static URL background;
     static URL credits;
+    static URL dead;
     static int contadorMusica = 1;
     private int randomMusicNumber;
 
@@ -78,6 +80,37 @@ public class MouseInput extends MouseAdapter {
                 } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                     e.printStackTrace();
                 }
+            }
+        } else if(Game.screen == Screen.DEATH) {
+            dead = ClassLoader.getSystemResource("sounds/dead/deadSong.wav");
+
+            try {
+                SoundHandler.playSound(dead, 0.1F, true);
+            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            }
+
+            if (event.getX() >= 425 &&
+                    event.getX() <= 655 &&
+                    event.getY() >= (640/5) * 4 &&
+                    event.getY() <= ((640/5) * 4) + 70
+            ) {
+                Game.screen = Screen.MAIN_MENU;
+            } else if(event.getX() >= 425 &&
+                    event.getX() <= 655 &&
+                    event.getY() >= (640/5) * 3 &&
+                    event.getY() <= ((640/5) * 3) + 70
+            ) {
+                Game.screen = Screen.GAME;
+                Player.setHealth(6);
+            }
+        } else if (Game.screen == Screen.CREDITS) {
+            if (event.getX() >= 425 &&
+                    event.getX() <= 655 &&
+                    event.getY() >= (640/5) * 4 &&
+                    event.getY() <= ((640/5) * 4) + 70
+            ) {
+                Game.screen = Screen.MAIN_MENU;
             }
         }
     }

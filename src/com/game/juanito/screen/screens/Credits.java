@@ -25,7 +25,7 @@ public class Credits {
         graphics.drawImage(
                 backImage,
                 (Game.WIDTH / 2) - (backImage.getWidth(null) / 2),
-                ((Game.HEIGHT / 5) * 4 ),
+                (Game.HEIGHT / 5) * 4,
                 null
         );
     }

@@ -28,7 +28,7 @@ public class Player extends GameObject {
     static Image playerImage = toolkit.getImage(player);
     static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
 
-    private static int health = 6;
+    public static int health = 6;
     private static int speedY;
     private static boolean shouldRender;
 
