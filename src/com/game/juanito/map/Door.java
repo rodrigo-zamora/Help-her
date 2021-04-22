@@ -143,13 +143,25 @@ public class Door {
     }
 
     private static void collisionIntersect() {
-        Player.setShouldRender();
-        Player.setSpeedY(0);
-        Chunk.setSpeed(0);
-        Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
-        Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
+
+        // Only get new note if player is visible (outside of the door)
         if (Player.shouldRender()) {
-            shouldRender = false;
+            // Make player stop moving
+            Player.setSpeedY(0);
+            Chunk.setSpeed(0);
+
+            // Increase notes found by 1
+            Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
+
+            // Set beenFound from latest note to true
+            Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
+            if (Player.shouldRender()) {
+                shouldRender = false;
+            }
         }
+
+        // Change player visibility
+        Player.setShouldRender();
+
     }
 }
