@@ -137,6 +137,7 @@ public class Door {
 
     /**
      * Check for collision between player and door
+     *
      * @param rectangle receives the player rectangle
      */
     public static void collision(Rectangle rectangle) {

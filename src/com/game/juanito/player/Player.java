@@ -19,16 +19,14 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
-    private static CollisionHandler collisionHandler = new CollisionHandler(90, 32);
-    private static Inventory inventory = new Inventory();
-
+    public static int health = 6;
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static URL player = ClassLoader.getSystemResource("player/player.gif");
     static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
     static Image playerImage = toolkit.getImage(player);
     static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
-
-    public static int health = 6;
+    private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
+    private static final Inventory inventory = new Inventory();
     private static int speedY;
     private static boolean shouldRender;
 
@@ -84,7 +82,6 @@ public class Player extends GameObject {
             e.printStackTrace();
         }
         if (Player.health == 0) {
-            System.out.println("Juanito died");
             Game.screen = Screen.DEATH;
         }
     }
@@ -160,7 +157,7 @@ public class Player extends GameObject {
 
         int xOffset = 0;
 
-        for(int i = 0; i < inventory.getNotesCollected(); i++) {
+        for (int i = 0; i < inventory.getNotesCollected(); i++) {
             graphics.drawImage(
                     inventory.getInventoryIconImage(i),
                     252 + xOffset,

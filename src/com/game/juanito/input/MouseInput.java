@@ -6,6 +6,7 @@ import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
 import com.game.juanito.player.Player;
 import com.game.juanito.screen.Screen;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.event.MouseAdapter;
@@ -74,7 +75,7 @@ public class MouseInput extends MouseAdapter {
                     e.printStackTrace();
                 }
             }
-        } else if(Game.screen == Screen.DEATH) {
+        } else if (Game.screen == Screen.DEATH) {
             dead = ClassLoader.getSystemResource("sounds/dead/deadSong.wav");
 
             Player.setHealth(6);
@@ -98,23 +99,23 @@ public class MouseInput extends MouseAdapter {
 
             if (event.getX() >= 425 &&
                     event.getX() <= 655 &&
-                    event.getY() >= (640/5) * 4 &&
-                    event.getY() <= ((640/5) * 4) + 70
+                    event.getY() >= (640 / 5) * 4 &&
+                    event.getY() <= ((640 / 5) * 4) + 70
             ) {
                 Game.screen = Screen.MAIN_MENU;
 
-            } else if(event.getX() >= 425 &&
+            } else if (event.getX() >= 425 &&
                     event.getX() <= 655 &&
-                    event.getY() >= (640/5) * 3 &&
-                    event.getY() <= ((640/5) * 3) + 70
+                    event.getY() >= (640 / 5) * 3 &&
+                    event.getY() <= ((640 / 5) * 3) + 70
             ) {
                 Game.screen = Screen.GAME;
             }
         } else if (Game.screen == Screen.CREDITS) {
             if (event.getX() >= 425 &&
                     event.getX() <= 655 &&
-                    event.getY() >= (640/5) * 4 &&
-                    event.getY() <= ((640/5) * 4) + 70
+                    event.getY() >= (640 / 5) * 4 &&
+                    event.getY() <= ((640 / 5) * 4) + 70
             ) {
                 Game.screen = Screen.MAIN_MENU;
             }

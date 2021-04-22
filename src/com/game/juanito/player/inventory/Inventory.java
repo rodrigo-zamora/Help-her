@@ -7,24 +7,19 @@ import java.util.List;
 
 public class Inventory {
 
-    private List<Note> inventory = new ArrayList<>();
-
-    private int notesCollected;
-
-    private int readingNote;
-
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    private final URL container  = ClassLoader.getSystemResource("player/inventory/container.png");
-
+    private final URL container = ClassLoader.getSystemResource("player/inventory/container.png");
     private final Image containerImage = toolkit.getImage(container);
+    private final List<Note> inventory = new ArrayList<>();
+    private int notesCollected;
+    private int readingNote;
 
     public Inventory() {
         notesCollected = 0;
         readingNote = 10;
         String index;
         URL imagePath, iconPath;
-        for(int i = 1; i <= 9; i++) {
+        for (int i = 1; i <= 9; i++) {
             index = i + ".png";
             imagePath = ClassLoader.getSystemResource("player/inventoryItems/" + index);
             iconPath = ClassLoader.getSystemResource("player/inventoryItems/icon-" + index);
