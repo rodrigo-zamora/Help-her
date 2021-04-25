@@ -29,7 +29,7 @@ public class MouseInput extends MouseAdapter {
 
     public void mousePressed(MouseEvent event) {
 
-        if (Game.screen == Screen.MAIN_MENU) {
+        if (Game.getScreen() == Screen.MAIN_MENU) {
 
             randomMusic();
 
@@ -39,7 +39,7 @@ public class MouseInput extends MouseAdapter {
                     event.getY() <= 355
             ) {
 
-                Game.screen = Screen.GAME;
+                Game.setScreen(Screen.GAME);
 
                 if (randomMusicNumber == 1) {
                     background = ClassLoader.getSystemResource("sounds/background/main.wav");
@@ -61,7 +61,7 @@ public class MouseInput extends MouseAdapter {
                     event.getY() <= 355
             ) {
 
-                Game.screen = Screen.CREDITS;
+                Game.setScreen(Screen.CREDITS);
 
                 if (randomMusicNumber == 1) {
                     credits = ClassLoader.getSystemResource("sounds/credits/EndCredits.wav");
@@ -75,7 +75,7 @@ public class MouseInput extends MouseAdapter {
                     e.printStackTrace();
                 }
             }
-        } else if (Game.screen == Screen.DEATH) {
+        } else if (Game.getScreen() == Screen.DEATH) {
             dead = ClassLoader.getSystemResource("sounds/dead/deadSong.wav");
 
             Player.setHealth(6);
@@ -102,22 +102,22 @@ public class MouseInput extends MouseAdapter {
                     event.getY() >= (640 / 5) * 4 &&
                     event.getY() <= ((640 / 5) * 4) + 70
             ) {
-                Game.screen = Screen.MAIN_MENU;
+                Game.setScreen(Screen.MAIN_MENU);
 
             } else if (event.getX() >= 425 &&
                     event.getX() <= 655 &&
                     event.getY() >= (640 / 5) * 3 &&
                     event.getY() <= ((640 / 5) * 3) + 70
             ) {
-                Game.screen = Screen.GAME;
+                Game.setScreen(Screen.GAME);
             }
-        } else if (Game.screen == Screen.CREDITS) {
+        } else if (Game.getScreen() == Screen.CREDITS) {
             if (event.getX() >= 425 &&
                     event.getX() <= 655 &&
                     event.getY() >= (640 / 5) * 4 &&
                     event.getY() <= ((640 / 5) * 4) + 70
             ) {
-                Game.screen = Screen.MAIN_MENU;
+                Game.setScreen(Screen.MAIN_MENU);
             }
         }
     }

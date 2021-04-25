@@ -18,6 +18,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 import java.io.Serial;
+import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
@@ -28,15 +29,22 @@ public class Game extends Canvas implements Runnable {
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
 
-    public static boolean isMoving;
-    public static Screen screen;
-    public static int FPS;
+    private static boolean paused = false;
+    private static boolean isMoving;
+    private static Screen screen;
+    private static int FPS;
 
     Player player;
     GameObjectHandler gameObjectHandler = new GameObjectHandler();
 
     private Thread thread;
     private boolean isRunning = false;
+
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+    private static final URL pause = ClassLoader.getSystemResource("Screens/pause.png");
+
+    public static final Image pauseImage = toolkit.getImage(pause);
 
     /**
      * Constructor for Game class
@@ -168,10 +176,55 @@ public class Game extends Canvas implements Runnable {
 
                 // Render all game objects
                 gameObjectHandler.render(graphics);
+
+                if (paused) {
+                    graphics.drawImage(
+                            pauseImage,
+                            0,
+                            0,
+                            null
+                    );
+                }
             }
         }
 
         graphics.dispose();
         bufferStrategy.show();
+    }
+
+    /**
+     * Getters and setters
+     */
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static void setPaused() {
+        Game.paused = !Game.paused;
+    }
+
+    public static boolean isMoving() {
+        return isMoving;
+    }
+
+    public static void setMoving(boolean isMoving) {
+        Game.isMoving = isMoving;
+    }
+
+    public static Screen getScreen() {
+        return screen;
+    }
+
+    public static void setScreen(Screen screen) {
+        Game.screen = screen;
+    }
+
+    public static int getFPS() {
+        return FPS;
+    }
+
+    public static void setFPS(int FPS) {
+        Game.FPS = FPS;
     }
 }

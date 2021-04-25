@@ -53,7 +53,7 @@ public class Aarav extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(Game.isMoving),
+                getImage(Game.isMoving()),
                 getX(),
                 getY(),
                 null

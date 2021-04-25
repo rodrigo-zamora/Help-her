@@ -82,7 +82,7 @@ public class Player extends GameObject {
             e.printStackTrace();
         }
         if (Player.health == 0) {
-            Game.screen = Screen.DEATH;
+            Game.setScreen(Screen.DEATH);
         }
     }
 

@@ -12,46 +12,54 @@ import java.awt.event.KeyEvent;
 public class KeyboardInput extends KeyAdapter {
 
     public void keyPressed(KeyEvent event) {
-        if (Game.screen == Screen.GAME) {
+        if (Game.getScreen() == Screen.GAME) {
             int key = event.getKeyCode();
             switch (key) {
                 case 38, 87 -> {
-                    if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
+                    if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10 && !Game.isPaused())
                         Player.setSpeedY(-5);
                 }
                 case 40, 83 -> {
-                    if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
+                    if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10 && !Game.isPaused())
                         Player.setSpeedY(5);
                 }
 
                 // Movement to the right
                 case 39, 68 -> {
-                    if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10)
+                    if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10 && !Game.isPaused())
                         Chunk.setSpeed(5);
                 }
 
                 // Open / close door
-                case 69 -> Door.collision(Player.getCollisionHandler().getRectangle());
+                case 69 -> {
+                    if (!Game.isPaused())
+                        Door.collision(Player.getCollisionHandler().getRectangle());
+                }
 
                 // Inventory
                 case 49, 50, 51, 52, 53, 54, 55, 56, 57 -> {
-                    if (Player.getInventory().getNote(key - 49).hasBeenFound()) {
-                        Player.getInventory().getNote(key - 49).setOpen();
-                        Player.setSpeedY(0);
-                        Chunk.setSpeed(0);
-                        if (!Player.getInventory().getNote(key - 49).isOpen()) {
-                            Player.getInventory().setReadingNote(key - 49);
-                        } else {
-                            Player.getInventory().setReadingNote(10);
+                    if (!Game.isPaused()) {
+                        if (Player.getInventory().getNote(key - 49).hasBeenFound()) {
+                            Player.getInventory().getNote(key - 49).setOpen();
+                            Player.setSpeedY(0);
+                            Chunk.setSpeed(0);
+                            if (!Player.getInventory().getNote(key - 49).isOpen()) {
+                                Player.getInventory().setReadingNote(key - 49);
+                            } else {
+                                Player.getInventory().setReadingNote(10);
+                            }
                         }
                     }
                 }
+
+                // Pause menu
+                case 27 -> Game.setPaused();
             }
         }
     }
 
     public void keyReleased(KeyEvent event) {
-        if (Game.screen == Screen.GAME) {
+        if (Game.getScreen() == Screen.GAME) {
             int key = event.getKeyCode();
             switch (key) {
                 case 38, 87, 40, 83 -> Player.setSpeedY(0);
