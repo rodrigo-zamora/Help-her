@@ -31,7 +31,8 @@ public class Gereon extends Enemy {
     public boolean tick() {
         collisionHandler.setX(x);
         collisionHandler.setY(y + 100);
-        collisionCheck(collisionHandler);
+        moveEnemy();
+        collisionHandler.updateRectangle();
         return x >= -200;
     }
 

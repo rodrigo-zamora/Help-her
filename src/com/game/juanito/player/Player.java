@@ -118,11 +118,7 @@ public class Player extends GameObject {
             y -= 5;
 
         collisionHandler.setY(y + 92); // 65
-        collisionHandler.getRectangle().setRect(
-                collisionHandler.getX(),
-                collisionHandler.getY(),
-                collisionHandler.getWidth(),
-                collisionHandler.getHeight());
+        collisionHandler.updateRectangle();
         return true;
     }
 

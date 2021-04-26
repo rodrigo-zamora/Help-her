@@ -53,4 +53,8 @@ public class CollisionHandler {
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
     }
+
+    public void updateRectangle() {
+        rectangle.setRect(x, y, width, height);
+    }
 }

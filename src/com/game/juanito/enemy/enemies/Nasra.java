@@ -38,7 +38,8 @@ public class Nasra extends Enemy {
         y += speedY;
         collisionHandler.setX(x + 9);
         collisionHandler.setY(y + 41);
-        collisionCheck(collisionHandler);
+        moveEnemy();
+        collisionHandler.updateRectangle();
         return x >= -200;
     }
 

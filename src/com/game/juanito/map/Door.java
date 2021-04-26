@@ -86,14 +86,7 @@ public class Door {
 
             collisionHandler.setX(x);
             collisionHandler.setY(y + 220);
-            collisionHandler.setRectangle(
-                    new Rectangle(
-                            collisionHandler.getX(),
-                            collisionHandler.getY(),
-                            collisionHandler.getWidth(),
-                            collisionHandler.getHeight()
-                    )
-            );
+            collisionHandler.updateRectangle();
 
         }
         if (x == -300) {

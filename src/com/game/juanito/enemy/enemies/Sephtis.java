@@ -38,7 +38,8 @@ public class Sephtis extends Enemy {
         y += speedY;
         collisionHandler.setX(x);
         collisionHandler.setY(y + 108);
-        collisionCheck(collisionHandler);
+        moveEnemy();
+        collisionHandler.updateRectangle();
         return x >= -200;
     }
 
