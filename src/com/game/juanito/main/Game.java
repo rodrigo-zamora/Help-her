@@ -40,11 +40,9 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean isRunning = false;
 
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-
+    /*private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
     private static final URL pause = ClassLoader.getSystemResource("Screens/pause.png");
-
-    public static final Image pauseImage = toolkit.getImage(pause);
+    public static final Image pauseImage = toolkit.getImage(pause);*/
 
     /**
      * Constructor for Game class
@@ -177,14 +175,15 @@ public class Game extends Canvas implements Runnable {
                 // Render all game objects
                 gameObjectHandler.render(graphics);
 
-                if (paused) {
+                // Pause menu
+                /*if (paused) {
                     graphics.drawImage(
                             pauseImage,
                             0,
                             0,
                             null
                     );
-                }
+                }*/
             }
         }
 

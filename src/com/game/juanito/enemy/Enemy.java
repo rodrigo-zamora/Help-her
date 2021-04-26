@@ -22,11 +22,10 @@ public abstract class Enemy extends GameObject {
     protected void collisionCheck(CollisionHandler collisionHandler) {
         if (Chunk.getSpeed() != 0)
             x += -Chunk.getSpeed();
-        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+        collisionHandler.getRectangle().setRect(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight());
     }
 
     protected void collisionIntersect() {
-
         // Move enemy out of player's view
         x = -200;
 
