@@ -1,47 +1,44 @@
 package com.game.juanito.map;
 
+import com.game.juanito.enemy.SpawnEnemy;
+import com.game.juanito.handler.GameObjectHandler;
+import com.game.juanito.player.Player;
+
 import java.awt.*;
 import java.net.URL;
 
 public class Chunk {
 
     /**
-     * Variables for our Chunk class
-     */
-
-    private static int speed, x;
-    private static int iterations;
-    /**
      * Images with our map chunks
      */
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-    URL chunk1 = ClassLoader.getSystemResource("map/1.png");
-    Image chunkImage1 = toolkit.getImage(chunk1);
-    URL chunk2 = ClassLoader.getSystemResource("map/2.png");
-    Image chunkImage2 = toolkit.getImage(chunk2);
-    URL chunk3 = ClassLoader.getSystemResource("map/3.png");
-    Image chunkImage3 = toolkit.getImage(chunk3);
-    URL chunk4 = ClassLoader.getSystemResource("map/4.png");
-    Image chunkImage4 = toolkit.getImage(chunk4);
-    URL chunk5 = ClassLoader.getSystemResource("map/5.png");
-    Image chunkImage5 = toolkit.getImage(chunk5);
-    URL chunk6 = ClassLoader.getSystemResource("map/6.png");
-    Image chunkImage6 = toolkit.getImage(chunk6);
-    URL chunk7 = ClassLoader.getSystemResource("map/7.png");
-    Image chunkImage7 = toolkit.getImage(chunk7);
-    URL chunk8 = ClassLoader.getSystemResource("map/8.png");
-    Image chunkImage8 = toolkit.getImage(chunk8);
-    private int currentChunk;
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private static final URL chunk1 = ClassLoader.getSystemResource("map/chunks/1.png");
+    private static final Image chunkImage1 = toolkit.getImage(chunk1);
+    private static final URL chunk2 = ClassLoader.getSystemResource("map/chunks/2.png");
+    private static final Image chunkImage2 = toolkit.getImage(chunk2);
+    private static final URL chunk3 = ClassLoader.getSystemResource("map/chunks/3.png");
+    private static final Image chunkImage3 = toolkit.getImage(chunk3);
+    private static final URL chunk4 = ClassLoader.getSystemResource("map/chunks/4.png");
+    private static final Image chunkImage4 = toolkit.getImage(chunk4);
+    private static final URL chunk5 = ClassLoader.getSystemResource("map/chunks/5.png");
+    private static final Image chunkImage5 = toolkit.getImage(chunk5);
+    private static final URL chunk6 = ClassLoader.getSystemResource("map/chunks/6.png");
+    private static final Image chunkImage6 = toolkit.getImage(chunk6);
+    private static final URL chunk7 = ClassLoader.getSystemResource("map/chunks/7.png");
+    private static final Image chunkImage7 = toolkit.getImage(chunk7);
+    private static final URL chunk8 = ClassLoader.getSystemResource("map/chunks/8.png");
+    private static final Image chunkImage8 = toolkit.getImage(chunk8);
 
     /**
-     * Constructor for our Chunk class
+     * Variables for our Chunk class
      */
-    public Chunk() {
-        currentChunk = 1;
-        x = 0;
-        iterations = 0;
-    }
+
+    private static int speed;
+    private static int x = 0;
+    private static int iterations = 0;
+    private static int currentChunk = 1;
 
     public static int getSpeed() {
         return speed;
@@ -65,7 +62,7 @@ public class Chunk {
      *
      * @param x receives an integer
      */
-    public void setX(int x) {
+    public static void setX(int x) {
         Chunk.x = x;
     }
 
@@ -92,7 +89,7 @@ public class Chunk {
      *
      * @return an Image of the next chunk
      */
-    private Image nextChunk() {
+    private static Image nextChunk() {
         return switch (currentChunk) {
             case 1 -> chunkImage2;
             case 2 -> chunkImage3;
@@ -111,7 +108,7 @@ public class Chunk {
      *
      * @return an Image of the current chunk
      */
-    private Image getChunk() {
+    private static Image getChunk() {
         return switch (currentChunk) {
             case 1 -> chunkImage1;
             case 2 -> chunkImage2;
@@ -128,7 +125,7 @@ public class Chunk {
     /**
      * This method adds the next chunk
      */
-    private void addChunk() {
+    private static void addChunk() {
         if (currentChunk == 8) {
             currentChunk = 1;
         } else {
@@ -138,22 +135,35 @@ public class Chunk {
 
     /**
      * This method calculates which chunk should be displayed and where
+     *
+     * @param gameObjectHandler receives a GameObjectHandler to spawn the enemies
      */
-    public void tick() {
+    public static void tick(GameObjectHandler gameObjectHandler) {
         x += -speed;
         if (x < -1118) {
+
+            /*
+             * Changes currentChunk to the next possible chunk, and
+             * set's chunk's x position to 0, to start the process again
+             */
             addChunk();
             setX(0);
+
             iterations++;
+
+            Player.damageAnimation(false);
+
+            gameObjectHandler.addObject(SpawnEnemy.spawn());
+
         }
     }
 
     /**
-     * This method renders the previous chunk, current chunk and next chunk
+     * This method renders the current chunk and next chunk
      *
      * @param graphics receives the graphics object
      */
-    public void render(Graphics graphics) {
+    public static void render(Graphics graphics) {
 
         // Render current chunk
         graphics.drawImage(

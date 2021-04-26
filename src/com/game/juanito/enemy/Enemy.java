@@ -1,12 +1,9 @@
 package com.game.juanito.enemy;
 
-import com.game.juanito.handler.CollisionHandler;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.player.Player;
-
-import java.awt.*;
 
 public abstract class Enemy extends GameObject {
 
@@ -19,14 +16,15 @@ public abstract class Enemy extends GameObject {
         super(x, y, id);
     }
 
-    protected void collisionCheck(CollisionHandler collisionHandler) {
+    protected void moveEnemy() {
         if (Chunk.getSpeed() != 0)
             x += -Chunk.getSpeed();
-        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
     }
 
     protected void collisionIntersect() {
+        // Move enemy out of player's view
         x = -200;
+
         Player.setHealth(Player.getHealth() - 1);
         Player.damageAnimation(true);
     }

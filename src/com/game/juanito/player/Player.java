@@ -1,10 +1,17 @@
 package com.game.juanito.player;
 
 import com.game.juanito.handler.CollisionHandler;
+import com.game.juanito.handler.SoundHandler;
+import com.game.juanito.main.Game;
 import com.game.juanito.main.GameObject;
 import com.game.juanito.main.ID;
+import com.game.juanito.player.inventory.Inventory;
+import com.game.juanito.screen.Screen;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -12,14 +19,16 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
+    public static int health = 6;
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static URL player = ClassLoader.getSystemResource("player/player.gif");
     static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
     static Image playerImage = toolkit.getImage(player);
-
-    private static int health = 6;
+    static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
+    private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
+    private static final Inventory inventory = new Inventory();
     private static int speedY;
-    public static CollisionHandler collisionHandler = new CollisionHandler(90, 32); // 90 & 64
+    private static boolean shouldRender;
 
     /**
      * Constructor for Player class
@@ -32,6 +41,15 @@ public class Player extends GameObject {
         super(x, y, id);
         collisionHandler.setX(x + 20); // 20
         collisionHandler.setY(y); // 0
+        shouldRender = true;
+    }
+
+    public static CollisionHandler getCollisionHandler() {
+        return collisionHandler;
+    }
+
+    public static Inventory getInventory() {
+        return inventory;
     }
 
     public static int getSpeedY() {
@@ -58,9 +76,26 @@ public class Player extends GameObject {
      */
     public static void setHealth(int health) {
         Player.health = health;
-        if (Player.health == 0) {
-            System.out.println("Juanito died");
+        try {
+            SoundHandler.playSound(damageEffect, 0.5F, false);
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
         }
+        if (Player.health == 0) {
+            Game.setScreen(Screen.DEATH);
+        }
+    }
+
+    public static boolean shouldRender() {
+        return shouldRender;
+    }
+
+    public static void setShouldRender(boolean shouldRender) {
+        Player.shouldRender = shouldRender;
+    }
+
+    public static void setShouldRender() {
+        shouldRender = !shouldRender;
     }
 
     public static void damageAnimation(boolean isDamaged) {
@@ -81,8 +116,9 @@ public class Player extends GameObject {
             y += +5;
         else if (y >= 430)
             y -= 5;
+
         collisionHandler.setY(y + 92); // 65
-        collisionHandler.setRectangle(new Rectangle(collisionHandler.getX(), collisionHandler.getY(), collisionHandler.getWidth(), collisionHandler.getHeight()));
+        collisionHandler.updateRectangle();
         return true;
     }
 
@@ -93,11 +129,46 @@ public class Player extends GameObject {
      */
     @Override
     public void render(Graphics graphics) {
+
+        if (shouldRender) {
+            graphics.drawImage(
+                    playerImage,
+                    75,
+                    y,
+                    null
+            );
+        }
+
+        // Inventory
+
         graphics.drawImage(
-                playerImage,
-                75,
-                y,
-                null);
+                inventory.getContainerImage(),
+                252,
+                530,
+                null
+        );
+
+        int xOffset = 0;
+
+        for (int i = 0; i < inventory.getNotesCollected(); i++) {
+            graphics.drawImage(
+                    inventory.getInventoryIconImage(i),
+                    252 + xOffset,
+                    530,
+                    null
+            );
+            xOffset += 64;
+        }
+
+        // Note
+        if (inventory.getReadingNote() != 10) {
+            graphics.drawImage(
+                    inventory.getInventoryImage(inventory.getReadingNote()),
+                    204,
+                    12,
+                    null
+            );
+        }
     }
 
     @Override

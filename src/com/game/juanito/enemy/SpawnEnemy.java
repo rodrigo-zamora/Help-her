@@ -1,10 +1,7 @@
 package com.game.juanito.enemy;
 
 import com.game.juanito.enemy.enemies.*;
-import com.game.juanito.handler.GameObjectHandler;
 import com.game.juanito.main.ID;
-import com.game.juanito.map.Chunk;
-import com.game.juanito.player.Player;
 
 import java.util.Random;
 
@@ -15,7 +12,7 @@ public class SpawnEnemy {
      *
      * @return an ID of the random enemy
      */
-    private ID getRandomEnemy() {
+    private static ID getRandomEnemy() {
         Random random = new Random();
         int randomInteger = random.nextInt(5);
         return switch (randomInteger) {
@@ -33,7 +30,7 @@ public class SpawnEnemy {
      *
      * @return a random integer from 210 to 410
      */
-    private int getRandomY() {
+    private static int getRandomY() {
         Random random = new Random();
         return random.nextInt(410 - 250) + 250;
     }
@@ -41,12 +38,12 @@ public class SpawnEnemy {
     /**
      * Method to spawn an enemy
      *
-     * @param y receives the X to spawn the enemy
      * @return the enemy object
      */
-    private Enemy spawnEnemy(int y) {
+    public static Enemy spawn() {
         ID enemyType = getRandomEnemy();
         Enemy enemy;
+        int y = getRandomY();
         switch (enemyType) {
             case Aarav -> enemy = new Aarav(1016, y, ID.Aarav);
             case Nasra -> enemy = new Nasra(1016, y, ID.Nasra);
@@ -56,15 +53,5 @@ public class SpawnEnemy {
             default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
         }
         return enemy;
-    }
-
-    /**
-     * @param gameObjectHandler
-     */
-    public void tick(GameObjectHandler gameObjectHandler) {
-        if (Chunk.getX() == -1115) {
-            Player.damageAnimation(false);
-            gameObjectHandler.addObject(spawnEnemy(getRandomY()));
-        }
     }
 }

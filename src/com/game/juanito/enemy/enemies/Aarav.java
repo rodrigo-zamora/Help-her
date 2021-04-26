@@ -28,8 +28,6 @@ public class Aarav extends Enemy {
      */
     public Aarav(int x, int y, ID id) {
         super(x, y, id);
-        collisionHandler.setY(y);
-        collisionHandler.setX(x);
     }
 
     /**
@@ -47,15 +45,16 @@ public class Aarav extends Enemy {
     @Override
     public boolean tick() {
         collisionHandler.setX(x);
-        collisionHandler.setY(y+79);
-        collisionCheck(collisionHandler);
+        collisionHandler.setY(y + 79);
+        moveEnemy();
+        collisionHandler.updateRectangle();
         return x >= -200;
     }
 
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(Game.isMoving),
+                getImage(Game.isMoving()),
                 getX(),
                 getY(),
                 null
