@@ -169,7 +169,6 @@ public class Player extends GameObject {
                     null
             );
         }
-
     }
 
     @Override
