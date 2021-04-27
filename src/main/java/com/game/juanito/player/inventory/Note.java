@@ -20,6 +20,11 @@ public class Note {
         this.url = imagePath;
     }
 
+    public Note(boolean isOpen, boolean beenFound) {
+        this.open = isOpen;
+        this.beenFound = beenFound;
+    }
+
     public Image getNoteImage() {
         return noteImage;
     }
@@ -67,8 +72,7 @@ public class Note {
     @Override
     public String toString() {
         return "Note{" +
-                "url=" + url +
-                ", hasBeenFound=" + beenFound +
+                "hasBeenFound=" + beenFound +
                 ", isOpen=" + open +
                 '}';
     }

@@ -1,5 +1,6 @@
 package com.game.juanito.input;
 
+import com.game.juanito.data.Save;
 import com.game.juanito.main.Game;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
@@ -8,6 +9,7 @@ import com.game.juanito.screen.Screen;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class KeyboardInput extends KeyAdapter {
 
@@ -38,6 +40,11 @@ public class KeyboardInput extends KeyAdapter {
 
                 // Inventory
                 case 49, 50, 51, 52, 53, 54, 55, 56, 57 -> {
+                    try {
+                        Save.saveGame();
+                    } catch (IOException exception) {
+                        exception.printStackTrace();
+                    }
                     if (!Game.isPaused()) {
                         if (Player.getInventory().getNote(key - 49).hasBeenFound()) {
                             Player.getInventory().getNote(key - 49).setOpen();
