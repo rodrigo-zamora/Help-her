@@ -119,6 +119,20 @@ public class MouseInput extends MouseAdapter {
             ) {
                 Game.setScreen(Screen.MAIN_MENU);
             }
+        } else if(Game.getScreen() == Screen.PAUSED) {
+            if (event.getX() >= 405 &&
+                    event.getX() <= 675 &&
+                    event.getY() >= (640 / 2) - 70 &&
+                    event.getY() <= (640 / 2)
+            ) {
+                System.out.println("Save");
+            } else if (event.getX() >= 405 &&
+                    event.getX() <= 675 &&
+                    event.getY() >= (640 / 2) + 35 &&
+                    event.getY() <= (640 / 2) + 35 + 70
+            ) {
+                System.out.println("load");
+            }
         }
     }
 }
