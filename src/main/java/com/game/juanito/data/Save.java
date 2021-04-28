@@ -19,34 +19,55 @@ public class Save {
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put("player.health", Player.getHealth());
-        jsonObject.put("player.collisionHandler.x", Player.getCollisionHandler().getX());
-        jsonObject.put("player.collisionHandler.y", Player.getCollisionHandler().getY());
-        jsonObject.put("chunk.currentChunk", Chunk.getCurrentChunk());
-        jsonObject.put("chunk.iterations", Chunk.getIterations());
-        jsonObject.put("door.x", Door.getX());
-        jsonObject.put("door.y", Door.getY());
-        jsonObject.put("door.shouldRender", Door.shouldRender());
-        jsonObject.put("door.collisionHandler.getX", Door.getCollisionHandler().getX());
-        jsonObject.put("door.collisionHandler.gety", Door.getCollisionHandler().getY());
+        JSONObject player = new JSONObject();
+        player.put("health", Player.getHealth());
+        player.put("notesCollected", Player.getInventory().getNotesCollected());
+        player.put("readingNote", Player.getInventory().getReadingNote());
+
+        JSONObject playerCollisionHandler = new JSONObject();
+        playerCollisionHandler.put("x", Player.getCollisionHandler().getX());
+        playerCollisionHandler.put("y", Player.getCollisionHandler().getY());
+        player.put("collisionHandler", playerCollisionHandler);
+
+        jsonObject.put("player", player);
+
+        JSONObject chunk = new JSONObject();
+        chunk.put("x", Chunk.getX());
+        chunk.put("currentChunk", Chunk.getCurrentChunk());
+        chunk.put("iterations", Chunk.getIterations());
+
+        jsonObject.put("chunk", chunk);
+
+        JSONObject door = new JSONObject();
+        door.put("x", Door.getX());
+        door.put("y", Door.getY());
+        door.put("shouldRender", Door.shouldRender());
+
+        JSONObject doorCollisionHandler = new JSONObject();
+        doorCollisionHandler.put("x", Door.getCollisionHandler().getX());
+        doorCollisionHandler.put("y", Door.getCollisionHandler().getY());
+        door.put("collisionHandler", doorCollisionHandler);
+        jsonObject.put("door", door);
 
         jsonArray.put(jsonObject);
 
+        JSONObject note = new JSONObject();
+        JSONArray noteArray = new JSONArray();
         for (int i = 0; i < 9; i++) {
-            JSONObject note = new JSONObject();
             JSONObject noteItem = new JSONObject();
             noteItem.put("isOpen", Player.getInventory().getNote(i).isOpen());
             noteItem.put("hasBeenFound", Player.getInventory().getNote(i).hasBeenFound());
             noteItem.put("id", i);
-            note.put("note", noteItem);
-            jsonArray.put(note);
+            noteArray.put(noteItem);
         }
+        note.put("notes", noteArray);
+
+        jsonArray.put(note);
 
         try (FileWriter file = new FileWriter("data.json")) {
-            System.out.println("Successfully Copied JSON Object to File...");
             mapper.writeValue(file, jsonArray.toList());
-        } catch(Exception exception){
-            System.out.println(exception);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
     }
