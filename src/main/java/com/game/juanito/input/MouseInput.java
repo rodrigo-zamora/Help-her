@@ -1,5 +1,7 @@
 package com.game.juanito.input;
 
+import com.game.juanito.data.Load;
+import com.game.juanito.data.Save;
 import com.game.juanito.handler.SoundHandler;
 import com.game.juanito.main.Game;
 import com.game.juanito.map.Chunk;
@@ -119,19 +121,27 @@ public class MouseInput extends MouseAdapter {
             ) {
                 Game.setScreen(Screen.MAIN_MENU);
             }
-        } else if(Game.getScreen() == Screen.PAUSED) {
+        } else if (Game.getScreen() == Screen.PAUSED) {
             if (event.getX() >= 405 &&
                     event.getX() <= 675 &&
                     event.getY() >= (640 / 2) - 70 &&
                     event.getY() <= (640 / 2)
             ) {
-                System.out.println("Save");
+                try {
+                    Save.saveGame();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
             } else if (event.getX() >= 405 &&
                     event.getX() <= 675 &&
                     event.getY() >= (640 / 2) + 35 &&
                     event.getY() <= (640 / 2) + 35 + 70
             ) {
-                System.out.println("load");
+                try {
+                    Load.loadGame();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
             }
         }
     }

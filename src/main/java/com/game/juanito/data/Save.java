@@ -13,6 +13,9 @@ import java.io.IOException;
 
 public class Save {
 
+    /**
+     * @throws IOException
+     */
     public static void saveGame() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);

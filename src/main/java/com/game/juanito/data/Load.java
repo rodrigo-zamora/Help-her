@@ -12,6 +12,9 @@ import java.io.IOException;
 
 public class Load {
 
+    /**
+     * @throws IOException
+     */
     public static void loadGame() throws IOException {
 
         // Read file into a string
@@ -36,6 +39,9 @@ public class Load {
         }
     }
 
+    /**
+     * @param jsonObject
+     */
     private static void parseData(JSONObject jsonObject) {
         if (jsonObject.has("door")) {
             JSONObject door = jsonObject.getJSONObject("door");
@@ -53,14 +59,12 @@ public class Load {
             Player.setShouldRender((Boolean) player.get("shouldRender"));
             Player.getInventory().setReadingNote((Integer) player.get("readingNote"));
             Player.getInventory().setNotesCollected((Integer) player.get("notesCollected"));
-        }
-        else if (jsonObject.has("chunk")) {
+        } else if (jsonObject.has("chunk")) {
             JSONObject chunk = jsonObject.getJSONObject("chunk");
             Chunk.setX((Integer) chunk.get("x"));
             Chunk.setCurrentChunk((Integer) chunk.get("currentChunk"));
             Chunk.setIterations((Integer) chunk.get("iterations"));
-        }
-        else if (jsonObject.has("inventory")) {
+        } else if (jsonObject.has("inventory")) {
             JSONObject inventory = jsonObject.getJSONObject("inventory");
             for (int i = 0; i < 9; i++) {
                 JSONObject note = inventory.getJSONObject(String.valueOf(i));

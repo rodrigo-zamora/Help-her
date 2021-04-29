@@ -19,14 +19,14 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
-    private static int health = 6;
+    private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
+    private static final Inventory inventory = new Inventory();
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static URL player = ClassLoader.getSystemResource("player/player.gif");
     static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
     static Image playerImage = toolkit.getImage(player);
     static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
-    private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
-    private static final Inventory inventory = new Inventory();
+    private static int health = 6;
     private static int speedY;
     private static boolean shouldRender, isDamaged;
     private static int yS;

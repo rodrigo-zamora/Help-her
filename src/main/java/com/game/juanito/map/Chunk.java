@@ -85,7 +85,6 @@ public class Chunk {
     }
 
     /**
-     *
      * @return
      */
     public static int getCurrentChunk() {
@@ -93,7 +92,6 @@ public class Chunk {
     }
 
     /**
-     *
      * @param currentChunk
      */
     public static void setCurrentChunk(int currentChunk) {

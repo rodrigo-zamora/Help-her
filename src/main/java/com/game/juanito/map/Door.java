@@ -65,7 +65,6 @@ public class Door {
     }
 
     /**
-     *
      * @return
      */
     public static boolean shouldRender() {
@@ -73,7 +72,6 @@ public class Door {
     }
 
     /**
-     *
      * @param shouldRender
      */
     public static void setShouldRender(boolean shouldRender) {
@@ -81,7 +79,6 @@ public class Door {
     }
 
     /**
-     *
      * @return
      */
     public static CollisionHandler getCollisionHandler() {
@@ -89,7 +86,6 @@ public class Door {
     }
 
     /**
-     *
      * @param collisionHandler
      */
     public static void setCollisionHandler(CollisionHandler collisionHandler) {

@@ -15,7 +15,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 import java.io.Serial;
-import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
@@ -56,6 +55,46 @@ public class Game extends Canvas implements Runnable {
         System.setProperty("sun.java2d.opengl", "true");
         screen = Screen.MAIN_MENU;
         new Game();
+    }
+
+    /**
+     * Getters and setters
+     */
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static void setPaused() {
+        Game.paused = !Game.paused;
+    }
+
+    public static Boolean getPaused() {
+        return Game.paused;
+    }
+
+    public static boolean isMoving() {
+        return isMoving;
+    }
+
+    public static void setMoving(boolean isMoving) {
+        Game.isMoving = isMoving;
+    }
+
+    public static Screen getScreen() {
+        return screen;
+    }
+
+    public static void setScreen(Screen screen) {
+        Game.screen = screen;
+    }
+
+    public static int getFPS() {
+        return FPS;
+    }
+
+    public static void setFPS(int FPS) {
+        Game.FPS = FPS;
     }
 
     /**
@@ -188,45 +227,5 @@ public class Game extends Canvas implements Runnable {
 
         graphics.dispose();
         bufferStrategy.show();
-    }
-
-    /**
-     * Getters and setters
-     */
-
-    public static boolean isPaused() {
-        return paused;
-    }
-
-    public static void setPaused() {
-        Game.paused = !Game.paused;
-    }
-
-    public static Boolean getPaused() {
-        return Game.paused;
-    }
-
-    public static boolean isMoving() {
-        return isMoving;
-    }
-
-    public static void setMoving(boolean isMoving) {
-        Game.isMoving = isMoving;
-    }
-
-    public static Screen getScreen() {
-        return screen;
-    }
-
-    public static void setScreen(Screen screen) {
-        Game.screen = screen;
-    }
-
-    public static int getFPS() {
-        return FPS;
-    }
-
-    public static void setFPS(int FPS) {
-        Game.FPS = FPS;
     }
 }
