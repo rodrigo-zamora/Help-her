@@ -1,5 +1,7 @@
 package com.game.juanito.input;
 
+import com.game.juanito.data.Load;
+import com.game.juanito.data.Save;
 import com.game.juanito.main.Game;
 import com.game.juanito.map.Chunk;
 import com.game.juanito.map.Door;
@@ -8,12 +10,26 @@ import com.game.juanito.screen.Screen;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class KeyboardInput extends KeyAdapter {
 
     public void keyPressed(KeyEvent event) {
         if (Game.getScreen() == Screen.GAME) {
             int key = event.getKeyCode();
+            if (key == 83) {
+                try {
+                    Save.saveGame();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            } else if(key == 76) {
+                try {
+                    Load.loadGame();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            }
             switch (key) {
                 case 38, 87 -> {
                     if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10 && !Game.isPaused())
@@ -39,15 +55,19 @@ public class KeyboardInput extends KeyAdapter {
                 // Inventory
                 case 49, 50, 51, 52, 53, 54, 55, 56, 57 -> {
                     if (!Game.isPaused()) {
-                        if (Player.getInventory().getNote(key - 49).hasBeenFound()) {
-                            Player.getInventory().getNote(key - 49).setOpen();
-                            Player.setSpeedY(0);
-                            Chunk.setSpeed(0);
-                            if (!Player.getInventory().getNote(key - 49).isOpen()) {
-                                Player.getInventory().setReadingNote(key - 49);
+                        int note = key - 49;
+                        Player.getInventory().closeAllNotesExcept(note);
+                        if (Player.getInventory().getNote(note).hasBeenFound()) {
+                            if(Player.getInventory().getNote(note).isOpen()) {
+                                Player.getInventory().closeAllNotes();
                             } else {
-                                Player.getInventory().setReadingNote(10);
+                                Player.getInventory().getNote(note).setOpen(true);
+                                Player.getInventory().setReadingNote(note);
+                                Player.setSpeedY(0);
+                                Chunk.setSpeed(0);
                             }
+                        } else {
+                            Player.getInventory().closeAllNotes();
                         }
                     }
                 }

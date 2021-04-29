@@ -14,7 +14,7 @@ public class Door {
     private static final URL door = ClassLoader.getSystemResource("map/door.png");
     private static final Image doorImage = toolkit.getImage(door);
 
-    public static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
+    private static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
 
     private static boolean shouldRender;
     private static int x = 1500, y;
@@ -64,12 +64,36 @@ public class Door {
         Door.y = y;
     }
 
-    public static boolean isShouldRender() {
+    /**
+     *
+     * @return
+     */
+    public static boolean shouldRender() {
         return shouldRender;
     }
 
+    /**
+     *
+     * @param shouldRender
+     */
     public static void setShouldRender(boolean shouldRender) {
         Door.shouldRender = shouldRender;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static CollisionHandler getCollisionHandler() {
+        return collisionHandler;
+    }
+
+    /**
+     *
+     * @param collisionHandler
+     */
+    public static void setCollisionHandler(CollisionHandler collisionHandler) {
+        Door.collisionHandler = collisionHandler;
     }
 
     /**
@@ -153,6 +177,7 @@ public class Door {
 
             // Set beenFound from latest note to true
             Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
+            Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setOpen(false);
 
             // Increase notes found by 1
             Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);

@@ -85,6 +85,22 @@ public class Chunk {
     }
 
     /**
+     *
+     * @return
+     */
+    public static int getCurrentChunk() {
+        return currentChunk;
+    }
+
+    /**
+     *
+     * @param currentChunk
+     */
+    public static void setCurrentChunk(int currentChunk) {
+        Chunk.currentChunk = currentChunk;
+    }
+
+    /**
      * This method returns the Image to be displayed at the next chunk
      *
      * @return an Image of the next chunk

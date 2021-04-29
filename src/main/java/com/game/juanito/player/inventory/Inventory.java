@@ -67,4 +67,19 @@ public class Inventory {
                 "inventory=" + inventory +
                 '}';
     }
+
+    public void closeAllNotes() {
+        readingNote = 10;
+        for (int i = 0; i < 9; i++) {
+            inventory.get(i).setOpen(false);
+        }
+    }
+
+    public void closeAllNotesExcept(int index) {
+        for (int i = 0; i < 9; i++) {
+            if (i != index) {
+                inventory.get(i).setOpen(false);
+            }
+        }
+    }
 }

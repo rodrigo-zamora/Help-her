@@ -29,6 +29,7 @@ public class Player extends GameObject {
     private static final Inventory inventory = new Inventory();
     private static int speedY;
     private static boolean shouldRender;
+    private static int yS;
 
     /**
      * Constructor for Player class
@@ -106,12 +107,21 @@ public class Player extends GameObject {
         }
     }
 
+    public static int getyS() {
+        return yS;
+    }
+
+    public static void setyS(int yS) {
+        Player.yS = yS;
+    }
+
     /**
      * Tick method
      */
     @Override
     public boolean tick() {
         y += speedY;
+        Player.yS = y;
         if (y <= 260)
             y += +5;
         else if (y >= 430)

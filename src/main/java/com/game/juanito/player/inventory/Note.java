@@ -16,8 +16,13 @@ public class Note {
         noteImage = toolkit.getImage(imagePath);
         noteIconImage = toolkit.getImage(iconPath);
         this.beenFound = hasBeenFound;
-        this.open = true;
+        this.open = false;
         this.url = imagePath;
+    }
+
+    public Note(boolean isOpen, boolean beenFound) {
+        this.open = isOpen;
+        this.beenFound = beenFound;
     }
 
     public Image getNoteImage() {
@@ -67,8 +72,7 @@ public class Note {
     @Override
     public String toString() {
         return "Note{" +
-                "url=" + url +
-                ", hasBeenFound=" + beenFound +
+                "hasBeenFound=" + beenFound +
                 ", isOpen=" + open +
                 '}';
     }
