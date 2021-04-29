@@ -16,7 +16,7 @@ public class Note {
         noteImage = toolkit.getImage(imagePath);
         noteIconImage = toolkit.getImage(iconPath);
         this.beenFound = hasBeenFound;
-        this.open = true;
+        this.open = false;
         this.url = imagePath;
     }
 

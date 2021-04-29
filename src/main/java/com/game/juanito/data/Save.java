@@ -24,6 +24,7 @@ public class Save {
         player.put("shouldRender", Player.shouldRender());
         player.put("notesCollected", Player.getInventory().getNotesCollected());
         player.put("readingNote", Player.getInventory().getReadingNote());
+        player.put("y", Player.getyS());
 
         JSONObject playerCollisionHandler = new JSONObject();
         playerCollisionHandler.put("x", Player.getCollisionHandler().getX());

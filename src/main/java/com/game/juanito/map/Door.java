@@ -177,6 +177,7 @@ public class Door {
 
             // Set beenFound from latest note to true
             Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
+            Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setOpen(false);
 
             // Increase notes found by 1
             Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
