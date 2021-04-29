@@ -73,7 +73,19 @@ public class KeyboardInput extends KeyAdapter {
                 }
 
                 // Pause menu
-                case 27 -> Game.setPaused();
+                case 112, 80 -> {
+                    System.out.println("fuera "+Game.getPaused());
+                    Game.setPaused();
+
+                    if (Game.isPaused()){
+                        Game.setScreen(Screen.PAUSED);
+                        Game.setPaused();
+                        System.out.println("dentro "+Game.getPaused());
+                    } else {
+                        Game.setScreen(Screen.GAME);
+                        System.out.println("else "+Game.getPaused());
+                    }
+                }
             }
         }
     }

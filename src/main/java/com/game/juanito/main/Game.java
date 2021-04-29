@@ -9,10 +9,7 @@ import com.game.juanito.player.HealthBar;
 import com.game.juanito.player.Player;
 import com.game.juanito.screen.Screen;
 import com.game.juanito.screen.Window;
-import com.game.juanito.screen.screens.Credits;
-import com.game.juanito.screen.screens.Death;
-import com.game.juanito.screen.screens.Loading;
-import com.game.juanito.screen.screens.MainMenu;
+import com.game.juanito.screen.screens.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -154,6 +151,8 @@ public class Game extends Canvas implements Runnable {
 
             case DEATH -> Death.render(graphics);
 
+            case PAUSED -> Paused.render(graphics);
+
             case GAME -> {
 
                 // Render map
@@ -201,6 +200,10 @@ public class Game extends Canvas implements Runnable {
 
     public static void setPaused() {
         Game.paused = !Game.paused;
+    }
+
+    public static Boolean getPaused() {
+        return Game.paused;
     }
 
     public static boolean isMoving() {
