@@ -16,11 +16,12 @@ public class Save {
     public static void saveGame() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = new JSONObject();
+        JSONArray dataArray = new JSONArray();
 
+        JSONObject playerObject = new JSONObject();
         JSONObject player = new JSONObject();
         player.put("health", Player.getHealth());
+        player.put("shouldRender", Player.shouldRender());
         player.put("notesCollected", Player.getInventory().getNotesCollected());
         player.put("readingNote", Player.getInventory().getReadingNote());
 
@@ -29,15 +30,20 @@ public class Save {
         playerCollisionHandler.put("y", Player.getCollisionHandler().getY());
         player.put("collisionHandler", playerCollisionHandler);
 
-        jsonObject.put("player", player);
+        playerObject.put("player", player);
 
+        dataArray.put(playerObject);
+
+        JSONObject chunkObject = new JSONObject();
         JSONObject chunk = new JSONObject();
         chunk.put("x", Chunk.getX());
         chunk.put("currentChunk", Chunk.getCurrentChunk());
         chunk.put("iterations", Chunk.getIterations());
+        chunkObject.put("chunk", chunk);
 
-        jsonObject.put("chunk", chunk);
+        dataArray.put(chunkObject);
 
+        JSONObject doorObject = new JSONObject();
         JSONObject door = new JSONObject();
         door.put("x", Door.getX());
         door.put("y", Door.getY());
@@ -47,25 +53,28 @@ public class Save {
         doorCollisionHandler.put("x", Door.getCollisionHandler().getX());
         doorCollisionHandler.put("y", Door.getCollisionHandler().getY());
         door.put("collisionHandler", doorCollisionHandler);
-        jsonObject.put("door", door);
+        door.put("collisionHandler", doorCollisionHandler);
 
-        jsonArray.put(jsonObject);
+        doorObject.put("door", door);
 
-        JSONObject note = new JSONObject();
-        JSONArray noteArray = new JSONArray();
+        dataArray.put(doorObject);
+
+        JSONObject inventoryObject = new JSONObject();
+        JSONObject inventory = new JSONObject();
+
         for (int i = 0; i < 9; i++) {
-            JSONObject noteItem = new JSONObject();
-            noteItem.put("isOpen", Player.getInventory().getNote(i).isOpen());
-            noteItem.put("hasBeenFound", Player.getInventory().getNote(i).hasBeenFound());
-            noteItem.put("id", i);
-            noteArray.put(noteItem);
+            JSONObject inventoryNote = new JSONObject();
+            inventoryNote.put("isOpen", Player.getInventory().getNote(i).isOpen());
+            inventoryNote.put("hasBeenFound", Player.getInventory().getNote(i).hasBeenFound());
+            inventory.put(String.valueOf(i), inventoryNote);
         }
-        note.put("notes", noteArray);
 
-        jsonArray.put(note);
+        inventoryObject.put("inventory", inventory);
+
+        dataArray.put(inventoryObject);
 
         try (FileWriter file = new FileWriter("data.json")) {
-            mapper.writeValue(file, jsonArray.toList());
+            mapper.writeValue(file, dataArray.toList());
         } catch (Exception exception) {
             exception.printStackTrace();
         }
