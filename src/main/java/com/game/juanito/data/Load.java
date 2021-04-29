@@ -47,8 +47,9 @@ public class Load {
             Door.getCollisionHandler().setY((Integer) collisionHandler.get("y"));
         } else if (jsonObject.has("player")) {
             JSONObject player = jsonObject.getJSONObject("player");
-            Player.setyS((Integer) player.get("y"));
             Player.setHealth((Integer) player.get("health"));
+            Player.damageAnimation((Boolean) player.get("damageAnimation"));
+            Player.setyS((Integer) player.get("y"));
             Player.setShouldRender((Boolean) player.get("shouldRender"));
             Player.getInventory().setReadingNote((Integer) player.get("readingNote"));
             Player.getInventory().setNotesCollected((Integer) player.get("notesCollected"));

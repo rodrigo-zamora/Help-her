@@ -19,7 +19,7 @@ import java.net.URL;
  */
 public class Player extends GameObject {
 
-    public static int health = 6;
+    private static int health = 6;
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static URL player = ClassLoader.getSystemResource("player/player.gif");
     static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
@@ -28,7 +28,7 @@ public class Player extends GameObject {
     private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
     private static final Inventory inventory = new Inventory();
     private static int speedY;
-    private static boolean shouldRender;
+    private static boolean shouldRender, isDamaged;
     private static int yS;
 
     /**
@@ -99,7 +99,12 @@ public class Player extends GameObject {
         shouldRender = !shouldRender;
     }
 
+    public static boolean getDamageAnimation() {
+        return Player.isDamaged;
+    }
+
     public static void damageAnimation(boolean isDamaged) {
+        Player.isDamaged = isDamaged;
         if (isDamaged) {
             playerImage = toolkit.getImage(playerDamage);
         } else {

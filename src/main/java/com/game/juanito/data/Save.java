@@ -21,6 +21,7 @@ public class Save {
         JSONObject playerObject = new JSONObject();
         JSONObject player = new JSONObject();
         player.put("health", Player.getHealth());
+        player.put("damageAnimation", Player.getDamageAnimation());
         player.put("shouldRender", Player.shouldRender());
         player.put("notesCollected", Player.getInventory().getNotesCollected());
         player.put("readingNote", Player.getInventory().getReadingNote());
