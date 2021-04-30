@@ -1,7 +1,5 @@
 package com.game.ainsley.input;
 
-import com.game.ainsley.data.Load;
-import com.game.ainsley.data.Save;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
@@ -10,26 +8,12 @@ import com.game.ainsley.screen.Screen;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 public class KeyboardInput extends KeyAdapter {
 
     public void keyPressed(KeyEvent event) {
         if (Game.getScreen() == Screen.GAME) {
             int key = event.getKeyCode();
-            if (key == 83) {
-                try {
-                    Save.saveGame();
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                }
-            } else if(key == 76) {
-                try {
-                    Load.loadGame();
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                }
-            }
             switch (key) {
                 case 38, 87 -> {
                     if (Player.shouldRender() && Player.getInventory().getReadingNote() == 10 && !Game.isPaused())
@@ -74,17 +58,7 @@ public class KeyboardInput extends KeyAdapter {
 
                 // Pause menu
                 case 112, 80 -> {
-                    System.out.println("fuera " + Game.getPaused());
                     Game.setPaused();
-
-                    if (Game.isPaused()) {
-                        Game.setScreen(Screen.PAUSED);
-                        Game.setPaused();
-                        System.out.println("dentro " + Game.getPaused());
-                    } else {
-                        Game.setScreen(Screen.GAME);
-                        System.out.println("else " + Game.getPaused());
-                    }
                 }
             }
         }

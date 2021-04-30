@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 import java.io.Serial;
+import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
@@ -36,9 +37,9 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean isRunning = false;
 
-    /*private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL pause = ClassLoader.getSystemResource("Screens/pause.png");
-    public static final Image pauseImage = toolkit.getImage(pause);*/
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private static final URL pause = ClassLoader.getSystemResource("Screens/IntroLarge.gif");
+    private static final Image pauseImage = toolkit.getImage(pause);
 
     /**
      * Constructor for Game class
@@ -190,8 +191,6 @@ public class Game extends Canvas implements Runnable {
 
             case DEATH -> Death.render(graphics);
 
-            case PAUSED -> Paused.render(graphics);
-
             case GAME -> {
 
                 // Render map
@@ -245,14 +244,14 @@ public class Game extends Canvas implements Runnable {
                 }
 
                 // Pause menu
-                /*if (paused) {
+                if (paused) {
                     graphics.drawImage(
                             pauseImage,
                             0,
                             0,
                             null
                     );
-                }*/
+                }
             }
         }
 
