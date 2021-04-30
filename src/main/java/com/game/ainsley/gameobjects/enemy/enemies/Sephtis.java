@@ -1,43 +1,43 @@
-package com.game.ainsley.enemy.enemies;
+package com.game.ainsley.gameobjects.enemy.enemies;
 
-import com.game.ainsley.enemy.Enemy;
+import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.ID;
 
 import java.awt.*;
 import java.net.URL;
 
-public class Nasra extends Enemy {
+public class Sephtis extends Enemy {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-    URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
-    Image nasraLeftImage = toolkit.getImage(nasraLeft);
+    URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
+    Image sephtisLeftImage = toolkit.getImage(sephtisLeft);
 
-    CollisionHandler collisionHandler = new CollisionHandler(62, 38);
+    CollisionHandler collisionHandler = new CollisionHandler(164, 50);
 
     /**
-     * Constructor for Nasra class
+     * Constructor for Sephtis class
      *
      * @param x
      * @param y
      * @param id
      */
-    public Nasra(int x, int y, ID id) {
+    public Sephtis(int x, int y, ID id) {
         super(x, y, id);
-        speedY = 3;
+        speedY = 1;
     }
 
     @Override
     public boolean tick() {
-        if (y <= 280) {
-            speedY = 3;
-        } else if (y >= 480) {
-            speedY = -3;
+        if (y <= 200) {
+            speedY = 1;
+        } else if (y >= 400) {
+            speedY = -1;
         }
         y += speedY;
-        collisionHandler.setX(x + 9);
-        collisionHandler.setY(y + 41);
+        collisionHandler.setX(x);
+        collisionHandler.setY(y + 108);
         moveEnemy();
         collisionHandler.updateRectangle();
         return x >= -200;
@@ -46,7 +46,7 @@ public class Nasra extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                nasraLeftImage,
+                sephtisLeftImage,
                 getX(),
                 getY(),
                 null

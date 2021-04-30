@@ -1,4 +1,4 @@
-package com.game.ainsley.main;
+package com.game.ainsley.gameobjects;
 
 public enum ID {
     Player(),

@@ -3,8 +3,8 @@ package com.game.ainsley.player;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.handler.SoundHandler;
 import com.game.ainsley.main.Game;
-import com.game.ainsley.main.GameObject;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.GameObject;
+import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.player.inventory.Inventory;
 import com.game.ainsley.screen.Screen;
 
@@ -144,43 +144,11 @@ public class Player extends GameObject {
      */
     @Override
     public void render(Graphics graphics) {
-
         if (shouldRender) {
             graphics.drawImage(
                     playerImage,
                     75,
                     y,
-                    null
-            );
-        }
-
-        // Inventory
-
-        graphics.drawImage(
-                inventory.getContainerImage(),
-                252,
-                530,
-                null
-        );
-
-        int xOffset = 0;
-
-        for (int i = 0; i < inventory.getNotesCollected(); i++) {
-            graphics.drawImage(
-                    inventory.getInventoryIconImage(i),
-                    252 + xOffset,
-                    530,
-                    null
-            );
-            xOffset += 64;
-        }
-
-        // Note
-        if (inventory.getReadingNote() != 10) {
-            graphics.drawImage(
-                    inventory.getInventoryImage(inventory.getReadingNote()),
-                    204,
-                    12,
                     null
             );
         }

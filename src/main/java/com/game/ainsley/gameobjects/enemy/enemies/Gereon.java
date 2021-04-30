@@ -1,43 +1,36 @@
-package com.game.ainsley.enemy.enemies;
+package com.game.ainsley.gameobjects.enemy.enemies;
 
-import com.game.ainsley.enemy.Enemy;
+import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.ID;
 
 import java.awt.*;
 import java.net.URL;
 
-public class Sephtis extends Enemy {
+public class Gereon extends Enemy {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-    URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
-    Image sephtisLeftImage = toolkit.getImage(sephtisLeft);
+    URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
+    Image gereonLeftImage = toolkit.getImage(gereonLeft);
 
-    CollisionHandler collisionHandler = new CollisionHandler(164, 50);
+    CollisionHandler collisionHandler = new CollisionHandler(70, 28);
 
     /**
-     * Constructor for Sephtis class
+     * Constructor for Gereon class
      *
      * @param x
      * @param y
      * @param id
      */
-    public Sephtis(int x, int y, ID id) {
+    public Gereon(int x, int y, ID id) {
         super(x, y, id);
-        speedY = 1;
     }
 
     @Override
     public boolean tick() {
-        if (y <= 200) {
-            speedY = 1;
-        } else if (y >= 400) {
-            speedY = -1;
-        }
-        y += speedY;
         collisionHandler.setX(x);
-        collisionHandler.setY(y + 108);
+        collisionHandler.setY(y + 100);
         moveEnemy();
         collisionHandler.updateRectangle();
         return x >= -200;
@@ -46,7 +39,7 @@ public class Sephtis extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                sephtisLeftImage,
+                gereonLeftImage,
                 getX(),
                 getY(),
                 null

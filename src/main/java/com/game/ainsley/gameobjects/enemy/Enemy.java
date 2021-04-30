@@ -1,7 +1,7 @@
-package com.game.ainsley.enemy;
+package com.game.ainsley.gameobjects.enemy;
 
-import com.game.ainsley.main.GameObject;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.GameObject;
+import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.player.Player;
 

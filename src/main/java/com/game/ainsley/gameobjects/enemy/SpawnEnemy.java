@@ -1,7 +1,7 @@
-package com.game.ainsley.enemy;
+package com.game.ainsley.gameobjects.enemy;
 
-import com.game.ainsley.enemy.enemies.*;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.ID;
+import com.game.ainsley.gameobjects.enemy.enemies.*;
 
 import java.util.Random;
 
@@ -51,6 +51,26 @@ public class SpawnEnemy {
             case Sephtis -> enemy = new Sephtis(1016, y, ID.Sephtis);
             case Deidamia -> enemy = new Deidamia(1016, y, ID.Deidamia);
             default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
+        }
+        return enemy;
+    }
+
+    /**
+     *
+     * @param id
+     * @param x
+     * @param y
+     * @return
+     */
+    public static Enemy spawn(String id, int x, int y) {
+        Enemy enemy;
+        switch (id) {
+            case "Aarav" -> enemy = new Aarav(x, y, ID.Aarav);
+            case "Nasra" -> enemy = new Nasra(x, y, ID.Nasra);
+            case "Gereon" -> enemy = new Gereon(x, y, ID.Gereon);
+            case "Sephtis" -> enemy = new Sephtis(x, y, ID.Sephtis);
+            case "Deidamia" -> enemy = new Deidamia(x, y, ID.Deidamia);
+            default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + id);
         }
         return enemy;
     }

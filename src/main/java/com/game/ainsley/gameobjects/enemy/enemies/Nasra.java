@@ -1,36 +1,43 @@
-package com.game.ainsley.enemy.enemies;
+package com.game.ainsley.gameobjects.enemy.enemies;
 
-import com.game.ainsley.enemy.Enemy;
+import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.ID;
 
 import java.awt.*;
 import java.net.URL;
 
-public class Gereon extends Enemy {
+public class Nasra extends Enemy {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-    URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
-    Image gereonLeftImage = toolkit.getImage(gereonLeft);
+    URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
+    Image nasraLeftImage = toolkit.getImage(nasraLeft);
 
-    CollisionHandler collisionHandler = new CollisionHandler(70, 28);
+    CollisionHandler collisionHandler = new CollisionHandler(62, 38);
 
     /**
-     * Constructor for Gereon class
+     * Constructor for Nasra class
      *
      * @param x
      * @param y
      * @param id
      */
-    public Gereon(int x, int y, ID id) {
+    public Nasra(int x, int y, ID id) {
         super(x, y, id);
+        speedY = 3;
     }
 
     @Override
     public boolean tick() {
-        collisionHandler.setX(x);
-        collisionHandler.setY(y + 100);
+        if (y <= 280) {
+            speedY = 3;
+        } else if (y >= 480) {
+            speedY = -3;
+        }
+        y += speedY;
+        collisionHandler.setX(x + 9);
+        collisionHandler.setY(y + 41);
         moveEnemy();
         collisionHandler.updateRectangle();
         return x >= -200;
@@ -39,7 +46,7 @@ public class Gereon extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                gereonLeftImage,
+                nasraLeftImage,
                 getX(),
                 getY(),
                 null

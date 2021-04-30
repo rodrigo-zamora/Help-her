@@ -1,9 +1,9 @@
-package com.game.ainsley.enemy.enemies;
+package com.game.ainsley.gameobjects.enemy.enemies;
 
-import com.game.ainsley.enemy.Enemy;
+import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.ID;
 
 import java.awt.*;
 import java.net.URL;

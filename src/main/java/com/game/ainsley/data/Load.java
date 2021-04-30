@@ -1,5 +1,8 @@
 package com.game.ainsley.data;
 
+import com.game.ainsley.gameobjects.ID;
+import com.game.ainsley.gameobjects.enemy.SpawnEnemy;
+import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
 import com.game.ainsley.player.Player;
@@ -43,6 +46,8 @@ public class Load {
      * @param jsonObject
      */
     private static void parseData(JSONObject jsonObject) {
+        Chunk.setSpeed(0);
+        Player.setSpeedY(0);
         if (jsonObject.has("door")) {
             JSONObject door = jsonObject.getJSONObject("door");
             Door.setX((Integer) door.get("x"));
@@ -71,7 +76,12 @@ public class Load {
                 Player.getInventory().getNote(i).setBeenFound((Boolean) note.get("hasBeenFound"));
                 Player.getInventory().getNote(i).setOpen((Boolean) note.get("isOpen"));
             }
+        } else if (jsonObject.has("enemy")) {
+            JSONObject enemy = jsonObject.getJSONObject("enemy");
+            if (!enemy.get("id").equals("null")) {
+                GameObjectHandler.getObject().removeIf(tempObject -> tempObject.getID() != ID.Player);
+                GameObjectHandler.addObject(SpawnEnemy.spawn((String) enemy.get("id"), (Integer) enemy.get("x"), (Integer) enemy.get("y")));
+            }
         }
     }
-
 }

@@ -2,6 +2,9 @@ package com.game.ainsley.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.game.ainsley.handler.GameObjectHandler;
+import com.game.ainsley.gameobjects.GameObject;
+import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
 import com.game.ainsley.player.Player;
@@ -10,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class Save {
 
@@ -77,6 +81,29 @@ public class Save {
         inventoryObject.put("inventory", inventory);
 
         dataArray.put(inventoryObject);
+
+        JSONObject enemyObject = new JSONObject();
+        JSONObject enemy = new JSONObject();
+
+        Iterator<GameObject> iterator = GameObjectHandler.getObject().iterator();
+        while(iterator.hasNext()) {
+            GameObject tempObject = iterator.next();
+            if (GameObjectHandler.getObject().size() != 1) {
+                if (tempObject.getID() != ID.Player) {
+                    enemyObject.put("id", tempObject.getID());
+                    enemyObject.put("x", tempObject.getX());
+                    enemyObject.put("y", tempObject.getY());
+                    enemy.put("enemy", enemyObject);
+                }
+            } else {
+                enemyObject.put("id", "null");
+                enemyObject.put("x", "null");
+                enemyObject.put("y", "null");
+                enemy.put("enemy", enemyObject);
+            }
+        }
+
+        dataArray.put(enemy);
 
         try (FileWriter file = new FileWriter("data.json")) {
             mapper.writeValue(file, dataArray.toList());

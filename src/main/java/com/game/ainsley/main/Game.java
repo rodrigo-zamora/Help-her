@@ -1,5 +1,6 @@
 package com.game.ainsley.main;
 
+import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.input.KeyboardInput;
 import com.game.ainsley.input.MouseInput;
@@ -31,7 +32,6 @@ public class Game extends Canvas implements Runnable {
     private static int FPS;
 
     Player player;
-    GameObjectHandler gameObjectHandler = new GameObjectHandler();
 
     private Thread thread;
     private boolean isRunning = false;
@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
-        gameObjectHandler.addObject(player);
+        GameObjectHandler.addObject(player);
     }
 
     public static void main(String[] args) throws IOException {
@@ -160,9 +160,9 @@ public class Game extends Canvas implements Runnable {
             isMoving = Chunk.getSpeed() > 0;
 
             // Tick all game objects
-            gameObjectHandler.tick(Player.getCollisionHandler().getRectangle());
+            GameObjectHandler.tick();
 
-            Chunk.tick(gameObjectHandler);
+            Chunk.tick();
             Door.tick();
         }
 
@@ -211,7 +211,38 @@ public class Game extends Canvas implements Runnable {
                 HealthBar.render(graphics);
 
                 // Render all game objects
-                gameObjectHandler.render(graphics);
+                GameObjectHandler.render(graphics);
+
+                // Inventory
+
+                graphics.drawImage(
+                        Player.getInventory().getContainerImage(),
+                        252,
+                        530,
+                        null
+                );
+
+                int xOffset = 0;
+
+                for (int i = 0; i < Player.getInventory().getNotesCollected(); i++) {
+                    graphics.drawImage(
+                            Player.getInventory().getInventoryIconImage(i),
+                            252 + xOffset,
+                            530,
+                            null
+                    );
+                    xOffset += 64;
+                }
+
+                // Note
+                if (Player.getInventory().getReadingNote() != 10) {
+                    graphics.drawImage(
+                            Player.getInventory().getInventoryImage(Player.getInventory().getReadingNote()),
+                            204,
+                            12,
+                            null
+                    );
+                }
 
                 // Pause menu
                 /*if (paused) {

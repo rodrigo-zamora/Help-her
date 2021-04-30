@@ -1,6 +1,6 @@
 package com.game.ainsley.map;
 
-import com.game.ainsley.enemy.SpawnEnemy;
+import com.game.ainsley.gameobjects.enemy.SpawnEnemy;
 import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.player.Player;
 
@@ -152,7 +152,7 @@ public class Chunk {
      *
      * @param gameObjectHandler receives a GameObjectHandler to spawn the enemies
      */
-    public static void tick(GameObjectHandler gameObjectHandler) {
+    public static void tick() {
         x += -speed;
         if (x < -1118) {
 
@@ -167,7 +167,7 @@ public class Chunk {
 
             Player.damageAnimation(false);
 
-            gameObjectHandler.addObject(SpawnEnemy.spawn());
+            GameObjectHandler.addObject(SpawnEnemy.spawn());
 
         }
     }

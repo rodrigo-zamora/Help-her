@@ -1,37 +1,43 @@
 package com.game.ainsley.handler;
 
-import com.game.ainsley.main.GameObject;
-import com.game.ainsley.main.ID;
+import com.game.ainsley.gameobjects.GameObject;
+import com.game.ainsley.gameobjects.ID;
+import com.game.ainsley.player.Player;
 
 import java.awt.*;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class GameObjectHandler {
 
-    LinkedList<GameObject> object = new LinkedList<GameObject>();
+    private static LinkedList<GameObject> object = new LinkedList<>();
 
-    public void tick(Rectangle playerRectangle) {
-        for (GameObject tempObject : object) {
+    public static void tick() {
+        Iterator<GameObject> iterator = object.iterator();
+        while(iterator.hasNext()) {
+            GameObject tempObject = iterator.next();
             if (!tempObject.tick()) {
-                removeObject(tempObject);
+                iterator.remove();
             }
             if (tempObject.getID() != ID.Player) {
-                tempObject.collision(playerRectangle);
+                tempObject.collision(Player.getCollisionHandler().getRectangle());
             }
         }
     }
 
-    public void render(Graphics graphics) {
-        for (GameObject tempObject : object) {
-            tempObject.render(graphics);
+    public static void render(Graphics graphics) {
+        Iterator<GameObject> iterator = object.iterator();
+        while(iterator.hasNext()) {
+            iterator.next().render(graphics);
         }
     }
 
-    public void addObject(GameObject object) {
-        this.object.addFirst(object);
+    public static void addObject(GameObject object) {
+        GameObjectHandler.object.add(object);
     }
 
-    public void removeObject(GameObject object) {
-        this.object.remove(object);
+    public static LinkedList<GameObject> getObject() {
+        return object;
     }
+
 }
