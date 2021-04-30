@@ -26,7 +26,9 @@ public class GameObjectHandler {
     }
 
     public static void render(Graphics graphics) {
-        Iterator<GameObject> iterator = object.iterator();
+        LinkedList<GameObject> temp;
+        temp = (LinkedList<GameObject>) object.clone();
+        Iterator<GameObject> iterator = temp.iterator();
         while(iterator.hasNext()) {
             iterator.next().render(graphics);
         }
