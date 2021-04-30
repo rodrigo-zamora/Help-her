@@ -1,6 +1,6 @@
-package com.game.juanito.screen.screens;
+package com.game.ainsley.screen.screens;
 
-import com.game.juanito.main.Game;
+import com.game.ainsley.main.Game;
 
 import java.awt.*;
 import java.net.URL;
