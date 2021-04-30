@@ -25,12 +25,12 @@ public class GameObjectHandler {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static void render(Graphics graphics) {
         LinkedList<GameObject> temp;
         temp = (LinkedList<GameObject>) object.clone();
-        Iterator<GameObject> iterator = temp.iterator();
-        while(iterator.hasNext()) {
-            iterator.next().render(graphics);
+        for (GameObject gameObject : temp) {
+            gameObject.render(graphics);
         }
     }
 
