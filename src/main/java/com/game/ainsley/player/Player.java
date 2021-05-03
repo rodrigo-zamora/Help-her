@@ -3,10 +3,11 @@ package com.game.ainsley.player;
 import com.game.ainsley.gameobjects.GameObject;
 import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.handler.CollisionHandler;
-import com.game.ainsley.handler.SoundHandler;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.player.inventory.Inventory;
 import com.game.ainsley.screen.Screen;
+import lib.ainsley.FileManager;
+import lib.ainsley.Sound;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -21,11 +22,12 @@ public class Player extends GameObject {
 
     private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
     private static final Inventory inventory = new Inventory();
-    static Toolkit toolkit = Toolkit.getDefaultToolkit();
-    static URL player = ClassLoader.getSystemResource("player/player.gif");
-    static URL playerDamage = ClassLoader.getSystemResource("player/playerDamaged.gif");
-    static Image playerImage = toolkit.getImage(player);
+
+    static Image playerImage;
+    static Image playerIdle = FileManager.loadImage("player/player.gif");
+    static Image playerDamage = FileManager.loadImage("player/playerDamaged.gif");
     static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
+
     private static int health = 6;
     private static int speedY;
     private static boolean shouldRender, isDamaged;
@@ -78,7 +80,7 @@ public class Player extends GameObject {
     public static void setHealth(int health) {
         Player.health = health;
         try {
-            SoundHandler.playSound(damageEffect, 0.5F, false);
+            Sound.playSound(damageEffect, 0.5F, false);
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
@@ -106,9 +108,9 @@ public class Player extends GameObject {
     public static void damageAnimation(boolean isDamaged) {
         Player.isDamaged = isDamaged;
         if (isDamaged) {
-            playerImage = toolkit.getImage(playerDamage);
+            playerImage = playerDamage;
         } else {
-            playerImage = toolkit.getImage(player);
+            playerImage = playerIdle;
         }
     }
 

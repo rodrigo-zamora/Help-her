@@ -4,16 +4,13 @@ import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class Gereon extends Enemy {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    URL gereonLeft = ClassLoader.getSystemResource("enemies/GereonL.gif");
-    Image gereonLeftImage = toolkit.getImage(gereonLeft);
+    Image gereonLeftImage = FileManager.loadImage("enemies/GereonL.gif");
 
     CollisionHandler collisionHandler = new CollisionHandler(70, 28);
 

@@ -4,16 +4,13 @@ import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class Nasra extends Enemy {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    URL nasraLeft = ClassLoader.getSystemResource("enemies/NasraL.gif");
-    Image nasraLeftImage = toolkit.getImage(nasraLeft);
+    Image nasraLeftImage = FileManager.loadImage("enemies/NasraL.gif");
 
     CollisionHandler collisionHandler = new CollisionHandler(62, 38);
 

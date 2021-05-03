@@ -3,9 +3,9 @@ package com.game.ainsley.map;
 import com.game.ainsley.gameobjects.enemy.SpawnEnemy;
 import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class Chunk {
 
@@ -13,23 +13,14 @@ public class Chunk {
      * Images with our map chunks
      */
 
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL chunk1 = ClassLoader.getSystemResource("map/chunks/1.png");
-    private static final Image chunkImage1 = toolkit.getImage(chunk1);
-    private static final URL chunk2 = ClassLoader.getSystemResource("map/chunks/2.png");
-    private static final Image chunkImage2 = toolkit.getImage(chunk2);
-    private static final URL chunk3 = ClassLoader.getSystemResource("map/chunks/3.png");
-    private static final Image chunkImage3 = toolkit.getImage(chunk3);
-    private static final URL chunk4 = ClassLoader.getSystemResource("map/chunks/4.png");
-    private static final Image chunkImage4 = toolkit.getImage(chunk4);
-    private static final URL chunk5 = ClassLoader.getSystemResource("map/chunks/5.png");
-    private static final Image chunkImage5 = toolkit.getImage(chunk5);
-    private static final URL chunk6 = ClassLoader.getSystemResource("map/chunks/6.png");
-    private static final Image chunkImage6 = toolkit.getImage(chunk6);
-    private static final URL chunk7 = ClassLoader.getSystemResource("map/chunks/7.png");
-    private static final Image chunkImage7 = toolkit.getImage(chunk7);
-    private static final URL chunk8 = ClassLoader.getSystemResource("map/chunks/8.png");
-    private static final Image chunkImage8 = toolkit.getImage(chunk8);
+    private static final Image chunkImage1 = FileManager.loadImage("map/chunks/1.png");
+    private static final Image chunkImage2 = FileManager.loadImage("map/chunks/2.png");
+    private static final Image chunkImage3 = FileManager.loadImage("map/chunks/3.png");
+    private static final Image chunkImage4 = FileManager.loadImage("map/chunks/4.png");
+    private static final Image chunkImage5 = FileManager.loadImage("map/chunks/5.png");
+    private static final Image chunkImage6 = FileManager.loadImage("map/chunks/6.png");
+    private static final Image chunkImage7 = FileManager.loadImage("map/chunks/7.png");
+    private static final Image chunkImage8 = FileManager.loadImage("map/chunks/8.png");
 
     /**
      * Variables for our Chunk class

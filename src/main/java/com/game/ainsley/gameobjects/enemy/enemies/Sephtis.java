@@ -4,16 +4,13 @@ import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class Sephtis extends Enemy {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    URL sephtisLeft = ClassLoader.getSystemResource("enemies/SephtisL.gif");
-    Image sephtisLeftImage = toolkit.getImage(sephtisLeft);
+    Image sephtisLeftImage = FileManager.loadImage("enemies/SephtisL.gif");
 
     CollisionHandler collisionHandler = new CollisionHandler(164, 50);
 

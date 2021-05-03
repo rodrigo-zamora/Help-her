@@ -1,19 +1,15 @@
 package com.game.ainsley.screen.screens;
 
 import com.game.ainsley.main.Game;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class MainMenu {
 
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL background = ClassLoader.getSystemResource("Screens/IntroLarge.gif");
-    private static final Image backgroundImage = toolkit.getImage(background);
-    private static final URL startButton = ClassLoader.getSystemResource("buttons/StartButtonPixel4.png");
-    private static final Image startImage = toolkit.getImage(startButton);
-    private static final URL creditsButton = ClassLoader.getSystemResource("buttons/CreditsButtonPixel4.png");
-    private static final Image creditsImage = toolkit.getImage(creditsButton);
+    private static final Image backgroundImage = FileManager.loadImage("Screens/IntroLarge.gif");
+    private static final Image startImage = FileManager.loadImage("buttons/StartButtonPixel4.png");
+    private static final Image creditsImage = FileManager.loadImage("buttons/CreditsButtonPixel4.png");
 
     public static void render(Graphics graphics) {
 

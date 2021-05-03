@@ -1,13 +1,12 @@
 package com.game.ainsley.screen.screens;
 
+import lib.ainsley.FileManager;
+
 import java.awt.*;
-import java.net.URL;
 
 public class Loading {
 
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL background = ClassLoader.getSystemResource("Screens/LoadingScreen2.gif");
-    private static final Image backgroundImage = toolkit.getImage(background);
+    private static final Image backgroundImage = FileManager.loadImage("Screens/LoadingScreen2.gif");
 
     public static void render(Graphics graphics) {
 

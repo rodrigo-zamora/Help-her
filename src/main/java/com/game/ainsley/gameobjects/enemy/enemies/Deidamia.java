@@ -5,18 +5,14 @@ import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class Deidamia extends Enemy {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    URL deidamiaLeft = ClassLoader.getSystemResource("enemies/DeidamiaL.gif");
-    Image deidamiaLeftImage = toolkit.getImage(deidamiaLeft);
-    URL deidamiaIdle = ClassLoader.getSystemResource("enemies/DeidamiaIdle.png");
-    Image deidamiaIdleImage = toolkit.getImage(deidamiaIdle);
+    Image deidamiaLeftImage = FileManager.loadImage("enemies/DeidamiaL.gif");
+    Image deidamiaIdleImage = FileManager.loadImage("enemies/DeidamiaIdle.png");
 
     CollisionHandler collisionHandler = new CollisionHandler(150, 40);
 

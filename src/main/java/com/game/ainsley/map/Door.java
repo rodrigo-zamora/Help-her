@@ -2,17 +2,14 @@ package com.game.ainsley.map;
 
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
+import lib.ainsley.Numbers;
 
 import java.awt.*;
-import java.net.URL;
-import java.util.Random;
 
 public class Door {
 
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    private static final URL door = ClassLoader.getSystemResource("map/door.png");
-    private static final Image doorImage = toolkit.getImage(door);
+    private static final Image doorImage = FileManager.loadImage("map/door.png");
 
     private static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
 
@@ -32,8 +29,7 @@ public class Door {
     }
 
     private static void setRandomInteger() {
-        Random random = new Random();
-        randomInteger = random.nextInt(10 - 3) + 3;
+        randomInteger = Numbers.randomNumberBetween(3, 10);
     }
 
     /**

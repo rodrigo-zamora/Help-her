@@ -2,12 +2,13 @@ package com.game.ainsley.input;
 
 import com.game.ainsley.data.Load;
 import com.game.ainsley.data.Save;
-import com.game.ainsley.handler.SoundHandler;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
 import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
+import lib.ainsley.Numbers;
+import lib.ainsley.Sound;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -15,25 +16,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Random;
 
 public class MouseInput extends MouseAdapter {
 
     static URL background;
     static URL credits;
     static URL dead;
-    private int randomMusicNumber;
-
-    private void randomMusic() {
-        Random random = new Random();
-        randomMusicNumber = random.nextInt(3 - 1) + 1;
-    }
 
     public void mousePressed(MouseEvent event) {
 
         if (Game.getScreen() == Screen.MAIN_MENU) {
 
-            randomMusic();
+            int randomMusicNumber = Numbers.randomNumberBetween(1, 3);
 
             if (event.getX() >= 155 &&
                     event.getX() <= 385 &&
@@ -52,7 +46,7 @@ public class MouseInput extends MouseAdapter {
                 }
 
                 try {
-                    SoundHandler.playSound(background, 0.1F, true);
+                    Sound.playSound(background, 0.1F, true);
                 } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                     e.printStackTrace();
                 }
@@ -72,7 +66,7 @@ public class MouseInput extends MouseAdapter {
                 }
 
                 try {
-                    SoundHandler.playSound(credits, 0.1F, true);
+                    Sound.playSound(credits, 0.1F, true);
                 } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                     e.printStackTrace();
                 }
@@ -94,7 +88,7 @@ public class MouseInput extends MouseAdapter {
             Chunk.setIterations(0);
 
             try {
-                SoundHandler.playSound(dead, 0.1F, true);
+                Sound.playSound(dead, 0.1F, true);
             } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                 e.printStackTrace();
             }

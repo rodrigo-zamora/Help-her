@@ -2,8 +2,7 @@ package com.game.ainsley.gameobjects.enemy;
 
 import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.gameobjects.enemy.enemies.*;
-
-import java.util.Random;
+import lib.ainsley.Numbers;
 
 public class SpawnEnemy {
 
@@ -13,8 +12,7 @@ public class SpawnEnemy {
      * @return an ID of the random enemy
      */
     private static ID getRandomEnemy() {
-        Random random = new Random();
-        int randomInteger = random.nextInt(5);
+        int randomInteger = Numbers.randomNumber(5);
         return switch (randomInteger) {
             case 0 -> ID.Aarav;
             case 1 -> ID.Deidamia;
@@ -25,15 +23,6 @@ public class SpawnEnemy {
         };
     }
 
-    /**
-     * Method to get a random Y to spawn the enemy
-     *
-     * @return a random integer from 210 to 410
-     */
-    private static int getRandomY() {
-        Random random = new Random();
-        return random.nextInt(410 - 250) + 250;
-    }
 
     /**
      * Method to spawn an enemy
@@ -43,7 +32,7 @@ public class SpawnEnemy {
     public static Enemy spawn() {
         ID enemyType = getRandomEnemy();
         Enemy enemy;
-        int y = getRandomY();
+        int y = Numbers.randomNumberBetween(250, 410);
         switch (enemyType) {
             case Aarav -> enemy = new Aarav(1016, y, ID.Aarav);
             case Nasra -> enemy = new Nasra(1016, y, ID.Nasra);

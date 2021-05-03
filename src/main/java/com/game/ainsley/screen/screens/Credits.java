@@ -1,17 +1,14 @@
 package com.game.ainsley.screen.screens;
 
 import com.game.ainsley.main.Game;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class Credits {
 
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL background = ClassLoader.getSystemResource("Screens/Credits2.png");
-    private static final Image backgroundImage = toolkit.getImage(background);
-    private static final URL backButton = ClassLoader.getSystemResource("buttons/backButtonPixel4.png");
-    private static final Image backImage = toolkit.getImage(backButton);
+    private static final Image backgroundImage = FileManager.loadImage("Screens/Credits2.png");
+    private static final Image backImage = FileManager.loadImage("buttons/backButtonPixel4.png");
 
     public static void render(Graphics graphics) {
 

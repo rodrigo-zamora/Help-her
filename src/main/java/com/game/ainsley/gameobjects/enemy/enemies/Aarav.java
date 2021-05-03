@@ -5,18 +5,14 @@ import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
-import java.net.URL;
 
 public class Aarav extends Enemy {
 
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-    URL aarav = ClassLoader.getSystemResource("enemies/Aarav.gif");
-    Image aaravLeftImage = toolkit.getImage(aarav);
-    URL aaravIdle = ClassLoader.getSystemResource("enemies/AaravIdle.png");
-    Image aaravIdleImage = toolkit.getImage(aaravIdle);
+    Image aaravLeftImage = FileManager.loadImage("enemies/Aarav.gif");
+    Image aaravIdleImage = FileManager.loadImage("enemies/AaravIdle.png");
 
     CollisionHandler collisionHandler = new CollisionHandler(210, 70);
 
