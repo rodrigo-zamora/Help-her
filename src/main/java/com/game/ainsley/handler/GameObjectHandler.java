@@ -2,7 +2,6 @@ package com.game.ainsley.handler;
 
 import com.game.ainsley.gameobjects.GameObject;
 import com.game.ainsley.gameobjects.ID;
-import com.game.ainsley.player.Player;
 
 import java.awt.*;
 import java.util.Iterator;
@@ -10,17 +9,17 @@ import java.util.LinkedList;
 
 public class GameObjectHandler {
 
-    private static LinkedList<GameObject> object = new LinkedList<>();
+    private static final LinkedList<GameObject> object = new LinkedList<>();
 
     public static void tick() {
         Iterator<GameObject> iterator = object.iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             GameObject tempObject = iterator.next();
             if (!tempObject.tick()) {
                 iterator.remove();
             }
             if (tempObject.getID() != ID.Player) {
-                tempObject.collision(Player.getCollisionHandler().getRectangle());
+                tempObject.collision();
             }
         }
     }

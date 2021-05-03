@@ -33,7 +33,7 @@ public class KeyboardInput extends KeyAdapter {
                 // Open / close door
                 case 69 -> {
                     if (!Game.isPaused())
-                        Door.collision(Player.getCollisionHandler().getRectangle());
+                        Door.collision();
                 }
 
                 // Inventory

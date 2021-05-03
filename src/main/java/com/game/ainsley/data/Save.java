@@ -2,9 +2,9 @@ package com.game.ainsley.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.gameobjects.GameObject;
 import com.game.ainsley.gameobjects.ID;
+import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
 import com.game.ainsley.player.Player;
@@ -86,7 +86,7 @@ public class Save {
         JSONObject enemy = new JSONObject();
 
         Iterator<GameObject> iterator = GameObjectHandler.getObject().iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             GameObject tempObject = iterator.next();
             if (GameObjectHandler.getObject().size() != 1) {
                 if (tempObject.getID() != ID.Player) {

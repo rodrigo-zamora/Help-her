@@ -51,5 +51,5 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public abstract void collision(Rectangle rectangle);
+    public abstract void collision();
 }

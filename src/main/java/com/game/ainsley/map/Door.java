@@ -153,8 +153,8 @@ public class Door {
      *
      * @param rectangle receives the player rectangle
      */
-    public static void collision(Rectangle rectangle) {
-        if (rectangle.intersects(collisionHandler.getRectangle())) {
+    public static void collision() {
+        if (Player.getCollisionHandler().getRectangle().intersects(collisionHandler.getRectangle())) {
             collisionIntersect();
         }
     }

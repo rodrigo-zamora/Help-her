@@ -1,8 +1,9 @@
 package com.game.ainsley.gameobjects.enemy.enemies;
 
+import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
-import com.game.ainsley.gameobjects.ID;
+import com.game.ainsley.player.Player;
 
 import java.awt.*;
 import java.net.URL;
@@ -54,8 +55,8 @@ public class Sephtis extends Enemy {
     }
 
     @Override
-    public void collision(Rectangle rectangle) {
-        if (rectangle.intersects(collisionHandler.getRectangle())) {
+    public void collision() {
+        if (Player.getCollisionHandler().getRectangle().intersects(collisionHandler.getRectangle())) {
             collisionIntersect();
         }
     }

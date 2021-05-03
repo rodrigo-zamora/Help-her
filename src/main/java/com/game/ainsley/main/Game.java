@@ -10,7 +10,10 @@ import com.game.ainsley.player.HealthBar;
 import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
 import com.game.ainsley.screen.Window;
-import com.game.ainsley.screen.screens.*;
+import com.game.ainsley.screen.screens.Credits;
+import com.game.ainsley.screen.screens.Death;
+import com.game.ainsley.screen.screens.Loading;
+import com.game.ainsley.screen.screens.MainMenu;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -26,20 +29,16 @@ public class Game extends Canvas implements Runnable {
 
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
-
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private static final URL pause = ClassLoader.getSystemResource("Screens/IntroLarge.gif");
+    private static final Image pauseImage = toolkit.getImage(pause);
     private static boolean paused = false;
     private static boolean isMoving;
     private static Screen screen;
     private static int FPS;
-
     Player player;
-
     private Thread thread;
     private boolean isRunning = false;
-
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL pause = ClassLoader.getSystemResource("Screens/IntroLarge.gif");
-    private static final Image pauseImage = toolkit.getImage(pause);
 
     /**
      * Constructor for Game class

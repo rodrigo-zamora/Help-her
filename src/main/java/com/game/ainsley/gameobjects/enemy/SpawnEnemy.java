@@ -56,7 +56,6 @@ public class SpawnEnemy {
     }
 
     /**
-     *
      * @param id
      * @param x
      * @param y

@@ -1,10 +1,10 @@
 package com.game.ainsley.player;
 
+import com.game.ainsley.gameobjects.GameObject;
+import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.handler.SoundHandler;
 import com.game.ainsley.main.Game;
-import com.game.ainsley.gameobjects.GameObject;
-import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.player.inventory.Inventory;
 import com.game.ainsley.screen.Screen;
 
@@ -155,7 +155,7 @@ public class Player extends GameObject {
     }
 
     @Override
-    public void collision(Rectangle rectangle) {
+    public void collision() {
 
     }
 }
