@@ -18,12 +18,9 @@ public class Inventory {
         notesCollected = 0;
         readingNote = 10;
         String index;
-        URL imagePath, iconPath;
         for (int i = 1; i <= 9; i++) {
             index = i + ".png";
-            imagePath = ClassLoader.getSystemResource("player/inventoryItems/" + index);
-            iconPath = ClassLoader.getSystemResource("player/inventoryItems/icon-" + index);
-            inventory.add(new Note(imagePath, iconPath, false));
+            inventory.add(new Note("player/inventoryItems/" + index, "player/inventoryItems/icon-" + index, false));
         }
     }
 

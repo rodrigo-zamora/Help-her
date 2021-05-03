@@ -115,7 +115,7 @@ public class MouseInput extends MouseAdapter {
             ) {
                 Game.setScreen(Screen.MAIN_MENU);
             }
-        } else if (Game.getScreen() == Screen.PAUSED) {
+        } else if (Game.isPaused()) {
             if (event.getX() >= 405 &&
                     event.getX() <= 675 &&
                     event.getY() >= (640 / 2) - 70 &&

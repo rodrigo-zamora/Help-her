@@ -1,23 +1,20 @@
 package com.game.ainsley.player.inventory;
 
+import lib.ainsley.FileManager;
+
 import java.awt.*;
-import java.net.URL;
 
 public class Note {
 
     private Image noteImage, noteIconImage;
 
-    private URL url;
-
     private boolean beenFound, open;
 
-    public Note(URL imagePath, URL iconPath, boolean hasBeenFound) {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        noteImage = toolkit.getImage(imagePath);
-        noteIconImage = toolkit.getImage(iconPath);
+    public Note(String imagePath, String iconPath, boolean hasBeenFound) {
+        noteImage = FileManager.loadImage(imagePath);
+        noteIconImage = FileManager.loadImage(iconPath);
         this.beenFound = hasBeenFound;
         this.open = false;
-        this.url = imagePath;
     }
 
     public Note(boolean isOpen, boolean beenFound) {
@@ -39,14 +36,6 @@ public class Note {
 
     public void setNoteIconImage(Image image) {
         this.noteIconImage = image;
-    }
-
-    public URL getUrl() {
-        return url;
-    }
-
-    public void setUrl(URL url) {
-        this.url = url;
     }
 
     public boolean hasBeenFound() {

@@ -45,6 +45,7 @@ public class Player extends GameObject {
         collisionHandler.setX(x + 20); // 20
         collisionHandler.setY(y); // 0
         shouldRender = true;
+        playerImage = playerIdle;
     }
 
     public static CollisionHandler getCollisionHandler() {

@@ -12,7 +12,7 @@ public class Numbers {
      */
     public static int randomNumberBetween(int min, int max) {
         Random random = new Random();
-        return random.nextInt(max - min) + max;
+        return random.nextInt(max - min) + min;
     }
 
     /**
