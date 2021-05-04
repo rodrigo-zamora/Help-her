@@ -19,9 +19,15 @@ public class FileManager {
         return toolkit.getImage(url);
     }
 
-    public static String readFileToJSON(String path) throws IOException {
+    /**
+     * Reads a JSON file
+     * @param path receives the path to the file
+     * @return a string with the content of the file
+     * @throws IOException signals that an I/O exception of some sort has occurred
+     */
+    public static String readJSONfile(String path) throws IOException {
         // Read file into a string
-        BufferedReader reader = new BufferedReader(new FileReader("data.json"));
+        BufferedReader reader = new BufferedReader(new FileReader(path));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
         String ls = System.getProperty("line.separator");

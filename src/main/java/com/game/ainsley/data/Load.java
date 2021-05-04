@@ -18,8 +18,8 @@ public class Load {
      * @throws IOException
      */
     public static void loadGame() throws IOException {
-        
-        JSONArray json = new JSONArray(FileManager.readFileToJSON("data.json"));
+
+        JSONArray json = new JSONArray(FileManager.readJSONfile("data.json"));
 
         for (int i = 0; i < json.length(); i++) {
             parseData(json.getJSONObject(i));
