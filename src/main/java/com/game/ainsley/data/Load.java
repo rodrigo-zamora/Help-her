@@ -6,11 +6,10 @@ import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
 import com.game.ainsley.player.Player;
+import lib.ainsley.FileManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class Load {
@@ -19,23 +18,8 @@ public class Load {
      * @throws IOException
      */
     public static void loadGame() throws IOException {
-
-        // Read file into a string
-        BufferedReader reader = new BufferedReader(new FileReader("data.json"));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        String ls = System.getProperty("line.separator");
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
-            stringBuilder.append(ls);
-        }
-        // delete the last new line separator
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        reader.close();
-
-        String content = stringBuilder.toString();
-        // convert to json array
-        JSONArray json = new JSONArray(content);
+        
+        JSONArray json = new JSONArray(FileManager.readFileToJSON("data.json"));
 
         for (int i = 0; i < json.length(); i++) {
             parseData(json.getJSONObject(i));
