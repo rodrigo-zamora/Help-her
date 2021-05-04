@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Save {
 
@@ -85,10 +85,11 @@ public class Save {
         JSONObject enemyObject = new JSONObject();
         JSONObject enemy = new JSONObject();
 
-        Iterator<GameObject> iterator = GameObjectHandler.getObject().iterator();
-        while (iterator.hasNext()) {
-            GameObject tempObject = iterator.next();
-            if (GameObjectHandler.getObject().size() != 1) {
+        // Create a temp linked list to avoid ConcurrentModificationException
+        LinkedList<GameObject> temp;
+        temp = (LinkedList<GameObject>) GameObjectHandler.getObject().clone();
+        for (GameObject tempObject : temp) {
+            if (temp.size() != 1) {
                 if (tempObject.getID() != ID.Player) {
                     enemyObject.put("id", tempObject.getID());
                     enemyObject.put("x", tempObject.getX());

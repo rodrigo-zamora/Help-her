@@ -26,6 +26,8 @@ public class GameObjectHandler {
 
     @SuppressWarnings("unchecked")
     public static void render(Graphics graphics) {
+
+        // Create a temp linked list to avoid ConcurrentModificationException
         LinkedList<GameObject> temp;
         temp = (LinkedList<GameObject>) object.clone();
         for (GameObject gameObject : temp) {
