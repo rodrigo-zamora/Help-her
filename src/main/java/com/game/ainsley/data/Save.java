@@ -20,6 +20,7 @@ public class Save {
     /**
      * @throws IOException
      */
+    @SuppressWarnings("unchecked")
     public static void saveGame() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);

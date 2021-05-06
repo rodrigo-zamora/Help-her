@@ -14,12 +14,12 @@ import com.game.ainsley.screen.screens.Credits;
 import com.game.ainsley.screen.screens.Death;
 import com.game.ainsley.screen.screens.Loading;
 import com.game.ainsley.screen.screens.MainMenu;
+import lib.ainsley.FileManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 import java.io.Serial;
-import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
@@ -29,9 +29,7 @@ public class Game extends Canvas implements Runnable {
 
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
-    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
-    private static final URL pause = ClassLoader.getSystemResource("Screens/IntroLarge.gif");
-    private static final Image pauseImage = toolkit.getImage(pause);
+    private static final Image pauseImage = FileManager.loadImage("Screens/IntroLarge.gif");
     private static boolean paused = false;
     private static boolean isMoving;
     private static Screen screen;
