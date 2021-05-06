@@ -29,7 +29,10 @@ public class Game extends Canvas implements Runnable {
 
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
-    private static final Image pauseImage = FileManager.loadImage("Screens/IntroLarge.gif");
+    private static final Image pauseImage = FileManager.loadImage("Screens/LoadingScreen1.gif");
+    private static final Image saveImage = FileManager.loadImage("buttons/saveButtonPixel4.png");
+    private static final Image loadImage = FileManager.loadImage("buttons/loadButtonPixel4.png");
+    private static final Image menuImage = FileManager.loadImage("buttons/menuButtonPixel4.png");
     private static boolean paused = false;
     private static boolean isMoving;
     private static Screen screen;
@@ -246,6 +249,27 @@ public class Game extends Canvas implements Runnable {
                             pauseImage,
                             0,
                             0,
+                            null
+                    );
+
+                    graphics.drawImage(
+                            saveImage,
+                            425,
+                            250,
+                            null
+                    );
+
+                    graphics.drawImage(
+                            loadImage,
+                            425,
+                            355,
+                            null
+                    );
+
+                    graphics.drawImage(
+                            menuImage,
+                            425,
+                            460,
                             null
                     );
                 }

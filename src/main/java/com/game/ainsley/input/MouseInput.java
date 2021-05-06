@@ -121,6 +121,7 @@ public class MouseInput extends MouseAdapter {
                     event.getY() >= (640 / 2) - 70 &&
                     event.getY() <= (640 / 2)
             ) {
+                Game.setPaused();
                 try {
                     Save.saveGame();
                 } catch (IOException exception) {
@@ -131,11 +132,20 @@ public class MouseInput extends MouseAdapter {
                     event.getY() >= (640 / 2) + 35 &&
                     event.getY() <= (640 / 2) + 35 + 70
             ) {
+                Game.setPaused();
                 try {
                     Load.loadGame();
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
+            } else if (event.getX() >= 405 &&
+                    event.getX() <= 675 &&
+                    event.getY() >= 460 &&
+                    event.getY() <= 530
+            ) {
+                Game.setPaused();
+                Game.reset();
+                Game.setScreen(Screen.MAIN_MENU);
             }
         }
     }
