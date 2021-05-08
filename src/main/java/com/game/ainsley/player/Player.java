@@ -86,8 +86,8 @@ public class Player extends GameObject {
             e.printStackTrace();
         }
         if (Player.health == 0) {
-            Game.setScreen(Screen.DEATH);
             Game.reset();
+            Game.setScreen(Screen.DEATH);
         }
     }
 

@@ -8,13 +8,15 @@ import java.net.URL;
 
 public class FileManager {
 
+
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     /**
      * Method to load an image from resources folder
      * @param path
      * @return
      */
     public static Image loadImage(String path) {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
         URL url = ClassLoader.getSystemResource(path);
         return toolkit.getImage(url);
     }
