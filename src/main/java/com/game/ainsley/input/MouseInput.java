@@ -3,9 +3,6 @@ package com.game.ainsley.input;
 import com.game.ainsley.data.Load;
 import com.game.ainsley.data.Save;
 import com.game.ainsley.main.Game;
-import com.game.ainsley.map.Chunk;
-import com.game.ainsley.map.Door;
-import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
 import lib.ainsley.Numbers;
 import lib.ainsley.Sound;
@@ -72,20 +69,8 @@ public class MouseInput extends MouseAdapter {
                 }
             }
         } else if (Game.getScreen() == Screen.DEATH) {
+            Game.reset();
             dead = ClassLoader.getSystemResource("sounds/dead/deadSong.wav");
-
-            Player.setHealth(6);
-            Player.damageAnimation(false);
-
-            Player.getInventory().setNotesCollected(0);
-            Player.getInventory().setReadingNote(10);
-            for (int i = 0; i < 9; i++) {
-                Player.getInventory().getNote(i).setOpen(false);
-                Player.getInventory().getNote(i).setBeenFound(false);
-            }
-
-            Door.setShouldRender(false);
-            Chunk.setIterations(0);
 
             try {
                 Sound.playSound(dead, 0.1F, true);

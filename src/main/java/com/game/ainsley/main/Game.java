@@ -41,9 +41,6 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean isRunning = false;
 
-    /**
-     * Constructor for Game class
-     */
     public Game() {
         addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
@@ -56,6 +53,24 @@ public class Game extends Canvas implements Runnable {
         System.setProperty("sun.java2d.opengl", "true");
         screen = Screen.MAIN_MENU;
         new Game();
+    }
+
+    public static void reset() {
+        Player.setHealth(6);
+        Player.damageAnimation(false);
+        Player.setSpeedY(0);
+        Player.setHealth(0);
+        Player.setShouldRender(true);
+        Player.getInventory().setNotesCollected(0);
+        Player.getInventory().setReadingNote(10);
+        Chunk.setSpeed(0);
+        Chunk.setX(0);
+        Chunk.setIterations(0);
+        Door.setShouldRender(false);
+        for (int i = 0; i < 9; i++) {
+            Player.getInventory().getNote(i).setBeenFound(false);
+            Player.getInventory().getNote(i).setOpen(false);
+        }
     }
 
     /**

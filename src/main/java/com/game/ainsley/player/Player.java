@@ -87,6 +87,7 @@ public class Player extends GameObject {
         }
         if (Player.health == 0) {
             Game.setScreen(Screen.DEATH);
+            Game.reset();
         }
     }
 
