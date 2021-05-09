@@ -7,8 +7,6 @@ import com.game.ainsley.screen.Screen;
 import lib.ainsley.Numbers;
 import lib.ainsley.Sound;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
 
@@ -32,8 +30,6 @@ public class InputHandler {
     /**
      * Method to check collision between the mouse and the buttons
      *
-     * @throws UnsupportedAudioFileException if the audio file isn't valid
-     * @throws LineUnavailableException      if the file can't be opened
      * @throws IOException                   if an I/O exception occurs
      */
     public void checkCollision() throws IOException {
@@ -54,7 +50,7 @@ public class InputHandler {
                     Game.setScreen(Screen.CREDITS);
                     switch (randomMusicNumber) {
                         case 1 -> credits_1.playSound(1, true);
-                        case 2 -> credits_2.playSound(1, true);
+                        case 2, 3 -> credits_2.playSound(1, true);
                     }
                 }
             }
@@ -97,10 +93,6 @@ public class InputHandler {
             }
         }
 
-    }
-
-    public Rectangle getRectangle() {
-        return rectangle;
     }
 
     public void setRectangle(Rectangle rectangle) {
