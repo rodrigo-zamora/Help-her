@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable {
         GameObjectHandler.addObject(player);
     }
 
-    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         System.setProperty("sun.java2d.opengl", "true");
         screen = Screen.MAIN_MENU;
         new Game();

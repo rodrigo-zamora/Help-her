@@ -9,10 +9,7 @@ import com.game.ainsley.screen.Screen;
 import lib.ainsley.FileManager;
 import lib.ainsley.Sound;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
-import java.io.IOException;
 
 public class Player extends GameObject {
 
@@ -45,12 +42,8 @@ public class Player extends GameObject {
         shouldRender = true;
         playerImage = playerIdle;
 
-        try {
-            damageEffect = new Sound("sounds/effects/correct.wav");
-            death = new Sound("sounds/dead/deadSong.wav");
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
+        damageEffect = new Sound("sounds/effects/correct.wav");
+        death = new Sound("sounds/dead/deadSong.wav");
     }
 
     public static CollisionHandler getCollisionHandler() {
@@ -85,11 +78,7 @@ public class Player extends GameObject {
      */
     public static void setHealth(int health) {
         Player.health = health;
-        try {
-            damageEffect.playSound(0.5F, true);
-        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        }
+        damageEffect.playSound(0.5F, true);
         if (Player.health == 0) {
             Game.reset();
             Game.setScreen(Screen.DEATH);

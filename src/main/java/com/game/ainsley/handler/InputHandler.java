@@ -29,10 +29,6 @@ public class InputHandler {
     private final Sound credits_2 = new Sound("sounds/test.mp3");
     private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
-    public InputHandler() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-
-    }
-
     /**
      * Method to check collision between the mouse and the buttons
      *
@@ -40,7 +36,7 @@ public class InputHandler {
      * @throws LineUnavailableException      if the file can't be opened
      * @throws IOException                   if an I/O exception occurs
      */
-    public void checkCollision() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public void checkCollision() throws IOException {
 
         int randomMusicNumber = Numbers.randomNumberBetween(1, 3);
         switch (Game.getScreen()) {
