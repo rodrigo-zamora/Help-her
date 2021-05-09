@@ -14,7 +14,6 @@ import java.io.IOException;
 
 public class InputHandler {
 
-    private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
     private final Rectangle gameFromMenu = new Rectangle(155, 285, 230, 70);
     private final Rectangle creditsFromMenu = new Rectangle(695, 285, 230, 70);
     private final Rectangle mainMenuFromDeath = new Rectangle(425, 512, 230, 70);
@@ -23,18 +22,24 @@ public class InputHandler {
     private final Rectangle saveFromPause = new Rectangle(405, 250, 230, 70);
     private final Rectangle loadFromPause = new Rectangle(405, 355, 270, 70);
     private final Rectangle mainMenuFromPause = new Rectangle(405, 460, 270, 70);
-
     private final Sound background_1 = new Sound("sounds/background/main.wav");
     private final Sound background_2 = new Sound("sounds/background/background.wav");
     private final Sound background_3 = new Sound("sounds/background/8bitSong.wav");
-
     private final Sound credits_1 = new Sound("sounds/credits/EndCredits.wav");
     private final Sound credits_2 = new Sound("sounds/credits/Credits.wav");
+    private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
     public InputHandler() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
     }
 
+    /**
+     * Method to check collision between the mouse and the buttons
+     *
+     * @throws UnsupportedAudioFileException if the audio file isn't valid
+     * @throws LineUnavailableException      if the file can't be opened
+     * @throws IOException                   if an I/O exception occurs
+     */
     public void checkCollision() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
         int randomMusicNumber = Numbers.randomNumberBetween(1, 3);

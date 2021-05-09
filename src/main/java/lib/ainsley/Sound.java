@@ -11,7 +11,6 @@ public class Sound {
     private final Clip clip;
 
     /**
-     *
      * @param soundFile
      * @throws UnsupportedAudioFileException
      * @throws IOException
@@ -22,6 +21,16 @@ public class Sound {
         clip = AudioSystem.getClip();
         clip.open(audioInputStream);
         instances.add(this);
+    }
+
+    public static void stopAllSounds() {
+        for (Sound instance : instances) {
+            instance.stopSound();
+        }
+    }
+
+    public static ArrayList<Sound> getInstances() {
+        return instances;
     }
 
     /**
@@ -59,15 +68,5 @@ public class Sound {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-    }
-
-    public static void stopAllSounds() {
-        for (Sound instance : instances) {
-            instance.stopSound();
-        }
-    }
-
-    public static ArrayList<Sound> getInstances() {
-        return instances;
     }
 }

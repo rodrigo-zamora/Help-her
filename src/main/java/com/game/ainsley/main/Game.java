@@ -56,6 +56,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void reset() {
+        GameObjectHandler.getObject().removeIf(tempObject -> tempObject.getID() != ID.Player);
         Player.setHealth(6);
         Player.damageAnimation(false);
         Player.setSpeedY(0);
@@ -66,6 +67,7 @@ public class Game extends Canvas implements Runnable {
         Chunk.setX(0);
         Chunk.setIterations(0);
         Door.setShouldRender(false);
+        Door.setX(1500);
         for (int i = 0; i < 9; i++) {
             Player.getInventory().getNote(i).setBeenFound(false);
             Player.getInventory().getNote(i).setOpen(false);
@@ -86,6 +88,10 @@ public class Game extends Canvas implements Runnable {
 
     public static Boolean getPaused() {
         return Game.paused;
+    }
+
+    public static void setPaused(boolean paused) {
+        Game.paused = paused;
     }
 
     public static boolean isMoving() {
@@ -111,10 +117,6 @@ public class Game extends Canvas implements Runnable {
 
     public static void setFPS(int FPS) {
         Game.FPS = FPS;
-    }
-
-    public static void setPaused(boolean paused) {
-        Game.paused = paused;
     }
 
     /**
