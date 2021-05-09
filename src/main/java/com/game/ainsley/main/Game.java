@@ -11,6 +11,7 @@ import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
 import com.game.ainsley.screen.Window;
 import com.game.ainsley.screen.screens.*;
+import javafx.embed.swing.JFXPanel;
 import lib.ainsley.FileManager;
 import lib.ainsley.Sound;
 
@@ -26,6 +27,9 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1080;
     public static final int HEIGHT = 640;
     public static final String TITLE = "Help her";
+
+    // Initialization for MediaPlayer
+    final JFXPanel fxPanel = new JFXPanel();
 
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
@@ -167,7 +171,6 @@ public class Game extends Canvas implements Runnable {
                 FPS = frames;
                 frames = 0;
             }
-
         }
         stop();
     }

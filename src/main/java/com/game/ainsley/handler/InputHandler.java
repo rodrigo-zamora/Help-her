@@ -25,8 +25,8 @@ public class InputHandler {
     private final Sound background_1 = new Sound("sounds/background/main.wav");
     private final Sound background_2 = new Sound("sounds/background/background.wav");
     private final Sound background_3 = new Sound("sounds/background/8bitSong.wav");
-    private final Sound credits_1 = new Sound("sounds/credits/EndCredits.wav");
-    private final Sound credits_2 = new Sound("sounds/credits/Credits.wav");
+    private final Sound credits_1 = new Sound("sounds/test.mp3");
+    private final Sound credits_2 = new Sound("sounds/test.mp3");
     private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
     public InputHandler() throws UnsupportedAudioFileException, LineUnavailableException, IOException {

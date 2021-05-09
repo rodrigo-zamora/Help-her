@@ -14,9 +14,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
 
-/**
- *
- */
 public class Player extends GameObject {
 
     private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
@@ -153,7 +150,7 @@ public class Player extends GameObject {
         else if (y >= 430)
             y -= 5;
 
-        collisionHandler.setY(y + 92); // 65
+        collisionHandler.setY(y + 92);
         collisionHandler.updateRectangle();
         return true;
     }

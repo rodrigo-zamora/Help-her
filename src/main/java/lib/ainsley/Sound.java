@@ -1,25 +1,33 @@
 package lib.ainsley;
 
-import javax.sound.sampled.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Sound {
 
     private static final ArrayList<Sound> instances = new ArrayList<>();
 
-    private final Clip clip;
+    private static Toolkit toolkit;
+
+    private final MediaPlayer mediaPlayer;
 
     /**
+     *
      * @param soundFile
      * @throws UnsupportedAudioFileException
      * @throws IOException
      * @throws LineUnavailableException
      */
     public Sound(String soundFile) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(soundFile));
-        clip = AudioSystem.getClip();
-        clip.open(audioInputStream);
+        Media audio = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource(soundFile)).toExternalForm());
+        mediaPlayer = new MediaPlayer(audio);
         instances.add(this);
     }
 
@@ -27,10 +35,6 @@ public class Sound {
         for (Sound instance : instances) {
             instance.stopSound();
         }
-    }
-
-    public static ArrayList<Sound> getInstances() {
-        return instances;
     }
 
     /**
@@ -43,20 +47,7 @@ public class Sound {
      * @throws UnsupportedAudioFileException if the audio file isn't valid
      */
     public void playSound(float volume, boolean shouldLoop) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-
-        try {
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(20f * (float) java.lang.Math.log10(volume));
-
-            if (shouldLoop) {
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-            } else {
-                clip.start();
-            }
-
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        mediaPlayer.play();
     }
 
     /**
@@ -64,7 +55,7 @@ public class Sound {
      */
     public void stopSound() {
         try {
-            clip.stop();
+            mediaPlayer.stop();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
