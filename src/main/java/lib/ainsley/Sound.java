@@ -28,7 +28,7 @@ public class Sound {
             gainControl.setValue(20f * (float) java.lang.Math.log10(volume));
 
             if (shouldLoop) {
-                clip.loop(99);
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
             } else {
                 clip.start();
             }
