@@ -10,10 +10,7 @@ import com.game.ainsley.player.HealthBar;
 import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
 import com.game.ainsley.screen.Window;
-import com.game.ainsley.screen.screens.Credits;
-import com.game.ainsley.screen.screens.Death;
-import com.game.ainsley.screen.screens.Loading;
-import com.game.ainsley.screen.screens.MainMenu;
+import com.game.ainsley.screen.screens.*;
 import lib.ainsley.FileManager;
 
 import java.awt.*;
@@ -205,6 +202,8 @@ public class Game extends Canvas implements Runnable {
             case LOADING -> Loading.render(graphics);
 
             case DEATH -> Death.render(graphics);
+
+            case WIN -> Win.render(graphics);
 
             case GAME -> {
 

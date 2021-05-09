@@ -6,6 +6,7 @@ public class Numbers {
 
     /**
      * Method to get a random number in range
+     *
      * @param min receives the minimum number
      * @param max receives the maximum number
      * @return an integer between min and max
@@ -17,6 +18,7 @@ public class Numbers {
 
     /**
      * Method to get a random number
+     *
      * @param bound receives the maximum number
      * @return an integer between 0 and bound
      */

@@ -1,7 +1,9 @@
 package com.game.ainsley.map;
 
 import com.game.ainsley.handler.CollisionHandler;
+import com.game.ainsley.main.Game;
 import com.game.ainsley.player.Player;
+import com.game.ainsley.screen.Screen;
 import lib.ainsley.FileManager;
 import lib.ainsley.Numbers;
 
@@ -176,7 +178,8 @@ public class Door {
 
             // All notes collected
             if (Player.getInventory().getNotesCollected() == 9) {
-                System.out.println("a");
+                Game.setScreen(Screen.WIN);
+                Game.reset();
             }
 
         } else {

@@ -13,6 +13,7 @@ public class FileManager {
 
     /**
      * Method to load an image from resources folder
+     *
      * @param path
      * @return
      */
@@ -23,6 +24,7 @@ public class FileManager {
 
     /**
      * Reads a JSON file
+     *
      * @param path receives the path to the file
      * @return a string with the content of the file
      * @throws IOException signals that an I/O exception of some sort has occurred
