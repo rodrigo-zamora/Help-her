@@ -157,6 +157,7 @@ public class Chunk {
             iterations++;
 
             Player.damageAnimation(false);
+            Player.getDamageEffect().stopSound();
 
             GameObjectHandler.addObject(SpawnEnemy.spawn());
 

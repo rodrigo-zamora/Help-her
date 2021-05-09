@@ -13,7 +13,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  *
@@ -26,7 +25,7 @@ public class Player extends GameObject {
     static Image playerImage;
     static Image playerIdle = FileManager.loadImage("player/player.gif");
     static Image playerDamage = FileManager.loadImage("player/playerDamaged.gif");
-    static URL damageEffect = ClassLoader.getSystemResource("sounds/effects/correct.wav");
+    static Sound damageEffect;
 
     private static int health = 6;
     private static int speedY;
@@ -46,6 +45,12 @@ public class Player extends GameObject {
         collisionHandler.setY(y); // 0
         shouldRender = true;
         playerImage = playerIdle;
+
+        try {
+            damageEffect = new Sound("sounds/effects/correct.wav");
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     public static CollisionHandler getCollisionHandler() {
@@ -81,7 +86,7 @@ public class Player extends GameObject {
     public static void setHealth(int health) {
         Player.health = health;
         try {
-            Sound.playSound(damageEffect, 0.5F, false);
+            damageEffect.playSound(0.5F, true);
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
@@ -122,6 +127,10 @@ public class Player extends GameObject {
 
     public static void setyS(int yS) {
         Player.yS = yS;
+    }
+
+    public static Sound getDamageEffect() {
+        return damageEffect;
     }
 
     /**

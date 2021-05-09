@@ -12,16 +12,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.LinkedList;
 
 public class Save {
 
-    /**
-     * @throws IOException
-     */
     @SuppressWarnings("unchecked")
-    public static void saveGame() throws IOException {
+    public static void saveGame() {
 
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         JSONArray dataArray = new JSONArray();

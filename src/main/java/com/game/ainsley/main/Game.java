@@ -12,7 +12,10 @@ import com.game.ainsley.screen.Screen;
 import com.game.ainsley.screen.Window;
 import com.game.ainsley.screen.screens.*;
 import lib.ainsley.FileManager;
+import lib.ainsley.Sound;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
@@ -38,7 +41,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean isRunning = false;
 
-    public Game() {
+    public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
@@ -46,7 +49,7 @@ public class Game extends Canvas implements Runnable {
         GameObjectHandler.addObject(player);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         System.setProperty("sun.java2d.opengl", "true");
         screen = Screen.MAIN_MENU;
         new Game();
@@ -56,7 +59,6 @@ public class Game extends Canvas implements Runnable {
         Player.setHealth(6);
         Player.damageAnimation(false);
         Player.setSpeedY(0);
-        Player.setHealth(0);
         Player.setShouldRender(true);
         Player.getInventory().setNotesCollected(0);
         Player.getInventory().setReadingNote(10);
@@ -100,6 +102,7 @@ public class Game extends Canvas implements Runnable {
 
     public static void setScreen(Screen screen) {
         Game.screen = screen;
+        Sound.stopAllSounds();
     }
 
     public static int getFPS() {
@@ -108,6 +111,10 @@ public class Game extends Canvas implements Runnable {
 
     public static void setFPS(int FPS) {
         Game.FPS = FPS;
+    }
+
+    public static void setPaused(boolean paused) {
+        Game.paused = paused;
     }
 
     /**
