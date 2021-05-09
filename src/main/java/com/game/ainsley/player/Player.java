@@ -42,8 +42,8 @@ public class Player extends GameObject {
         shouldRender = true;
         playerImage = playerIdle;
 
-        damageEffect = new Sound("sounds/effects/correct.wav");
-        death = new Sound("sounds/dead/deadSong.wav");
+        damageEffect = new Sound("sounds/effects/correct.mp3");
+        death = new Sound("sounds/dead/deadSong.mp3");
     }
 
     public static CollisionHandler getCollisionHandler() {

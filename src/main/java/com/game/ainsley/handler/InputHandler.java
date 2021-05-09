@@ -22,11 +22,11 @@ public class InputHandler {
     private final Rectangle saveFromPause = new Rectangle(405, 250, 230, 70);
     private final Rectangle loadFromPause = new Rectangle(405, 355, 270, 70);
     private final Rectangle mainMenuFromPause = new Rectangle(405, 460, 270, 70);
-    private final Sound background_1 = new Sound("sounds/background/main.wav");
-    private final Sound background_2 = new Sound("sounds/background/background.wav");
-    private final Sound background_3 = new Sound("sounds/background/8bitSong.wav");
-    private final Sound credits_1 = new Sound("sounds/test.mp3");
-    private final Sound credits_2 = new Sound("sounds/test.mp3");
+    private final Sound background_1 = new Sound("sounds/background/main.mp3");
+    private final Sound background_2 = new Sound("sounds/background/background.mp3");
+    private final Sound background_3 = new Sound("sounds/background/8bitSong.mp3");
+    private final Sound credits_1 = new Sound("sounds/credits/Credits.mp3");
+    private final Sound credits_2 = new Sound("sounds/credits/EndCredits.mp3");
     private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
     /**
