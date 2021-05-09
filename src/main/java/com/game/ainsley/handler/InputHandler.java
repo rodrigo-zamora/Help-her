@@ -31,8 +31,6 @@ public class InputHandler {
     private final Sound credits_1 = new Sound("sounds/credits/EndCredits.wav");
     private final Sound credits_2 = new Sound("sounds/credits/Credits.wav");
 
-    private final Sound death = new Sound("sounds/dead/deadSong.wav");
-
     public InputHandler() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
     }
@@ -62,7 +60,6 @@ public class InputHandler {
 
             case DEATH -> {
                 Game.reset();
-                death.playSound(1, true);
                 if (rectangle.intersects(mainMenuFromDeath)) {
                     Game.setScreen(Screen.MAIN_MENU);
                 } else if (rectangle.intersects(gameFromDeath)) {

@@ -25,6 +25,8 @@ public class Player extends GameObject {
     static Image playerImage;
     static Image playerIdle = FileManager.loadImage("player/player.gif");
     static Image playerDamage = FileManager.loadImage("player/playerDamaged.gif");
+
+    static Sound death;
     static Sound damageEffect;
 
     private static int health = 6;
@@ -48,6 +50,7 @@ public class Player extends GameObject {
 
         try {
             damageEffect = new Sound("sounds/effects/correct.wav");
+            death = new Sound("sounds/dead/deadSong.wav");
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -93,6 +96,11 @@ public class Player extends GameObject {
         if (Player.health == 0) {
             Game.reset();
             Game.setScreen(Screen.DEATH);
+            try {
+                death.playSound(1, true);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
     }
 
