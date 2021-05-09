@@ -47,6 +47,8 @@ public class Sound {
      * @throws UnsupportedAudioFileException if the audio file isn't valid
      */
     public void playSound(float volume, boolean shouldLoop) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+        mediaPlayer.setAutoPlay(shouldLoop);
+        mediaPlayer.setVolume(volume);
         mediaPlayer.play();
     }
 
