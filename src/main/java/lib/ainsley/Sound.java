@@ -3,15 +3,12 @@ package lib.ainsley;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Sound {
 
     private static final ArrayList<Sound> instances = new ArrayList<>();
-
-    private static Toolkit toolkit;
 
     private final MediaPlayer mediaPlayer;
 
@@ -46,10 +43,6 @@ public class Sound {
      *
      */
     public void stopSound() {
-        try {
-            mediaPlayer.stop();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        mediaPlayer.stop();
     }
 }
