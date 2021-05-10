@@ -74,9 +74,11 @@ public class Game extends Canvas implements Runnable {
         Player.setShouldRender(true);
         Player.getInventory().setNotesCollected(0);
         Player.getInventory().setReadingNote(10);
+        Player.getDamageEffect().stopSound();
         Chunk.setSpeed(0);
         Chunk.setX(0);
         Chunk.setIterations(0);
+        Chunk.setCurrentChunk(1);
         Door.setShouldRender(false);
         Door.setX(1500);
         for (int i = 0; i < 9; i++) {
