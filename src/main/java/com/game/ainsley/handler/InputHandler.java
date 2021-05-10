@@ -21,6 +21,8 @@ public class InputHandler {
     private final Rectangle winMenu = new Rectangle(425, 512, 230, 70);
     private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
+    private int x, y;
+
     /**
      * Method to check collision between the mouse and the buttons
      *
@@ -70,6 +72,7 @@ public class InputHandler {
                     }
                 }
             }
+
             case WIN -> {
                 if (rectangle.intersects(winMenu)) {
                     Game.setScreen(Screen.MAIN_MENU);
@@ -79,8 +82,16 @@ public class InputHandler {
         }
     }
 
-    public void setRectangle(Rectangle rectangle) {
-        this.rectangle = rectangle;
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void updateRectangle() {
+        rectangle.setRect(x, y, 1, 1);
     }
 }
 

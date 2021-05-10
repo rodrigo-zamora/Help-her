@@ -12,7 +12,9 @@ public class MouseInput extends MouseAdapter {
     InputHandler inputHandler = new InputHandler();
 
     public void mousePressed(MouseEvent event) {
-        inputHandler.setRectangle(new Rectangle(event.getX(), event.getY(), 1, 1));
+        inputHandler.setX(event.getX());
+        inputHandler.setY(event.getY());
+        inputHandler.updateRectangle();
         try {
             inputHandler.checkCollision();
         } catch (IOException e) {
