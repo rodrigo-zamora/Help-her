@@ -20,7 +20,6 @@ public class Player extends GameObject {
     static Image playerIdle = FileManager.loadImage("player/player.gif");
     static Image playerDamage = FileManager.loadImage("player/playerDamaged.gif");
 
-    static Sound death;
     static Sound damageEffect;
 
     private static int health = 6;
@@ -76,6 +75,10 @@ public class Player extends GameObject {
      */
     public static void setHealth(int health) {
         Player.health = health;
+    }
+
+    public static void damage() {
+        Player.health--;
         damageEffect.playSound(0.5F, true);
         if (Player.health == 0) {
             Game.reset();

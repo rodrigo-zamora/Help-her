@@ -28,7 +28,7 @@ public class Deidamia extends Enemy {
      */
     public Deidamia(int x, int y, ID id) {
         super(x, y, id);
-        deidamia.playSound(0.5F, false);
+        deidamia.playSound(1, false);
     }
 
     @Override
