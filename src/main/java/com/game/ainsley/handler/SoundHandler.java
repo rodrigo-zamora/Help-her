@@ -5,11 +5,11 @@ import lib.ainsley.Sound;
 
 public class SoundHandler {
 
-    private static final Sound mainMenuBackground = new Sound("sounds/background/mainBackground.mp3");
-    private static final Sound gameBackground = new Sound("sounds/background/gameBackground.mp3");
-    private static final Sound creditsBackground = new Sound("sounds/background/creditsBackground.mp3");
-    private static final Sound deathBackground = new Sound("sounds/background/deathBackground.mp3");
-    private static final Sound winBackground = new Sound("sounds/background/winBackground.mp3");
+    private static final Sound mainMenuBackground = new Sound("sounds/background/mainBackground.mp3", Sound.BACKGROUND);
+    private static final Sound gameBackground = new Sound("sounds/background/gameBackground.mp3", Sound.BACKGROUND);
+    private static final Sound creditsBackground = new Sound("sounds/background/creditsBackground.mp3", Sound.BACKGROUND);
+    private static final Sound deathBackground = new Sound("sounds/background/deathBackground.mp3", Sound.BACKGROUND);
+    private static final Sound winBackground = new Sound("sounds/background/winBackground.mp3", Sound.BACKGROUND);
 
     public static void sceneSound () {
         Sound.stopAllSounds();

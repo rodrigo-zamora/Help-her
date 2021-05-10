@@ -15,7 +15,7 @@ public class Sephtis extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(164, 50);
 
-    Sound sephtis = new Sound("sounds/enemies/sephtis.mp3");
+    Sound sephtis = new Sound("sounds/enemies/sephtis.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Sephtis class

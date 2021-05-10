@@ -9,17 +9,22 @@ import java.util.Objects;
 
 public class Sound {
 
+    public static final int BACKGROUND = 0;
+    public static final int EFFECT = 1;
+
     private static final ArrayList<Sound> instances = new ArrayList<>();
 
     private final MediaPlayer mediaPlayer;
+    private final int type;
 
     /**
      * Constructor for a sound object
      * @param soundFile gets the path to the sound file
      */
-    public Sound(String soundFile)  {
+    public Sound(String soundFile, int type)  {
         Media audio = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource(soundFile)).toExternalForm());
         mediaPlayer = new MediaPlayer(audio);
+        this.type = type;
         instances.add(this);
     }
 
@@ -28,7 +33,9 @@ public class Sound {
      */
     public static void stopAllSounds() {
         for (Sound instance : instances) {
-            instance.stopSound();
+            if (instance.type == BACKGROUND) {
+                instance.stopSound();
+            }
         }
     }
 

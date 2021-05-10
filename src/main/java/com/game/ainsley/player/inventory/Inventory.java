@@ -12,7 +12,7 @@ public class Inventory {
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
     private final URL container = ClassLoader.getSystemResource("player/inventory/container.png");
     private final Image containerImage = toolkit.getImage(container);
-    private static final Sound paper = new Sound("sounds/effects/note.mp3");
+    private static final Sound paper = new Sound("sounds/effects/note.mp3", Sound.EFFECT);
     private final List<Note> inventory = new ArrayList<>();
     private int notesCollected;
     private int readingNote;
