@@ -14,7 +14,6 @@ import com.game.ainsley.screen.Window;
 import com.game.ainsley.screen.screens.*;
 import javafx.embed.swing.JFXPanel;
 import lib.ainsley.FileManager;
-import lib.ainsley.Sound;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -57,7 +56,7 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
         GameObjectHandler.addObject(player);
-        SoundHandler.fixSound();
+        SoundHandler.sceneSound();
     }
 
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
@@ -303,7 +302,7 @@ public class Game extends Canvas implements Runnable {
 
     public static void setScreen(Screen screen) {
         Game.screen = screen;
-        SoundHandler.fixSound();
+        SoundHandler.sceneSound();
     }
 
 }

@@ -11,7 +11,7 @@ public class SoundHandler {
     private static final Sound deathBackground = new Sound("sounds/background/deathBackground.mp3");
     private static final Sound winBackground = new Sound("sounds/background/winBackground.mp3");
 
-    public static void fixSound() {
+    public static void sceneSound () {
         Sound.stopAllSounds();
         switch (Game.getScreen()) {
             case MAIN_MENU -> mainMenuBackground.playSound(1, true);
