@@ -2,6 +2,7 @@ package com.game.ainsley.main;
 
 import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.handler.GameObjectHandler;
+import com.game.ainsley.handler.SoundHandler;
 import com.game.ainsley.input.KeyboardInput;
 import com.game.ainsley.input.MouseInput;
 import com.game.ainsley.map.Chunk;
@@ -30,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 
     // Initialization for fxPanel to avoid java.lang.NullPointerException
     //	at java.base/java.util.Objects.requireNonNull(Objects.java:208)
-    final JFXPanel fxPanel = new JFXPanel();
+    static JFXPanel fxPanel;
 
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
@@ -46,17 +47,23 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean isRunning = false;
 
+    private static void init() {
+        fxPanel = new JFXPanel();
+    }
+
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
         new Window(WIDTH, HEIGHT, TITLE, this);
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
         GameObjectHandler.addObject(player);
+        SoundHandler.fixSound();
     }
 
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         System.setProperty("sun.java2d.opengl", "true");
         screen = Screen.MAIN_MENU;
+        init();
         new Game();
     }
 
@@ -77,43 +84,6 @@ public class Game extends Canvas implements Runnable {
             Player.getInventory().getNote(i).setBeenFound(false);
             Player.getInventory().getNote(i).setOpen(false);
         }
-    }
-
-    /**
-     * Getters and setters
-     */
-
-    public static boolean isPaused() {
-        return paused;
-    }
-
-    public static void setPaused() {
-        Game.paused = !Game.paused;
-    }
-
-    public static Boolean getPaused() {
-        return Game.paused;
-    }
-
-    public static void setPaused(boolean paused) {
-        Game.paused = paused;
-    }
-
-    public static boolean isMoving() {
-        return isMoving;
-    }
-
-    public static void setMoving(boolean isMoving) {
-        Game.isMoving = isMoving;
-    }
-
-    public static Screen getScreen() {
-        return screen;
-    }
-
-    public static void setScreen(Screen screen) {
-        Game.screen = screen;
-        Sound.stopAllSounds();
     }
 
     /**
@@ -298,4 +268,42 @@ public class Game extends Canvas implements Runnable {
         graphics.dispose();
         bufferStrategy.show();
     }
+
+    /**
+     * Getters and setters
+     */
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static void setPaused() {
+        Game.paused = !Game.paused;
+    }
+
+    public static Boolean getPaused() {
+        return Game.paused;
+    }
+
+    public static void setPaused(boolean paused) {
+        Game.paused = paused;
+    }
+
+    public static boolean isMoving() {
+        return isMoving;
+    }
+
+    public static void setMoving(boolean isMoving) {
+        Game.isMoving = isMoving;
+    }
+
+    public static Screen getScreen() {
+        return screen;
+    }
+
+    public static void setScreen(Screen screen) {
+        Game.screen = screen;
+        SoundHandler.fixSound();
+    }
+
 }

@@ -5,6 +5,7 @@ import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.player.Player;
 import lib.ainsley.FileManager;
+import lib.ainsley.Sound;
 
 import java.awt.*;
 
@@ -13,6 +14,8 @@ public class Sephtis extends Enemy {
     Image sephtisLeftImage = FileManager.loadImage("enemies/SephtisL.gif");
 
     CollisionHandler collisionHandler = new CollisionHandler(164, 50);
+
+    Sound sephtis = new Sound("sounds/enemies/sephtis.mp3");
 
     /**
      * Constructor for Sephtis class
@@ -24,6 +27,7 @@ public class Sephtis extends Enemy {
     public Sephtis(int x, int y, ID id) {
         super(x, y, id);
         speedY = 1;
+        sephtis.playSound(0.5F, false);
     }
 
     @Override

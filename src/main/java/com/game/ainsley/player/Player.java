@@ -41,9 +41,7 @@ public class Player extends GameObject {
         collisionHandler.setY(y); // 0
         shouldRender = true;
         playerImage = playerIdle;
-
-        damageEffect = new Sound("sounds/effects/correct.mp3");
-        death = new Sound("sounds/dead/deadSong.mp3");
+        damageEffect = new Sound("sounds/effects/damage.mp3");
     }
 
     public static CollisionHandler getCollisionHandler() {
@@ -82,11 +80,6 @@ public class Player extends GameObject {
         if (Player.health == 0) {
             Game.reset();
             Game.setScreen(Screen.DEATH);
-            try {
-                death.playSound(1, true);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
         }
     }
 

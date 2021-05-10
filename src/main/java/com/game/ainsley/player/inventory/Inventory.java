@@ -1,5 +1,7 @@
 package com.game.ainsley.player.inventory;
 
+import lib.ainsley.Sound;
+
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ public class Inventory {
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
     private final URL container = ClassLoader.getSystemResource("player/inventory/container.png");
     private final Image containerImage = toolkit.getImage(container);
+    private static final Sound paper = new Sound("sounds/effects/note.mp3");
     private final List<Note> inventory = new ArrayList<>();
     private int notesCollected;
     private int readingNote;
@@ -56,6 +59,10 @@ public class Inventory {
 
     public Note getNote(int index) {
         return inventory.get(index);
+    }
+
+    public static Sound getPaper() {
+        return paper;
     }
 
     @Override

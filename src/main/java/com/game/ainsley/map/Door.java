@@ -6,6 +6,7 @@ import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
 import lib.ainsley.FileManager;
 import lib.ainsley.Numbers;
+import lib.ainsley.Sound;
 
 import java.awt.*;
 
@@ -14,6 +15,9 @@ public class Door {
     private static final Image doorImage = FileManager.loadImage("map/door.png");
 
     private static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
+
+    private static final Sound close = new Sound("sounds/effects/doorClose.mp3");
+    private static final Sound open = new Sound("sounds/effects/doorOpen.mp3");
 
     private static boolean shouldRender;
     private static int x = 1500, y;
@@ -148,8 +152,6 @@ public class Door {
 
     /**
      * Check for collision between player and door
-     *
-     * @param rectangle receives the player rectangle
      */
     public static void collision() {
         if (Player.getCollisionHandler().getRectangle().intersects(collisionHandler.getRectangle())) {
@@ -164,6 +166,8 @@ public class Door {
 
         // Only get new note if player is visible (outside of the door)
         if (Player.shouldRender()) {
+
+            open.playSound(0.5F, false);
 
             // Make player stop moving
             Player.setSpeedY(0);
@@ -185,6 +189,7 @@ public class Door {
         } else {
             // Change door visibility
             x = -300;
+            close.playSound(0.5F, false);
 
             Chunk.setIterations(0);
             Door.shouldRender = false;

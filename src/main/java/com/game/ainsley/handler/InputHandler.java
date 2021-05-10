@@ -4,8 +4,6 @@ import com.game.ainsley.data.Load;
 import com.game.ainsley.data.Save;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.screen.Screen;
-import lib.ainsley.Numbers;
-import lib.ainsley.Sound;
 
 import java.awt.*;
 import java.io.IOException;
@@ -20,11 +18,6 @@ public class InputHandler {
     private final Rectangle saveFromPause = new Rectangle(405, 250, 230, 70);
     private final Rectangle loadFromPause = new Rectangle(405, 355, 270, 70);
     private final Rectangle mainMenuFromPause = new Rectangle(405, 460, 270, 70);
-    private final Sound background_1 = new Sound("sounds/background/main.mp3");
-    private final Sound background_2 = new Sound("sounds/background/background.mp3");
-    private final Sound background_3 = new Sound("sounds/background/8bitSong.mp3");
-    private final Sound credits_1 = new Sound("sounds/credits/Credits.mp3");
-    private final Sound credits_2 = new Sound("sounds/credits/EndCredits.mp3");
     private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
     /**
@@ -34,24 +27,14 @@ public class InputHandler {
      */
     public void checkCollision() throws IOException {
 
-        int randomMusicNumber = Numbers.randomNumberBetween(1, 3);
         switch (Game.getScreen()) {
             case MAIN_MENU -> {
                 if (rectangle.intersects(gameFromMenu)) {
                     Game.setScreen(Screen.GAME);
                     Game.setPaused(false);
-                    switch (randomMusicNumber) {
-                        case 1 -> background_1.playSound(1, true);
-                        case 2 -> background_2.playSound(1, true);
-                        case 3 -> background_3.playSound(1, true);
-                    }
 
                 } else if (rectangle.intersects(creditsFromMenu)) {
                     Game.setScreen(Screen.CREDITS);
-                    switch (randomMusicNumber) {
-                        case 1 -> credits_1.playSound(1, true);
-                        case 2, 3 -> credits_2.playSound(1, true);
-                    }
                 }
             }
 
@@ -61,11 +44,6 @@ public class InputHandler {
                     Game.setScreen(Screen.MAIN_MENU);
                 } else if (rectangle.intersects(gameFromDeath)) {
                     Game.setScreen(Screen.GAME);
-                    switch (randomMusicNumber) {
-                        case 1 -> background_1.playSound(1, true);
-                        case 2 -> background_2.playSound(1, true);
-                        case 3 -> background_3.playSound(1, true);
-                    }
                 }
 
             }
@@ -92,7 +70,6 @@ public class InputHandler {
                 }
             }
         }
-
     }
 
     public void setRectangle(Rectangle rectangle) {

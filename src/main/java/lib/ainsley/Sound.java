@@ -2,6 +2,7 @@ package lib.ainsley;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -41,6 +42,12 @@ public class Sound {
         mediaPlayer.setAutoPlay(shouldLoop);
         mediaPlayer.setVolume(volume);
         mediaPlayer.play();
+        if (shouldLoop) {
+            mediaPlayer.setOnEndOfMedia(() -> {
+                mediaPlayer.seek(Duration.ZERO);
+                mediaPlayer.play();
+            });
+        }
     }
 
     /**
@@ -48,5 +55,13 @@ public class Sound {
      */
     public void stopSound() {
         mediaPlayer.stop();
+    }
+
+    public static ArrayList<Sound> getInstances() {
+        return instances;
+    }
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
     }
 }
