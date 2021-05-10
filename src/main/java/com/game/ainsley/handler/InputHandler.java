@@ -18,6 +18,7 @@ public class InputHandler {
     private final Rectangle saveFromPause = new Rectangle(405, 250, 230, 70);
     private final Rectangle loadFromPause = new Rectangle(405, 355, 270, 70);
     private final Rectangle mainMenuFromPause = new Rectangle(405, 460, 270, 70);
+    private final Rectangle winMenu = new Rectangle(425, 512, 230, 70);
     private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
     /**
@@ -67,6 +68,12 @@ public class InputHandler {
                         Game.reset();
                         Game.setPaused(false);
                     }
+                }
+            }
+            case WIN -> {
+                if (rectangle.intersects(winMenu)) {
+                    Game.setScreen(Screen.MAIN_MENU);
+                    Game.reset();
                 }
             }
         }
