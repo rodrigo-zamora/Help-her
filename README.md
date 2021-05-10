@@ -12,9 +12,14 @@ This game was created by:
 
 #### Compile
 The game can be compiled using **Maven**
-  
-  
+
 ## Game information
 #### How to play
 
 #### Screenshots in game
+Main menu
+![Main menu](https://github.com/rodrigo-zamora/Help-her/blob/master/screenshots/mainMenu.png?raw=true)
+Game
+![Game](https://github.com/rodrigo-zamora/Help-her/blob/master/screenshots/game.png?raw=true)
+Pause
+![Pause](https://github.com/rodrigo-zamora/Help-her/blob/master/screenshots/pause.png?raw=true)
