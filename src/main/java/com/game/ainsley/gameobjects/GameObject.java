@@ -13,14 +13,6 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public static int getSpeedY() {
-        return speedY;
-    }
-
-    public static void setSpeedY(int speedY) {
-        GameObject.speedY = speedY;
-    }
-
     // Setters and getters
 
     public abstract boolean tick();

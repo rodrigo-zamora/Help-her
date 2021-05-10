@@ -28,12 +28,13 @@ public class Game extends Canvas implements Runnable {
     public static final int HEIGHT = 640;
     public static final String TITLE = "Help her";
 
-    // Initialization for MediaPlayer
+    // Initialization for fxPanel to avoid java.lang.NullPointerException
+    //	at java.base/java.util.Objects.requireNonNull(Objects.java:208)
     final JFXPanel fxPanel = new JFXPanel();
 
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
-    private static final Image pauseImage = FileManager.loadImage("Screens/LoadingScreen1.gif");
+    private static final Image pauseImage = FileManager.loadImage("screens/LoadingScreen1.gif");
     private static final Image saveImage = FileManager.loadImage("buttons/saveButtonPixel4.png");
     private static final Image loadImage = FileManager.loadImage("buttons/loadButtonPixel4.png");
     private static final Image menuImage = FileManager.loadImage("buttons/menuButtonPixel4.png");
@@ -113,14 +114,6 @@ public class Game extends Canvas implements Runnable {
     public static void setScreen(Screen screen) {
         Game.screen = screen;
         Sound.stopAllSounds();
-    }
-
-    public static int getFPS() {
-        return FPS;
-    }
-
-    public static void setFPS(int FPS) {
-        Game.FPS = FPS;
     }
 
     /**

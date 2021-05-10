@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class MainMenu {
 
-    private static final Image backgroundImage = FileManager.loadImage("Screens/IntroLarge.gif");
+    private static final Image backgroundImage = FileManager.loadImage("screens/IntroLarge.gif");
     private static final Image startImage = FileManager.loadImage("buttons/StartButtonPixel4.png");
     private static final Image creditsImage = FileManager.loadImage("buttons/CreditsButtonPixel4.png");
 

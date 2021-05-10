@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Win {
 
-    private static final Image backgroundImage = FileManager.loadImage("Screens/winScreen.gif");
+    private static final Image backgroundImage = FileManager.loadImage("screens/winScreen.gif");
 
     public static void render(Graphics graphics) {
         graphics.drawImage(

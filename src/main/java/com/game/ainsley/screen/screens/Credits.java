@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Credits {
 
-    private static final Image backgroundImage = FileManager.loadImage("Screens/Credits2.png");
+    private static final Image backgroundImage = FileManager.loadImage("screens/Credits2.png");
     private static final Image backImage = FileManager.loadImage("buttons/backButtonPixel4.png");
 
     public static void render(Graphics graphics) {

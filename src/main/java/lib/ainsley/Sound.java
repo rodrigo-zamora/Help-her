@@ -13,7 +13,8 @@ public class Sound {
     private final MediaPlayer mediaPlayer;
 
     /**
-     *
+     * Constructor for a sound object
+     * @param soundFile gets the path to the sound file
      */
     public Sound(String soundFile)  {
         Media audio = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource(soundFile)).toExternalForm());
@@ -21,6 +22,9 @@ public class Sound {
         instances.add(this);
     }
 
+    /**
+     * Static method to stop all sounds that are currently playing
+     */
     public static void stopAllSounds() {
         for (Sound instance : instances) {
             instance.stopSound();
@@ -40,7 +44,7 @@ public class Sound {
     }
 
     /**
-     *
+     * Method to stop a sound
      */
     public void stopSound() {
         mediaPlayer.stop();

@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Death {
 
-    private static final Image backgroundImage = FileManager.loadImage("Screens/deadScreen.gif");
+    private static final Image backgroundImage = FileManager.loadImage("screens/deadScreen.gif");
     private static final Image backImage = FileManager.loadImage("buttons/backButtonPixel4.png");
     private static final Image restartImage = FileManager.loadImage("buttons/restartButtonPixel4.png");
 

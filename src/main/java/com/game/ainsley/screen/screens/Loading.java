@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Loading {
 
-    private static final Image backgroundImage = FileManager.loadImage("Screens/LoadingScreen2.gif");
+    private static final Image backgroundImage = FileManager.loadImage("screens/LoadingScreen2.gif");
 
     public static void render(Graphics graphics) {
 
