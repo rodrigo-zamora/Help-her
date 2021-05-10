@@ -16,7 +16,7 @@ public class Aarav extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(210, 70);
 
-    Sound aarav = new Sound("sounds/enemies/aarav.mp3");
+    Sound aarav = new Sound("sounds/enemies/aarav.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Aarav class
@@ -27,7 +27,7 @@ public class Aarav extends Enemy {
      */
     public Aarav(int x, int y, ID id) {
         super(x, y, id);
-        aarav.playSound(0.5F, false);
+        aarav.playSound(1, false);
     }
 
 

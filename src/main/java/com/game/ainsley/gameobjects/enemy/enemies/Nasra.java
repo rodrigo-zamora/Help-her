@@ -15,7 +15,7 @@ public class Nasra extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(62, 38);
 
-    Sound nasra = new Sound("sounds/enemies/nasra.mp3");
+    Sound nasra = new Sound("sounds/enemies/nasra.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Nasra class

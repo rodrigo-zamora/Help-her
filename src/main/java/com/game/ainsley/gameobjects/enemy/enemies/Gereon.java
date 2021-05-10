@@ -15,7 +15,7 @@ public class Gereon extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(70, 28);
 
-    Sound gereon = new Sound("sounds/enemies/gereon.mp3");
+    Sound gereon = new Sound("sounds/enemies/gereon.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Gereon class
@@ -26,7 +26,7 @@ public class Gereon extends Enemy {
      */
     public Gereon(int x, int y, ID id) {
         super(x, y, id);
-        gereon.playSound(0.5F, false);
+        gereon.playSound(0.8F, false);
     }
 
     @Override

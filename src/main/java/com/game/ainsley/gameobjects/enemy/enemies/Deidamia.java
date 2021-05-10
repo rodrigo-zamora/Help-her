@@ -17,7 +17,7 @@ public class Deidamia extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(150, 40);
 
-    Sound deidamia = new Sound("sounds/enemies/deidamia.mp3");
+    Sound deidamia = new Sound("sounds/enemies/deidamia.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Deidamia class

@@ -40,7 +40,7 @@ public class Player extends GameObject {
         collisionHandler.setY(y); // 0
         shouldRender = true;
         playerImage = playerIdle;
-        damageEffect = new Sound("sounds/effects/damage.mp3");
+        damageEffect = new Sound("sounds/effects/damage.mp3", Sound.EFFECT);
     }
 
     public static CollisionHandler getCollisionHandler() {
