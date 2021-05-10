@@ -25,7 +25,7 @@ public abstract class Enemy extends GameObject {
         // Move enemy out of player's view
         x = -200;
 
-        Player.setHealth(Player.getHealth() - 1);
+        Player.damage();
         Player.damageAnimation(true);
     }
 }

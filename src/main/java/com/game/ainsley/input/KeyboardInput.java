@@ -4,6 +4,7 @@ import com.game.ainsley.main.Game;
 import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
 import com.game.ainsley.player.Player;
+import com.game.ainsley.player.inventory.Inventory;
 import com.game.ainsley.screen.Screen;
 
 import java.awt.event.KeyAdapter;
@@ -44,7 +45,9 @@ public class KeyboardInput extends KeyAdapter {
                         if (Player.getInventory().getNote(note).hasBeenFound()) {
                             if (Player.getInventory().getNote(note).isOpen()) {
                                 Player.getInventory().closeAllNotes();
+                                Inventory.getPaper().stopSound();
                             } else {
+                                Inventory.getPaper().playSound(0.5F, false);
                                 Player.getInventory().getNote(note).setOpen(true);
                                 Player.getInventory().setReadingNote(note);
                                 Player.setSpeedY(0);

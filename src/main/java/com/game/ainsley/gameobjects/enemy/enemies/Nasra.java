@@ -5,6 +5,7 @@ import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.player.Player;
 import lib.ainsley.FileManager;
+import lib.ainsley.Sound;
 
 import java.awt.*;
 
@@ -13,6 +14,8 @@ public class Nasra extends Enemy {
     Image nasraLeftImage = FileManager.loadImage("enemies/NasraL.gif");
 
     CollisionHandler collisionHandler = new CollisionHandler(62, 38);
+
+    Sound nasra = new Sound("sounds/enemies/nasra.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Nasra class
@@ -24,6 +27,7 @@ public class Nasra extends Enemy {
     public Nasra(int x, int y, ID id) {
         super(x, y, id);
         speedY = 3;
+        nasra.playSound(0.5F, false);
     }
 
     @Override

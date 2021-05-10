@@ -5,6 +5,7 @@ import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.player.Player;
 import lib.ainsley.FileManager;
+import lib.ainsley.Sound;
 
 import java.awt.*;
 
@@ -13,6 +14,8 @@ public class Gereon extends Enemy {
     Image gereonLeftImage = FileManager.loadImage("enemies/GereonL.gif");
 
     CollisionHandler collisionHandler = new CollisionHandler(70, 28);
+
+    Sound gereon = new Sound("sounds/enemies/gereon.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Gereon class
@@ -23,6 +26,7 @@ public class Gereon extends Enemy {
      */
     public Gereon(int x, int y, ID id) {
         super(x, y, id);
+        gereon.playSound(0.8F, false);
     }
 
     @Override

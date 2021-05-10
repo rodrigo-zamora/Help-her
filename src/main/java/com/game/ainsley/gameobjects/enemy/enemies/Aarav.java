@@ -6,15 +6,17 @@ import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.player.Player;
 import lib.ainsley.FileManager;
+import lib.ainsley.Sound;
 
 import java.awt.*;
 
 public class Aarav extends Enemy {
 
-    Image aaravLeftImage = FileManager.loadImage("enemies/Aarav.gif");
-    Image aaravIdleImage = FileManager.loadImage("enemies/AaravIdle.png");
+    Image aaravImage = FileManager.loadImage("enemies/Aarav.gif");
 
     CollisionHandler collisionHandler = new CollisionHandler(210, 70);
+
+    Sound aarav = new Sound("sounds/enemies/aarav.mp3", Sound.EFFECT);
 
     /**
      * Constructor for Aarav class
@@ -25,19 +27,9 @@ public class Aarav extends Enemy {
      */
     public Aarav(int x, int y, ID id) {
         super(x, y, id);
+        aarav.playSound(1, false);
     }
 
-    /**
-     * Method to get the image of Aarav depending in the player movement
-     *
-     * @param isMoving receives a boolean
-     * @return an Image
-     */
-    private Image getImage(boolean isMoving) {
-        if (isMoving) {
-            return aaravLeftImage;
-        } else return aaravIdleImage;
-    }
 
     @Override
     public boolean tick() {
@@ -51,7 +43,7 @@ public class Aarav extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(
-                getImage(Game.isMoving()),
+                aaravImage,
                 getX(),
                 getY(),
                 null

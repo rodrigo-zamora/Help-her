@@ -20,7 +20,6 @@ public class Player extends GameObject {
     static Image playerIdle = FileManager.loadImage("player/player.gif");
     static Image playerDamage = FileManager.loadImage("player/playerDamaged.gif");
 
-    static Sound death;
     static Sound damageEffect;
 
     private static int health = 6;
@@ -41,9 +40,7 @@ public class Player extends GameObject {
         collisionHandler.setY(y); // 0
         shouldRender = true;
         playerImage = playerIdle;
-
-        damageEffect = new Sound("sounds/effects/correct.mp3");
-        death = new Sound("sounds/dead/deadSong.mp3");
+        damageEffect = new Sound("sounds/effects/damage.mp3", Sound.EFFECT);
     }
 
     public static CollisionHandler getCollisionHandler() {
@@ -78,15 +75,14 @@ public class Player extends GameObject {
      */
     public static void setHealth(int health) {
         Player.health = health;
+    }
+
+    public static void damage() {
+        Player.health--;
         damageEffect.playSound(0.5F, true);
         if (Player.health == 0) {
             Game.reset();
             Game.setScreen(Screen.DEATH);
-            try {
-                death.playSound(1, true);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
         }
     }
 

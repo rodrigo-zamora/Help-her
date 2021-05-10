@@ -6,6 +6,7 @@ import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.player.Player;
 import lib.ainsley.FileManager;
+import lib.ainsley.Sound;
 
 import java.awt.*;
 
@@ -16,6 +17,8 @@ public class Deidamia extends Enemy {
 
     CollisionHandler collisionHandler = new CollisionHandler(150, 40);
 
+    Sound deidamia = new Sound("sounds/enemies/deidamia.mp3", Sound.EFFECT);
+
     /**
      * Constructor for Deidamia class
      *
@@ -25,6 +28,7 @@ public class Deidamia extends Enemy {
      */
     public Deidamia(int x, int y, ID id) {
         super(x, y, id);
+        deidamia.playSound(1, false);
     }
 
     @Override
