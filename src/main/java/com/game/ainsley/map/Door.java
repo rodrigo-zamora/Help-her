@@ -164,7 +164,7 @@ public class Door {
         // Only get new note if player is visible (outside of the door)
         if (Player.shouldRender()) {
 
-            open.playSound(0.5F, false);
+            open.playSound(1, false);
             close.stopSound();
 
             // All notes collected
@@ -187,7 +187,7 @@ public class Door {
         } else {
             // Change door visibility
             x = -300;
-            close.playSound(0.5F, false);
+            close.playSound(1, false);
             open.stopSound();
 
             Chunk.setIterations(0);

@@ -35,6 +35,7 @@ public class InputHandler {
                 if (rectangle.intersects(gameFromMenu)) {
                     Game.setScreen(Screen.GAME);
                     Game.setPaused(false);
+                    SoundHandler.playRandomSound();
 
                 } else if (rectangle.intersects(creditsFromMenu)) {
                     Game.setScreen(Screen.CREDITS);

@@ -6,6 +6,8 @@ import lib.ainsley.Numbers;
 
 public class SpawnEnemy {
 
+    private static int lastNumber = -1;
+
     /**
      * Method to get a random enemy ID
      *
@@ -13,6 +15,10 @@ public class SpawnEnemy {
      */
     private static ID getRandomEnemy() {
         int randomInteger = Numbers.randomNumber(5);
+        while (randomInteger == lastNumber) {
+            randomInteger = Numbers.randomNumber(5);
+        }
+        lastNumber = randomInteger;
         return switch (randomInteger) {
             case 0 -> ID.Aarav;
             case 1 -> ID.Deidamia;

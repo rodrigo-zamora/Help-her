@@ -17,6 +17,8 @@ public class SoundHandler {
 
     private static final ArrayList<Sound> soundArrayList = new ArrayList<>();
 
+    private static int lastNumber = -1;
+
     public static void sceneSound() {
         Sound.stopAllSounds();
         switch (Game.getScreen()) {
@@ -28,28 +30,32 @@ public class SoundHandler {
         }
     }
 
-    public static void playRandomSound() {
-        if (soundArrayList.size() == 0) {
-            for (int i = 0; i < 9; i++) {
-                String index = i + 1 + ".mp3";
-                soundArrayList.add(new Sound("sounds/effects/backgroundEffects/" + index, Sound.BACKGROUND));
-            }
+    public static void addSounds() {
+        for (int i = 0; i < 4; i++) {
+            String index = i + 1 + ".mp3";
+            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/" + index, Sound.BACKGROUND));
         }
+    }
+
+    public static void playRandomSound() {
         if (Game.getScreen() == Screen.GAME && !Game.isPaused()) {
             int index = Numbers.randomNumberBetween(0, soundArrayList.size());
+            while (lastNumber == index) {
+                index = Numbers.randomNumberBetween(0, soundArrayList.size());
+            }
+            int finalIndex = index;
+            lastNumber = index;
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
                         public void run() {
-                            soundArrayList.get(index).stopSound();
+                            soundArrayList.get(finalIndex).stopSound();
+                            playRandomSound();
                         }
                     },
-                    Numbers.randomNumberBetween(15000, 30000)
+                    Numbers.randomNumberBetween(30000, 45000)
             );
             soundArrayList.get(index).playSound(Sound.EFFECT, false);
-        } else {
-            playRandomSound();
         }
     }
-
 }

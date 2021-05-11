@@ -26,5 +26,4 @@ public class Numbers {
         Random random = new Random();
         return random.nextInt(bound);
     }
-
 }
