@@ -133,14 +133,14 @@ public class Door {
 
             if (Player.shouldRender()) {
                 graphics.drawString(
-                        "Presiona 'E' para entrar",
-                        x - 50,
+                        "Press 'E' to enter",
+                        x - 25,
                         200
                 );
             } else {
                 graphics.drawString(
-                        "Presiona 'E' para salir",
-                        x - 50,
+                        "Press 'E' to exit",
+                        x - 25,
                         200
                 );
             }
