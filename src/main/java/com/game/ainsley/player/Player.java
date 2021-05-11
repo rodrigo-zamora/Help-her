@@ -99,7 +99,7 @@ public class Player extends GameObject {
                         damageEffect.stopSound();
                     }
                 },
-                750
+                900
         );
         damageEffect.playSound(0.5F, true);
         playerImage = playerDamage;

@@ -19,6 +19,9 @@ public class SoundHandler {
 
     private static int lastNumber = -1;
 
+    /**
+     * Method to play a sound depending on the current scene
+     */
     public static void sceneSound() {
         Sound.stopAllSounds();
         switch (Game.getScreen()) {
@@ -30,6 +33,9 @@ public class SoundHandler {
         }
     }
 
+    /**
+     * Method to load all the background effects into an array list
+     */
     public static void addSounds() {
         for (int i = 0; i < 9; i++) {
             String index = i + 1 + ".mp3";
@@ -37,6 +43,11 @@ public class SoundHandler {
         }
     }
 
+    /**
+     * Method to play a random sound from background effects array list
+     * Sounds will be played all the time, while the player is in
+     * the game scene, and the game isn't paused.
+     */
     public static void playRandomSound() {
         if (Game.getScreen() == Screen.GAME && !Game.isPaused()) {
             int index = Numbers.randomNumberBetween(0, soundArrayList.size());

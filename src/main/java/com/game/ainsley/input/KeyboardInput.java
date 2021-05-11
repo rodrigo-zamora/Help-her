@@ -47,6 +47,7 @@ public class KeyboardInput extends KeyAdapter {
                                 Player.getInventory().closeAllNotes();
                                 Inventory.getPaper().stopSound();
                             } else {
+                                Inventory.getPaper().stopSound();
                                 Inventory.getPaper().playSound(0.8F, false);
                                 Player.getInventory().getNote(note).setOpen(true);
                                 Player.getInventory().setReadingNote(note);
