@@ -2,7 +2,6 @@ package com.game.ainsley.input;
 
 import com.game.ainsley.handler.InputHandler;
 
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;

@@ -9,10 +9,10 @@ import java.util.List;
 
 public class Inventory {
 
+    private static final Sound paper = new Sound("sounds/effects/note.mp3", Sound.EFFECT);
     private final Toolkit toolkit = Toolkit.getDefaultToolkit();
     private final URL container = ClassLoader.getSystemResource("player/inventory/container.png");
     private final Image containerImage = toolkit.getImage(container);
-    private static final Sound paper = new Sound("sounds/effects/note.mp3", Sound.EFFECT);
     private final List<Note> inventory = new ArrayList<>();
     private int notesCollected;
     private int readingNote;
@@ -25,6 +25,10 @@ public class Inventory {
             index = i + ".png";
             inventory.add(new Note("player/inventoryItems/" + index, "player/inventoryItems/icon-" + index, false));
         }
+    }
+
+    public static Sound getPaper() {
+        return paper;
     }
 
     public int getNotesCollected() {
@@ -59,10 +63,6 @@ public class Inventory {
 
     public Note getNote(int index) {
         return inventory.get(index);
-    }
-
-    public static Sound getPaper() {
-        return paper;
     }
 
     @Override

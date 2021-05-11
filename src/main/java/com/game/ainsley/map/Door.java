@@ -13,12 +13,9 @@ import java.awt.*;
 public class Door {
 
     private static final Image doorImage = FileManager.loadImage("map/door.png");
-
-    private static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
-
     private static final Sound close = new Sound("sounds/effects/doorClose.mp3", Sound.EFFECT);
     private static final Sound open = new Sound("sounds/effects/doorOpen.mp3", Sound.EFFECT);
-
+    private static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
     private static boolean shouldRender;
     private static int x = 1500, y;
 

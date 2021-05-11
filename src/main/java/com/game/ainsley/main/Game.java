@@ -27,17 +27,15 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1080;
     public static final int HEIGHT = 640;
     public static final String TITLE = "Help her";
-
-    // Initialization for fxPanel to avoid java.lang.NullPointerException
-    //	at java.base/java.util.Objects.requireNonNull(Objects.java:208)
-    static JFXPanel fxPanel;
-
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
     private static final Image pauseImage = FileManager.loadImage("screens/LoadingScreen1.gif");
     private static final Image saveImage = FileManager.loadImage("buttons/saveButtonPixel4.png");
     private static final Image loadImage = FileManager.loadImage("buttons/loadButtonPixel4.png");
     private static final Image menuImage = FileManager.loadImage("buttons/menuButtonPixel4.png");
+    // Initialization for fxPanel to avoid java.lang.NullPointerException
+    //	at java.base/java.util.Objects.requireNonNull(Objects.java:208)
+    static JFXPanel fxPanel;
     private static boolean paused = false;
     private static boolean isMoving;
     private static Screen screen;
@@ -46,10 +44,6 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean isRunning = false;
 
-    private static void init() {
-        fxPanel = new JFXPanel();
-    }
-
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         addMouseListener(new MouseInput());
         this.addKeyListener(new KeyboardInput());
@@ -57,6 +51,10 @@ public class Game extends Canvas implements Runnable {
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
         GameObjectHandler.addObject(player);
         SoundHandler.sceneSound();
+    }
+
+    private static void init() {
+        fxPanel = new JFXPanel();
     }
 
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
@@ -85,6 +83,43 @@ public class Game extends Canvas implements Runnable {
             Player.getInventory().getNote(i).setBeenFound(false);
             Player.getInventory().getNote(i).setOpen(false);
         }
+    }
+
+    /**
+     * Getters and setters
+     */
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static void setPaused() {
+        Game.paused = !Game.paused;
+    }
+
+    public static Boolean getPaused() {
+        return Game.paused;
+    }
+
+    public static void setPaused(boolean paused) {
+        Game.paused = paused;
+    }
+
+    public static boolean isMoving() {
+        return isMoving;
+    }
+
+    public static void setMoving(boolean isMoving) {
+        Game.isMoving = isMoving;
+    }
+
+    public static Screen getScreen() {
+        return screen;
+    }
+
+    public static void setScreen(Screen screen) {
+        Game.screen = screen;
+        SoundHandler.sceneSound();
     }
 
     /**
@@ -268,43 +303,6 @@ public class Game extends Canvas implements Runnable {
 
         graphics.dispose();
         bufferStrategy.show();
-    }
-
-    /**
-     * Getters and setters
-     */
-
-    public static boolean isPaused() {
-        return paused;
-    }
-
-    public static void setPaused() {
-        Game.paused = !Game.paused;
-    }
-
-    public static Boolean getPaused() {
-        return Game.paused;
-    }
-
-    public static void setPaused(boolean paused) {
-        Game.paused = paused;
-    }
-
-    public static boolean isMoving() {
-        return isMoving;
-    }
-
-    public static void setMoving(boolean isMoving) {
-        Game.isMoving = isMoving;
-    }
-
-    public static Screen getScreen() {
-        return screen;
-    }
-
-    public static void setScreen(Screen screen) {
-        Game.screen = screen;
-        SoundHandler.sceneSound();
     }
 
 }

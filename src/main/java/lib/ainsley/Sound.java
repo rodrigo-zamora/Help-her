@@ -19,9 +19,10 @@ public class Sound {
 
     /**
      * Constructor for a sound object
+     *
      * @param soundFile gets the path to the sound file
      */
-    public Sound(String soundFile, int type)  {
+    public Sound(String soundFile, int type) {
         Media audio = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource(soundFile)).toExternalForm());
         mediaPlayer = new MediaPlayer(audio);
         this.type = type;
@@ -37,6 +38,10 @@ public class Sound {
                 instance.stopSound();
             }
         }
+    }
+
+    public static ArrayList<Sound> getInstances() {
+        return instances;
     }
 
     /**
@@ -62,10 +67,6 @@ public class Sound {
      */
     public void stopSound() {
         mediaPlayer.stop();
-    }
-
-    public static ArrayList<Sound> getInstances() {
-        return instances;
     }
 
     public MediaPlayer getMediaPlayer() {

@@ -40,6 +40,7 @@ public class Load {
             JSONObject collisionHandler = door.getJSONObject("collisionHandler");
             Door.getCollisionHandler().setX((Integer) collisionHandler.get("x"));
             Door.getCollisionHandler().setY((Integer) collisionHandler.get("y"));
+
         } else if (jsonObject.has("player")) {
             JSONObject player = jsonObject.getJSONObject("player");
             Player.setHealth((Integer) player.get("health"));
@@ -48,11 +49,13 @@ public class Load {
             Player.setShouldRender((Boolean) player.get("shouldRender"));
             Player.getInventory().setReadingNote((Integer) player.get("readingNote"));
             Player.getInventory().setNotesCollected((Integer) player.get("notesCollected"));
+
         } else if (jsonObject.has("chunk")) {
             JSONObject chunk = jsonObject.getJSONObject("chunk");
             Chunk.setX((Integer) chunk.get("x"));
             Chunk.setCurrentChunk((Integer) chunk.get("currentChunk"));
             Chunk.setIterations((Integer) chunk.get("iterations"));
+
         } else if (jsonObject.has("inventory")) {
             JSONObject inventory = jsonObject.getJSONObject("inventory");
             for (int i = 0; i < 9; i++) {
@@ -60,6 +63,7 @@ public class Load {
                 Player.getInventory().getNote(i).setBeenFound((Boolean) note.get("hasBeenFound"));
                 Player.getInventory().getNote(i).setOpen((Boolean) note.get("isOpen"));
             }
+
         } else if (jsonObject.has("enemy")) {
             JSONObject enemy = jsonObject.getJSONObject("enemy");
             if (!enemy.get("id").equals("null")) {

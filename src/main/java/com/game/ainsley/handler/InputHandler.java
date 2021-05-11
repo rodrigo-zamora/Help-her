@@ -19,14 +19,14 @@ public class InputHandler {
     private final Rectangle loadFromPause = new Rectangle(405, 355, 270, 70);
     private final Rectangle mainMenuFromPause = new Rectangle(405, 460, 270, 70);
     private final Rectangle winMenu = new Rectangle(425, 512, 230, 70);
-    private Rectangle rectangle = new Rectangle(0, 0, 1, 1);
+    private final Rectangle rectangle = new Rectangle(0, 0, 1, 1);
 
     private int x, y;
 
     /**
      * Method to check collision between the mouse and the buttons
      *
-     * @throws IOException                   if an I/O exception occurs
+     * @throws IOException if an I/O exception occurs
      */
     public void checkCollision() throws IOException {
 
