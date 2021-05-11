@@ -55,6 +55,7 @@ public class Game extends Canvas implements Runnable {
 
     private static void init() {
         fxPanel = new JFXPanel();
+        SoundHandler.playRandomSound();
     }
 
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
