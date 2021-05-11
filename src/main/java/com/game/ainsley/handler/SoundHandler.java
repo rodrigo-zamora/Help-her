@@ -46,6 +46,7 @@ public class SoundHandler {
                     new java.util.TimerTask() {
                         @Override
                         public void run() {
+                            soundArrayList.get(index).stopSound();
                         }
                     },
                     Numbers.randomNumberBetween(15000, 30000)
