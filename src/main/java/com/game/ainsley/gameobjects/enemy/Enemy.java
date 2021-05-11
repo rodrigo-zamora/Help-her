@@ -26,6 +26,5 @@ public abstract class Enemy extends GameObject {
         x = -200;
 
         Player.damage();
-        Player.damageAnimation(true);
     }
 }

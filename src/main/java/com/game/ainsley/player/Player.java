@@ -24,7 +24,7 @@ public class Player extends GameObject {
 
     private static int health = 6;
     private static int speedY;
-    private static boolean shouldRender, isDamaged;
+    private static boolean shouldRender;
     private static int yS;
 
     /**
@@ -77,13 +77,32 @@ public class Player extends GameObject {
         Player.health = health;
     }
 
+    public static void setPlayerImage(Image playerImage) {
+        Player.playerImage = playerImage;
+    }
+
+    public static Image getPlayerIdle() {
+        return playerIdle;
+    }
+
     public static void damage() {
         Player.health--;
-        damageEffect.playSound(0.5F, true);
         if (Player.health == 0) {
             Game.reset();
             Game.setScreen(Screen.DEATH);
         }
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        playerImage = playerIdle;
+                        damageEffect.stopSound();
+                    }
+                },
+                500
+        );
+        damageEffect.playSound(0.5F, true);
+        playerImage = playerDamage;
     }
 
     public static boolean shouldRender() {
@@ -96,19 +115,6 @@ public class Player extends GameObject {
 
     public static void setShouldRender() {
         shouldRender = !shouldRender;
-    }
-
-    public static boolean getDamageAnimation() {
-        return Player.isDamaged;
-    }
-
-    public static void damageAnimation(boolean isDamaged) {
-        Player.isDamaged = isDamaged;
-        if (isDamaged) {
-            playerImage = playerDamage;
-        } else {
-            playerImage = playerIdle;
-        }
     }
 
     public static int getyS() {

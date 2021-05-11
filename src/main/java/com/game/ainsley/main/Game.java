@@ -67,12 +67,12 @@ public class Game extends Canvas implements Runnable {
     public static void reset() {
         GameObjectHandler.getObject().removeIf(tempObject -> tempObject.getID() != ID.Player);
         Player.setHealth(6);
-        Player.damageAnimation(false);
         Player.setSpeedY(0);
         Player.setShouldRender(true);
         Player.getInventory().setNotesCollected(0);
         Player.getInventory().setReadingNote(10);
         Player.getDamageEffect().stopSound();
+        Player.setPlayerImage(Player.getPlayerIdle());
         Chunk.setSpeed(0);
         Chunk.setX(0);
         Chunk.setIterations(0);
@@ -209,8 +209,6 @@ public class Game extends Canvas implements Runnable {
             case MAIN_MENU -> MainMenu.render(graphics);
 
             case CREDITS -> Credits.render(graphics);
-
-            case LOADING -> Loading.render(graphics);
 
             case DEATH -> Death.render(graphics);
 
