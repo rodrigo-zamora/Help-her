@@ -31,7 +31,7 @@ public class SoundHandler {
     }
 
     public static void addSounds() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 9; i++) {
             String index = i + 1 + ".mp3";
             soundArrayList.add(new Sound("sounds/effects/backgroundEffects/" + index, Sound.BACKGROUND));
         }
