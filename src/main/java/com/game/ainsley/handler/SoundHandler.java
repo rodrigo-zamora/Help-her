@@ -30,15 +30,10 @@ public class SoundHandler {
 
     public static void playRandomSound() {
         if (soundArrayList.size() == 0) {
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/1.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/2.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/3.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/4.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/5.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/6.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/7.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/8.mp3", Sound.BACKGROUND));
-            soundArrayList.add(new Sound("sounds/effects/backgroundEffects/9.mp3", Sound.BACKGROUND));
+            for (int i = 0; i < 9; i++) {
+                String index = i + 1 + ".mp3";
+                soundArrayList.add(new Sound("sounds/effects/backgroundEffects/" + index, Sound.BACKGROUND));
+            }
         }
         if (Game.getScreen() == Screen.GAME && !Game.isPaused()) {
             int index = Numbers.randomNumberBetween(0, soundArrayList.size());
