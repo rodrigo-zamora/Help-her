@@ -2,7 +2,6 @@ package com.game.ainsley.map;
 
 import com.game.ainsley.gameobjects.enemy.SpawnEnemy;
 import com.game.ainsley.handler.GameObjectHandler;
-import com.game.ainsley.player.Player;
 import lib.ainsley.FileManager;
 
 import java.awt.*;

@@ -25,16 +25,10 @@ public class SpawnEnemy {
             case 2 -> ID.Gereon;
             case 3 -> ID.Nasra;
             case 4 -> ID.Sephtis;
-            default -> throw new IllegalStateException("Unexpected value at getEnemy: " + randomInteger);
+            default -> throw new IllegalStateException("Unexpected value at SpawnEnemy.getRandomEnemy: " + randomInteger);
         };
     }
 
-
-    /**
-     * Method to spawn an enemy
-     *
-     * @return the enemy object
-     */
     public static Enemy spawn() {
         ID enemyType = getRandomEnemy();
         Enemy enemy;
@@ -45,17 +39,11 @@ public class SpawnEnemy {
             case Gereon -> enemy = new Gereon(1016, y, ID.Gereon);
             case Sephtis -> enemy = new Sephtis(1016, y, ID.Sephtis);
             case Deidamia -> enemy = new Deidamia(1016, y, ID.Deidamia);
-            default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + enemyType);
+            default -> throw new IllegalStateException("Unexpected value at SpawnEnemy.spawn: " + enemyType);
         }
         return enemy;
     }
 
-    /**
-     * @param id
-     * @param x
-     * @param y
-     * @return
-     */
     public static Enemy spawn(String id, int x, int y) {
         Enemy enemy;
         switch (id) {
@@ -64,7 +52,7 @@ public class SpawnEnemy {
             case "Gereon" -> enemy = new Gereon(x, y, ID.Gereon);
             case "Sephtis" -> enemy = new Sephtis(x, y, ID.Sephtis);
             case "Deidamia" -> enemy = new Deidamia(x, y, ID.Deidamia);
-            default -> throw new IllegalStateException("Unexpected value at spawnEnemy: " + id);
+            default -> throw new IllegalStateException("Unexpected value at SpawnEnemy.spawn: " + id);
         }
         return enemy;
     }

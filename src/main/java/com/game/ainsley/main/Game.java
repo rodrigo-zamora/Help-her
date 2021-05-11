@@ -11,7 +11,10 @@ import com.game.ainsley.player.HealthBar;
 import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
 import com.game.ainsley.screen.Window;
-import com.game.ainsley.screen.screens.*;
+import com.game.ainsley.screen.screens.Credits;
+import com.game.ainsley.screen.screens.Death;
+import com.game.ainsley.screen.screens.MainMenu;
+import com.game.ainsley.screen.screens.Win;
 import javafx.embed.swing.JFXPanel;
 import lib.ainsley.FileManager;
 

@@ -61,9 +61,7 @@ public class KeyboardInput extends KeyAdapter {
                 }
 
                 // Pause menu
-                case 27, 80 -> {
-                    Game.setPaused();
-                }
+                case 27, 80 -> Game.setPaused();
             }
         }
     }
