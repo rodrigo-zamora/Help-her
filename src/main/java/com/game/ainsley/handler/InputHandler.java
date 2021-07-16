@@ -1,7 +1,5 @@
 package com.game.ainsley.handler;
 
-import com.game.ainsley.data.Load;
-import com.game.ainsley.data.Save;
 import com.game.ainsley.main.Game;
 import com.game.ainsley.screen.Screen;
 
@@ -23,6 +21,13 @@ public class InputHandler {
 
     private int x, y;
 
+    private final Game game;
+
+    public InputHandler() {
+        game = Game.getInstance();
+    }
+
+
     /**
      * Method to check collision between the mouse and the buttons
      *
@@ -43,7 +48,7 @@ public class InputHandler {
             }
 
             case DEATH -> {
-                Game.reset();
+                game.reset();
                 if (rectangle.intersects(mainMenuFromDeath)) {
                     Game.setScreen(Screen.MAIN_MENU);
                 } else if (rectangle.intersects(gameFromDeath)) {
@@ -61,14 +66,14 @@ public class InputHandler {
             case GAME -> {
                 if (Game.isPaused()) {
                     if (rectangle.intersects(saveFromPause)) {
-                        Save.saveGame();
+                        game.getSaveManager().saveGame();
                         Game.setPaused(false);
                     } else if (rectangle.intersects(loadFromPause)) {
-                        Load.loadGame();
+                        game.getLoadManager().loadGame();
                         Game.setPaused(false);
                     } else if (rectangle.intersects(mainMenuFromPause)) {
                         Game.setScreen(Screen.MAIN_MENU);
-                        Game.reset();
+                        game.reset();
                         Game.setPaused(false);
                     }
                 }
@@ -77,7 +82,7 @@ public class InputHandler {
             case WIN -> {
                 if (rectangle.intersects(winMenu)) {
                     Game.setScreen(Screen.MAIN_MENU);
-                    Game.reset();
+                    game.reset();
                 }
             }
         }

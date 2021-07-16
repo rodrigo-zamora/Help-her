@@ -1,99 +1,47 @@
 package com.game.ainsley.map;
 
 import com.game.ainsley.gameobjects.enemy.SpawnEnemy;
-import com.game.ainsley.handler.GameObjectHandler;
+import com.game.ainsley.main.Game;
 import lib.ainsley.FileManager;
 
 import java.awt.*;
 
-public class Chunk {
+public class MapManager {
+
+    private final Game game;
+
+    public MapManager() {
+        game = Game.getInstance();
+    }
 
     /**
      * Images with our map chunks
      */
 
-    private static final Image chunkImage1 = FileManager.loadImage("map/chunks/1.png");
-    private static final Image chunkImage2 = FileManager.loadImage("map/chunks/2.png");
-    private static final Image chunkImage3 = FileManager.loadImage("map/chunks/3.png");
-    private static final Image chunkImage4 = FileManager.loadImage("map/chunks/4.png");
-    private static final Image chunkImage5 = FileManager.loadImage("map/chunks/5.png");
-    private static final Image chunkImage6 = FileManager.loadImage("map/chunks/6.png");
-    private static final Image chunkImage7 = FileManager.loadImage("map/chunks/7.png");
-    private static final Image chunkImage8 = FileManager.loadImage("map/chunks/8.png");
+    private final Image chunkImage1 = FileManager.loadImage("map/chunks/1.png");
+    private final Image chunkImage2 = FileManager.loadImage("map/chunks/2.png");
+    private final Image chunkImage3 = FileManager.loadImage("map/chunks/3.png");
+    private final Image chunkImage4 = FileManager.loadImage("map/chunks/4.png");
+    private final Image chunkImage5 = FileManager.loadImage("map/chunks/5.png");
+    private final Image chunkImage6 = FileManager.loadImage("map/chunks/6.png");
+    private final Image chunkImage7 = FileManager.loadImage("map/chunks/7.png");
+    private final Image chunkImage8 = FileManager.loadImage("map/chunks/8.png");
 
     /**
-     * Variables for our Chunk class
+     * Variables for our MapManager class
      */
 
-    private static int speed;
-    private static int x = 0;
-    private static int iterations = 0;
-    private static int currentChunk = 1;
-
-    public static int getSpeed() {
-        return speed;
-    }
-
-    public static void setSpeed(int speed) {
-        Chunk.speed = speed;
-    }
-
-    /**
-     * Getter for x
-     *
-     * @return an integer
-     */
-    public static int getX() {
-        return x;
-    }
-
-    /**
-     * Setter for X
-     *
-     * @param x receives an integer
-     */
-    public static void setX(int x) {
-        Chunk.x = x;
-    }
-
-    /**
-     * Getter for iterations
-     *
-     * @return an integer
-     */
-    public static int getIterations() {
-        return iterations;
-    }
-
-    /**
-     * Setter for iterations
-     *
-     * @param iterations receives an integer
-     */
-    public static void setIterations(int iterations) {
-        Chunk.iterations = iterations;
-    }
-
-    /**
-     * @return
-     */
-    public static int getCurrentChunk() {
-        return currentChunk;
-    }
-
-    /**
-     * @param currentChunk
-     */
-    public static void setCurrentChunk(int currentChunk) {
-        Chunk.currentChunk = currentChunk;
-    }
+    private int speed;
+    private int x = 0;
+    private int iterations = 0;
+    private int currentChunk = 1;
 
     /**
      * This method returns the Image to be displayed at the next chunk
      *
      * @return an Image of the next chunk
      */
-    private static Image nextChunk() {
+    private Image nextChunk() {
         return switch (currentChunk) {
             case 1 -> chunkImage2;
             case 2 -> chunkImage3;
@@ -112,7 +60,7 @@ public class Chunk {
      *
      * @return an Image of the current chunk
      */
-    private static Image getChunk() {
+    private Image getChunk() {
         return switch (currentChunk) {
             case 1 -> chunkImage1;
             case 2 -> chunkImage2;
@@ -129,7 +77,7 @@ public class Chunk {
     /**
      * This method adds the next chunk
      */
-    private static void addChunk() {
+    private void addChunk() {
         if (currentChunk == 8) {
             currentChunk = 1;
         } else {
@@ -142,7 +90,7 @@ public class Chunk {
      *
      * @param gameObjectHandler receives a GameObjectHandler to spawn the enemies
      */
-    public static void tick() {
+    public void tick() {
         x += -speed;
         if (x < -1118) {
 
@@ -155,7 +103,7 @@ public class Chunk {
 
             iterations++;
 
-            GameObjectHandler.addObject(SpawnEnemy.spawn());
+            game.getGameObjectHandler().addObject(SpawnEnemy.spawn());
 
         }
     }
@@ -165,7 +113,7 @@ public class Chunk {
      *
      * @param graphics receives the graphics object
      */
-    public static void render(Graphics graphics) {
+    public void render(Graphics graphics) {
 
         // Render current chunk
         graphics.drawImage(
@@ -183,5 +131,37 @@ public class Chunk {
                 null
         );
 
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getIterations() {
+        return iterations;
+    }
+
+    public void setIterations(int iterations) {
+        this.iterations = iterations;
+    }
+
+    public int getCurrentChunk() {
+        return currentChunk;
+    }
+
+    public void setCurrentChunk(int currentChunk) {
+        this.currentChunk = currentChunk;
     }
 }

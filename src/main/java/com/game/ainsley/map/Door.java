@@ -2,7 +2,6 @@ package com.game.ainsley.map;
 
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
-import com.game.ainsley.player.Player;
 import com.game.ainsley.screen.Screen;
 import lib.ainsley.FileManager;
 import lib.ainsley.Numbers;
@@ -12,94 +11,97 @@ import java.awt.*;
 
 public class Door {
 
-    private static final Image doorImage = FileManager.loadImage("map/door.png");
-    private static final Sound close = new Sound("sounds/effects/doorClose.mp3", Sound.EFFECT);
-    private static final Sound open = new Sound("sounds/effects/doorOpen.mp3", Sound.EFFECT);
-    private static CollisionHandler collisionHandler = new CollisionHandler(80, 160);
-    private static boolean shouldRender;
-    private static int x = 1500, y;
+    private final Image doorImage = FileManager.loadImage("map/door.png");
+    private final Sound close = new Sound("sounds/effects/doorClose.mp3", Sound.EFFECT);
+    private final Sound open = new Sound("sounds/effects/doorOpen.mp3", Sound.EFFECT);
+    private CollisionHandler collisionHandler = new CollisionHandler(80, 160);
+    private boolean shouldRender;
+    private int x = 1500, y;
 
-    private static int randomInteger;
+    private int randomInteger;
+
+    private final Game game;
 
     /**
      *
      */
     public Door() {
+        game = Game.getInstance();
         shouldRender = false;
         collisionHandler.setX(x);
         collisionHandler.setY(220);
         setRandomInteger();
     }
 
-    private static void setRandomInteger() {
+    private void setRandomInteger() {
         randomInteger = Numbers.randomNumberBetween(3, 10);
     }
 
     /**
      * @return
      */
-    public static int getX() {
+    public int getX() {
         return x;
     }
 
     /**
      * @param x
      */
-    public static void setX(int x) {
-        Door.x = x;
+    public void setX(int x) {
+        this.x = x;
     }
 
     /**
      * @return
      */
-    public static int getY() {
+    public int getY() {
         return y;
     }
 
     /**
      * @param y
      */
-    public static void setY(int y) {
-        Door.y = y;
+    public void setY(int y) {
+        this.y = y;
     }
 
     /**
      * @return
      */
-    public static boolean shouldRender() {
+    public boolean shouldRender() {
         return shouldRender;
     }
 
     /**
      * @param shouldRender
      */
-    public static void setShouldRender(boolean shouldRender) {
-        Door.shouldRender = shouldRender;
+    public void setShouldRender(boolean shouldRender) {
+        this.shouldRender = shouldRender;
     }
 
     /**
      * @return
      */
-    public static CollisionHandler getCollisionHandler() {
+    public CollisionHandler getCollisionHandler() {
         return collisionHandler;
     }
 
     /**
      * @param collisionHandler
      */
-    public static void setCollisionHandler(CollisionHandler collisionHandler) {
-        Door.collisionHandler = collisionHandler;
+    public void setCollisionHandler(CollisionHandler collisionHandler) {
+        this.collisionHandler = collisionHandler;
     }
 
     /**
      *
      */
-    public static void tick() {
-        if (Chunk.getIterations() == randomInteger) {
+    public void tick() {
+        if (game.getMapManager().getIterations() == randomInteger) {
             shouldRender = true;
         }
         if (shouldRender) {
-            if (Chunk.getSpeed() > 0) {
+            if (game.getMapManager().getSpeed() > 0) {
                 x -= 5;
             }
 
@@ -118,7 +120,7 @@ public class Door {
     /**
      * @param graphics
      */
-    public static void render(Graphics graphics) {
+    public void render(Graphics graphics) {
         if (shouldRender) {
             graphics.drawImage(
                     doorImage,
@@ -131,7 +133,7 @@ public class Door {
             graphics.setColor(Color.WHITE);
             graphics.setFont(new Font("TimesRoman", Font.PLAIN, 20));
 
-            if (Player.shouldRender()) {
+            if (game.getPlayer().shouldRender()) {
                 graphics.drawString(
                         "Press 'E' to enter",
                         x - 25,
@@ -150,8 +152,8 @@ public class Door {
     /**
      * Check for collision between player and door
      */
-    public static void collision() {
-        if (Player.getCollisionHandler().getRectangle().intersects(collisionHandler.getRectangle())) {
+    public void collision() {
+        if (game.getPlayer().getCollisionHandler().getRectangle().intersects(collisionHandler.getRectangle())) {
             collisionIntersect();
         }
     }
@@ -159,30 +161,30 @@ public class Door {
     /**
      * Collision between player and door
      */
-    private static void collisionIntersect() {
+    private void collisionIntersect() {
 
         // Only get new note if player is visible (outside of the door)
-        if (Player.shouldRender()) {
+        if (game.getPlayer().shouldRender()) {
 
             open.playSound(1, false);
             close.stopSound();
 
             // All notes collected
-            if (Player.getInventory().getNotesCollected() == 9) {
+            if (game.getPlayer().getInventory().getNotesCollected() == 9) {
                 Game.setScreen(Screen.WIN);
-                Game.reset();
+                game.reset();
             }
 
             // Make player stop moving
-            Player.setSpeedY(0);
-            Chunk.setSpeed(0);
+            game.getPlayer().setSpeedY(0);
+            game.getMapManager().setSpeed(0);
 
             // Set beenFound from latest note to true
-            Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setBeenFound(true);
-            Player.getInventory().getNote(Player.getInventory().getNotesCollected()).setOpen(false);
+            game.getPlayer().getInventory().getNote(game.getPlayer().getInventory().getNotesCollected()).setBeenFound(true);
+            game.getPlayer().getInventory().getNote(game.getPlayer().getInventory().getNotesCollected()).setOpen(false);
 
             // Increase notes found by 1
-            Player.getInventory().setNotesCollected(Player.getInventory().getNotesCollected() + 1);
+            game.getPlayer().getInventory().setNotesCollected(game.getPlayer().getInventory().getNotesCollected() + 1);
 
         } else {
             // Change door visibility
@@ -190,11 +192,11 @@ public class Door {
             close.playSound(1, false);
             open.stopSound();
 
-            Chunk.setIterations(0);
-            Door.shouldRender = false;
+            game.getMapManager().setIterations(0);
+            this.shouldRender = false;
         }
 
         // Change player visibility
-        Player.setShouldRender();
+        game.getPlayer().setShouldRender();
     }
 }

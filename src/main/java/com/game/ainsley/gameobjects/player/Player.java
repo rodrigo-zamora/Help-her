@@ -1,10 +1,10 @@
-package com.game.ainsley.player;
+package com.game.ainsley.gameobjects.player;
 
 import com.game.ainsley.gameobjects.GameObject;
 import com.game.ainsley.gameobjects.ID;
+import com.game.ainsley.gameobjects.player.inventory.Inventory;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
-import com.game.ainsley.player.inventory.Inventory;
 import com.game.ainsley.screen.Screen;
 import lib.ainsley.FileManager;
 import lib.ainsley.Sound;
@@ -13,19 +13,22 @@ import java.awt.*;
 
 public class Player extends GameObject {
 
-    private static final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
-    private static final Inventory inventory = new Inventory();
+    private final CollisionHandler collisionHandler = new CollisionHandler(90, 32);
+    private final Inventory inventory = new Inventory();
 
-    static Image playerImage;
-    static Image playerIdle = FileManager.loadImage("player/player.gif");
-    static Image playerDamage = FileManager.loadImage("player/playerDamaged.gif");
+    Image playerImage;
+    Image playerIdle = FileManager.loadImage("player/player.gif");
+    Image playerDamage = FileManager.loadImage("player/playerDamaged.gif");
 
-    static Sound damageEffect;
+    Sound damageEffect;
 
-    private static int health = 6;
-    private static int speedY;
-    private static boolean shouldRender;
-    private static int yS;
+    private int health = 6;
+    private int speedY;
+    private boolean shouldRender;
+    private int yS;
+
+    // Game instance
+    private final Game game;
 
     /**
      * Constructor for Player class
@@ -36,6 +39,7 @@ public class Player extends GameObject {
      */
     public Player(int x, int y, ID id) {
         super(x, y, id);
+        game = Game.getInstance();
         collisionHandler.setX(x + 20); // 20
         collisionHandler.setY(y); // 0
         shouldRender = true;
@@ -43,20 +47,20 @@ public class Player extends GameObject {
         damageEffect = new Sound("sounds/effects/damage.mp3", Sound.EFFECT);
     }
 
-    public static CollisionHandler getCollisionHandler() {
+    public CollisionHandler getCollisionHandler() {
         return collisionHandler;
     }
 
-    public static Inventory getInventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
-    public static int getSpeedY() {
+    public int getSpeedY() {
         return speedY;
     }
 
-    public static void setSpeedY(int speedY) {
-        Player.speedY = speedY;
+    public void setSpeedY(int speedY) {
+        this.speedY = speedY;
     }
 
     /**
@@ -64,7 +68,7 @@ public class Player extends GameObject {
      *
      * @return an integer
      */
-    public static int getHealth() {
+    public int getHealth() {
         return health;
     }
 
@@ -73,23 +77,24 @@ public class Player extends GameObject {
      *
      * @param health receives an integer
      */
-    public static void setHealth(int health) {
-        Player.health = health;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
-    public static void setPlayerImage(Image playerImage) {
-        Player.playerImage = playerImage;
+    public void setPlayerImage(Image playerImage) {
+        this.playerImage = playerImage;
     }
 
-    public static Image getPlayerIdle() {
+    public Image getPlayerIdle() {
         return playerIdle;
     }
 
-    public static void damage() {
-        Player.health--;
-        if (Player.health == 0) {
-            Game.reset();
+    public void damage() {
+        health--;
+        if (health == 0) {
+            game.reset();
             Game.setScreen(Screen.DEATH);
+
         }
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -105,27 +110,27 @@ public class Player extends GameObject {
         playerImage = playerDamage;
     }
 
-    public static boolean shouldRender() {
+    public boolean shouldRender() {
         return shouldRender;
     }
 
-    public static void setShouldRender(boolean shouldRender) {
-        Player.shouldRender = shouldRender;
+    public void setShouldRender(boolean shouldRender) {
+        this.shouldRender = shouldRender;
     }
 
-    public static void setShouldRender() {
+    public void setShouldRender() {
         shouldRender = !shouldRender;
     }
 
-    public static int getyS() {
+    public int getyS() {
         return yS;
     }
 
-    public static void setyS(int yS) {
-        Player.yS = yS;
+    public void setyS(int yS) {
+        this.yS = yS;
     }
 
-    public static Sound getDamageEffect() {
+    public Sound getDamageEffect() {
         return damageEffect;
     }
 
@@ -135,7 +140,7 @@ public class Player extends GameObject {
     @Override
     public boolean tick() {
         y += speedY;
-        Player.yS = y;
+        this.yS = y;
         if (y <= 260)
             y += +5;
         else if (y >= 430)

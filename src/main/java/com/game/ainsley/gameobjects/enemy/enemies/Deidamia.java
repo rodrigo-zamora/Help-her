@@ -4,7 +4,6 @@ import com.game.ainsley.gameobjects.ID;
 import com.game.ainsley.gameobjects.enemy.Enemy;
 import com.game.ainsley.handler.CollisionHandler;
 import com.game.ainsley.main.Game;
-import com.game.ainsley.player.Player;
 import lib.ainsley.FileManager;
 import lib.ainsley.Sound;
 
@@ -52,7 +51,7 @@ public class Deidamia extends Enemy {
 
     @Override
     public void collision() {
-        if (Player.getCollisionHandler().getRectangle().intersects(collisionHandler.getRectangle())) {
+        if (game.getPlayer().getCollisionHandler().getRectangle().intersects(collisionHandler.getRectangle())) {
             collisionIntersect();
         }
     }
