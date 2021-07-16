@@ -9,9 +9,9 @@ import java.util.LinkedList;
 
 public class GameObjectHandler {
 
-    private static final LinkedList<GameObject> object = new LinkedList<>();
+    private final LinkedList<GameObject> object = new LinkedList<>();
 
-    public static void tick() {
+    public void tick() {
         Iterator<GameObject> iterator = object.iterator();
         while (iterator.hasNext()) {
             GameObject tempObject = iterator.next();
@@ -25,7 +25,7 @@ public class GameObjectHandler {
     }
 
     @SuppressWarnings("unchecked")
-    public static void render(Graphics graphics) {
+    public void render(Graphics graphics) {
 
         // Create a temp linked list to avoid ConcurrentModificationException
         LinkedList<GameObject> temp;
@@ -35,11 +35,11 @@ public class GameObjectHandler {
         }
     }
 
-    public static void addObject(GameObject object) {
-        GameObjectHandler.object.add(object);
+    public void addObject(GameObject object) {
+        this.object.add(object);
     }
 
-    public static LinkedList<GameObject> getObject() {
+    public LinkedList<GameObject> getObject() {
         return object;
     }
 

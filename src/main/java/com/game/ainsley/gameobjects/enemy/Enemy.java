@@ -2,10 +2,11 @@ package com.game.ainsley.gameobjects.enemy;
 
 import com.game.ainsley.gameobjects.GameObject;
 import com.game.ainsley.gameobjects.ID;
-import com.game.ainsley.map.Chunk;
-import com.game.ainsley.player.Player;
+import com.game.ainsley.main.Game;
 
 public abstract class Enemy extends GameObject {
+
+    protected Game game;
 
     /**
      * @param x
@@ -14,17 +15,18 @@ public abstract class Enemy extends GameObject {
      */
     public Enemy(int x, int y, ID id) {
         super(x, y, id);
+        game = Game.getInstance();
     }
 
     protected void moveEnemy() {
-        if (Chunk.getSpeed() != 0)
-            x += -Chunk.getSpeed();
+        if (game.getMapManager().getSpeed() != 0)
+            x += -game.getMapManager().getSpeed();
     }
 
     protected void collisionIntersect() {
         // Move enemy out of player's view
         x = -200;
 
-        Player.damage();
+        game.getPlayer().damage();
     }
 }

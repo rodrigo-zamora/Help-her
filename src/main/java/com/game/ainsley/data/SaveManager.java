@@ -4,35 +4,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.game.ainsley.gameobjects.GameObject;
 import com.game.ainsley.gameobjects.ID;
-import com.game.ainsley.handler.GameObjectHandler;
-import com.game.ainsley.map.Chunk;
-import com.game.ainsley.map.Door;
-import com.game.ainsley.player.Player;
+import com.game.ainsley.main.Game;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.util.LinkedList;
 
-public class Save {
+public class SaveManager {
 
-    @SuppressWarnings("unchecked")
-    public static void saveGame() {
+    private final Game game;
+
+    public SaveManager() {
+        game = Game.getInstance();
+    }
+
+    public void saveGame() {
 
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         JSONArray dataArray = new JSONArray();
 
         JSONObject playerObject = new JSONObject();
         JSONObject player = new JSONObject();
-        player.put("health", Player.getHealth());
-        player.put("shouldRender", Player.shouldRender());
-        player.put("notesCollected", Player.getInventory().getNotesCollected());
-        player.put("readingNote", Player.getInventory().getReadingNote());
-        player.put("y", Player.getyS());
+        player.put("health", game.getPlayer().getHealth());
+        player.put("shouldRender", game.getPlayer().shouldRender());
+        player.put("notesCollected", game.getPlayer().getInventory().getNotesCollected());
+        player.put("readingNote", game.getPlayer().getInventory().getReadingNote());
+        player.put("y", game.getPlayer().getyS());
 
         JSONObject playerCollisionHandler = new JSONObject();
-        playerCollisionHandler.put("x", Player.getCollisionHandler().getX());
-        playerCollisionHandler.put("y", Player.getCollisionHandler().getY());
+        playerCollisionHandler.put("x", game.getPlayer().getCollisionHandler().getX());
+        playerCollisionHandler.put("y", game.getPlayer().getCollisionHandler().getY());
         player.put("collisionHandler", playerCollisionHandler);
 
         playerObject.put("player", player);
@@ -41,22 +43,22 @@ public class Save {
 
         JSONObject chunkObject = new JSONObject();
         JSONObject chunk = new JSONObject();
-        chunk.put("x", Chunk.getX());
-        chunk.put("currentChunk", Chunk.getCurrentChunk());
-        chunk.put("iterations", Chunk.getIterations());
+        chunk.put("x", game.getMapManager().getX());
+        chunk.put("currentChunk", game.getMapManager().getCurrentChunk());
+        chunk.put("iterations", game.getMapManager().getIterations());
         chunkObject.put("chunk", chunk);
 
         dataArray.put(chunkObject);
 
         JSONObject doorObject = new JSONObject();
         JSONObject door = new JSONObject();
-        door.put("x", Door.getX());
-        door.put("y", Door.getY());
-        door.put("shouldRender", Door.shouldRender());
+        door.put("x", game.getDoor().getX());
+        door.put("y", game.getDoor().getY());
+        door.put("shouldRender", game.getDoor().shouldRender());
 
         JSONObject doorCollisionHandler = new JSONObject();
-        doorCollisionHandler.put("x", Door.getCollisionHandler().getX());
-        doorCollisionHandler.put("y", Door.getCollisionHandler().getY());
+        doorCollisionHandler.put("x", game.getDoor().getCollisionHandler().getX());
+        doorCollisionHandler.put("y", game.getDoor().getCollisionHandler().getY());
         door.put("collisionHandler", doorCollisionHandler);
         door.put("collisionHandler", doorCollisionHandler);
 
@@ -69,8 +71,8 @@ public class Save {
 
         for (int i = 0; i < 9; i++) {
             JSONObject inventoryNote = new JSONObject();
-            inventoryNote.put("isOpen", Player.getInventory().getNote(i).isOpen());
-            inventoryNote.put("hasBeenFound", Player.getInventory().getNote(i).hasBeenFound());
+            inventoryNote.put("isOpen", game.getPlayer().getInventory().getNote(i).isOpen());
+            inventoryNote.put("hasBeenFound", game.getPlayer().getInventory().getNote(i).hasBeenFound());
             inventory.put(String.valueOf(i), inventoryNote);
         }
 
@@ -83,7 +85,7 @@ public class Save {
 
         // Create a temp linked list to avoid ConcurrentModificationException
         LinkedList<GameObject> temp;
-        temp = (LinkedList<GameObject>) GameObjectHandler.getObject().clone();
+        temp = (LinkedList<GameObject>) game.getGameObjectHandler().getObject().clone();
         for (GameObject tempObject : temp) {
             if (temp.size() != 1) {
                 if (tempObject.getID() != ID.Player) {

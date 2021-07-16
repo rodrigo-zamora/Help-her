@@ -1,4 +1,4 @@
-package com.game.ainsley.player.inventory;
+package com.game.ainsley.gameobjects.player.inventory;
 
 import lib.ainsley.FileManager;
 

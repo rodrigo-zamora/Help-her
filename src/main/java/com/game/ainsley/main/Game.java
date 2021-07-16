@@ -1,14 +1,16 @@
 package com.game.ainsley.main;
 
+import com.game.ainsley.data.LoadManager;
+import com.game.ainsley.data.SaveManager;
 import com.game.ainsley.gameobjects.ID;
+import com.game.ainsley.gameobjects.player.HealthBar;
+import com.game.ainsley.gameobjects.player.Player;
 import com.game.ainsley.handler.GameObjectHandler;
 import com.game.ainsley.handler.SoundHandler;
 import com.game.ainsley.input.KeyboardInput;
 import com.game.ainsley.input.MouseInput;
-import com.game.ainsley.map.Chunk;
 import com.game.ainsley.map.Door;
-import com.game.ainsley.player.HealthBar;
-import com.game.ainsley.player.Player;
+import com.game.ainsley.map.MapManager;
 import com.game.ainsley.screen.Screen;
 import com.game.ainsley.screen.Window;
 import com.game.ainsley.screen.screens.Credits;
@@ -30,29 +32,54 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1080;
     public static final int HEIGHT = 640;
     public static final String TITLE = "Help her";
+
     @Serial
     private static final long serialVersionUID = 2717367914577165013L;
+
+    // Game instance
+    private static Game game;
+
+    private final MapManager mapManager;
+    private final LoadManager loadManager;
+    private final SaveManager saveManager;
+    private final Door door;
+    private final HealthBar healthBar;
+    private final GameObjectHandler gameObjectHandler;
+
     private static final Image pauseImage = FileManager.loadImage("screens/LoadingScreen1.gif");
     private static final Image saveImage = FileManager.loadImage("buttons/saveButtonPixel4.png");
     private static final Image loadImage = FileManager.loadImage("buttons/loadButtonPixel4.png");
     private static final Image menuImage = FileManager.loadImage("buttons/menuButtonPixel4.png");
+
     // Initialization for fxPanel to avoid java.lang.NullPointerException
     //	at java.base/java.util.Objects.requireNonNull(Objects.java:208)
     static JFXPanel fxPanel;
+
     private static boolean paused = false;
     private static boolean isMoving;
     private static Screen screen;
     private static int FPS;
     Player player;
+
     private Thread thread;
     private boolean isRunning = false;
 
     public Game() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        game = this;
+
         addMouseListener(new MouseInput());
-        this.addKeyListener(new KeyboardInput());
+        addKeyListener(new KeyboardInput());
+
         new Window(WIDTH, HEIGHT, TITLE, this);
+        mapManager = new MapManager();
+        loadManager = new LoadManager();
+        saveManager = new SaveManager();
+        door = new Door();
+        gameObjectHandler = new GameObjectHandler();
+        healthBar = new HealthBar();
+
         player = new Player(75, HEIGHT / 2 - 32, ID.Player);
-        GameObjectHandler.addObject(player);
+        gameObjectHandler.addObject(player);
         SoundHandler.sceneSound();
     }
 
@@ -68,62 +95,29 @@ public class Game extends Canvas implements Runnable {
         new Game();
     }
 
-    public static void reset() {
-        GameObjectHandler.getObject().removeIf(tempObject -> tempObject.getID() != ID.Player);
-        Player.setHealth(6);
-        Player.setSpeedY(0);
-        Player.setShouldRender(true);
-        Player.getInventory().setNotesCollected(0);
-        Player.getInventory().setReadingNote(10);
-        Player.getDamageEffect().stopSound();
-        Player.setPlayerImage(Player.getPlayerIdle());
-        Chunk.setSpeed(0);
-        Chunk.setX(0);
-        Chunk.setIterations(0);
-        Chunk.setCurrentChunk(1);
-        Door.setShouldRender(false);
-        Door.setX(1500);
+    public void reset() {
+        gameObjectHandler.getObject().removeIf(tempObject -> tempObject.getID() != ID.Player);
+
+        player.setHealth(6);
+        player.setSpeedY(0);
+        player.setShouldRender(true);
+        player.getInventory().setNotesCollected(0);
+        player.getInventory().setReadingNote(10);
+        player.getDamageEffect().stopSound();
+        player.setPlayerImage(player.getPlayerIdle());
+
+        mapManager.setSpeed(0);
+        mapManager.setSpeed(0);
+        mapManager.setX(0);
+        mapManager.setIterations(0);
+        mapManager.setCurrentChunk(1);
+
+        door.setShouldRender(false);
+        door.setX(1500);
         for (int i = 0; i < 9; i++) {
-            Player.getInventory().getNote(i).setBeenFound(false);
-            Player.getInventory().getNote(i).setOpen(false);
+            player.getInventory().getNote(i).setBeenFound(false);
+            player.getInventory().getNote(i).setOpen(false);
         }
-    }
-
-    /**
-     * Getters and setters
-     */
-
-    public static boolean isPaused() {
-        return paused;
-    }
-
-    public static void setPaused() {
-        Game.paused = !Game.paused;
-    }
-
-    public static Boolean getPaused() {
-        return Game.paused;
-    }
-
-    public static void setPaused(boolean paused) {
-        Game.paused = paused;
-    }
-
-    public static boolean isMoving() {
-        return isMoving;
-    }
-
-    public static void setMoving(boolean isMoving) {
-        Game.isMoving = isMoving;
-    }
-
-    public static Screen getScreen() {
-        return screen;
-    }
-
-    public static void setScreen(Screen screen) {
-        Game.screen = screen;
-        SoundHandler.sceneSound();
     }
 
     /**
@@ -185,13 +179,13 @@ public class Game extends Canvas implements Runnable {
 
         if (screen == Screen.GAME) {
 
-            isMoving = Chunk.getSpeed() > 0;
+            isMoving = mapManager.getSpeed() > 0;
 
             // Tick all game objects
-            GameObjectHandler.tick();
+            gameObjectHandler.tick();
 
-            Chunk.tick();
-            Door.tick();
+            mapManager.tick();
+            door.tick();
         }
 
     }
@@ -221,7 +215,7 @@ public class Game extends Canvas implements Runnable {
             case GAME -> {
 
                 // Render map
-                Chunk.render(graphics);
+                mapManager.render(graphics);
 
                 // FPS
                 graphics.setColor(Color.BLACK);
@@ -232,17 +226,17 @@ public class Game extends Canvas implements Runnable {
                         20
                 );
 
-                Door.render(graphics);
+                door.render(graphics);
 
-                HealthBar.render(graphics);
+                healthBar.render(graphics);
 
                 // Render all game objects
-                GameObjectHandler.render(graphics);
+                gameObjectHandler.render(graphics);
 
                 // Inventory
 
                 graphics.drawImage(
-                        Player.getInventory().getContainerImage(),
+                        player.getInventory().getContainerImage(),
                         252,
                         530,
                         null
@@ -250,9 +244,9 @@ public class Game extends Canvas implements Runnable {
 
                 int xOffset = 0;
 
-                for (int i = 0; i < Player.getInventory().getNotesCollected(); i++) {
+                for (int i = 0; i < player.getInventory().getNotesCollected(); i++) {
                     graphics.drawImage(
-                            Player.getInventory().getInventoryIconImage(i),
+                            player.getInventory().getInventoryIconImage(i),
                             252 + xOffset,
                             530,
                             null
@@ -261,9 +255,9 @@ public class Game extends Canvas implements Runnable {
                 }
 
                 // Note
-                if (Player.getInventory().getReadingNote() != 10) {
+                if (player.getInventory().getReadingNote() != 10) {
                     graphics.drawImage(
-                            Player.getInventory().getInventoryImage(Player.getInventory().getReadingNote()),
+                            player.getInventory().getInventoryImage(player.getInventory().getReadingNote()),
                             204,
                             12,
                             null
@@ -305,6 +299,75 @@ public class Game extends Canvas implements Runnable {
 
         graphics.dispose();
         bufferStrategy.show();
+    }
+
+    /**
+     * Getters and setters
+     */
+
+    public static Game getInstance() {
+        return game;
+    }
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static void setPaused() {
+        Game.paused = !Game.paused;
+    }
+
+    public static Boolean getPaused() {
+        return Game.paused;
+    }
+
+    public static void setPaused(boolean paused) {
+        Game.paused = paused;
+    }
+
+    public static boolean isMoving() {
+        return isMoving;
+    }
+
+    public static void setMoving(boolean isMoving) {
+        Game.isMoving = isMoving;
+    }
+
+    public static Screen getScreen() {
+        return screen;
+    }
+
+    public static void setScreen(Screen screen) {
+        Game.screen = screen;
+        SoundHandler.sceneSound();
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public MapManager getMapManager() {
+        return mapManager;
+    }
+
+    public LoadManager getLoadManager() {
+        return loadManager;
+    }
+
+    public SaveManager getSaveManager() {
+        return saveManager;
+    }
+
+    public Door getDoor() {
+        return door;
+    }
+
+    public GameObjectHandler getGameObjectHandler() {
+        return gameObjectHandler;
+    }
+
+    public HealthBar getHealthBar() {
+        return healthBar;
     }
 
 }
